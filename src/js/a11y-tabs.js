@@ -298,7 +298,10 @@ class AccessibleTabs {
     }
 }
 
-// Auto-initialize tabs
+/**
+ * Initialize all tabs on the page
+ * Call this manually after DOM is ready
+ */
 function initTabs() {
     const tabsElements = document.querySelectorAll("[data-tabs]");
     const instances = [];
@@ -314,22 +317,6 @@ function initTabs() {
     });
 
     return instances;
-}
-
-// Initialize on DOM ready (only if not using module bundler)
-if (typeof window !== 'undefined' && !window.a11yKitManualInit) {
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initTabs);
-    } else {
-        initTabs();
-    }
-}
-
-// Register in global namespace for CDN usage
-if (typeof window !== 'undefined') {
-    window.a11yKit = window.a11yKit || {};
-    window.a11yKit.Tabs = AccessibleTabs;
-    window.a11yKit.initTabs = initTabs;
 }
 
 // ES6 exports with short aliases

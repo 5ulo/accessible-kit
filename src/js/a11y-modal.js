@@ -251,7 +251,10 @@ class AccessibleModal {
     }
 }
 
-// Auto-initialize modals
+/**
+ * Initialize all modals on the page
+ * Call this manually after DOM is ready
+ */
 function initModals() {
     const modalElements = document.querySelectorAll("[data-modal]");
     const instances = [];
@@ -268,22 +271,6 @@ function initModals() {
     });
 
     return instances;
-}
-
-// Initialize on DOM ready (only if not using module bundler)
-if (typeof window !== 'undefined' && !window.a11yKitManualInit) {
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initModals);
-    } else {
-        initModals();
-    }
-}
-
-// Register in global namespace for CDN usage
-if (typeof window !== 'undefined') {
-    window.a11yKit = window.a11yKit || {};
-    window.a11yKit.Modal = AccessibleModal;
-    window.a11yKit.initModals = initModals;
 }
 
 // ES6 exports with short aliases

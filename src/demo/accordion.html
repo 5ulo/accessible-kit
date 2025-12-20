@@ -739,23 +739,17 @@
 
             <h3>JavaScript Initialization:</h3>
 
-            <h4>1. Auto-initialization (CDN)</h4>
-            <pre><code>&lt;script src="js/a11y-accordion.js"&gt;&lt;/script&gt;
-&lt;!-- Automatically initializes all accordions --&gt;</code></pre>
+            <h4>1. ES6 Module Import - init functions (Recommended)</h4>
+            <pre><code>import { initAccordions, initCollapses } from './a11y-kit/a11y-accordion.js';
 
-            <h4>2. CDN with window.a11yKit namespace (recommended)</h4>
-            <pre><code>&lt;script src="js/a11y-accordion.js"&gt;&lt;/script&gt;
-&lt;script&gt;
-  // Init functions
-  a11yKit.initCollapses();  // Only standalone collapse toggles
-  a11yKit.initAccordions(); // Everything (collapse + accordion groups)
+// Initialize after DOM is ready
+document.addEventListener('DOMContentLoaded', () => {
+  initAccordions(); // Everything (collapse + accordion groups)
+  // OR
+  initCollapses();  // Only standalone collapse toggles
+});</code></pre>
 
-  // Bootstrap style - manual initialization
-  const collapse = new a11yKit.Collapse();  // Only collapse
-  const accordion = new a11yKit.Accordion(); // Everything
-&lt;/script&gt;</code></pre>
-
-            <h4>3. ES6 Module Import - Bootstrap Style</h4>
+            <h4>2. ES6 Module Import - Bootstrap Style</h4>
             <pre><code>import { Collapse, Accordion } from './a11y-kit/a11y-accordion.js';
 
 // Only standalone collapse toggles
@@ -764,15 +758,19 @@ const collapse = new Collapse();
 // Everything (collapse + accordion groups)
 const accordion = new Accordion();</code></pre>
 
-            <h4>4. Wildcard / NPM Package</h4>
-            <pre><code>// Wildcard
-import * as a11yKit from './a11y-kit';
-a11yKit.initCollapses();  // Only collapse
-a11yKit.initAccordions(); // Everything
+            <h4>3. NPM package (Module bundlers: Astro, Vite, Webpack)</h4>
+            <pre><code>npm install accessible-kit
 
-// NPM
+// Import only what you need (best for tree-shaking)
 import { initCollapses, initAccordions, Collapse, Accordion } from 'accessible-kit/accordion';
-initCollapses();  // or initAccordions();</code></pre>
+
+// Initialize after DOM is ready
+document.addEventListener('DOMContentLoaded', () => {
+  initAccordions(); // Auto-init all accordions
+
+  // OR create instances manually
+  const accordion = new Accordion();
+});</code></pre>
 
             <div class="info-box info-box--keyboard">
                 <h3>Keyboard Navigation (in accordion groups)</h3>
@@ -805,7 +803,14 @@ initCollapses();  // or initAccordions();</code></pre>
         </section>
     </div>
 
-    <script type="module" src="../js/a11y-accordion.js"></script>
+    <script type="module">
+        import { initAccordions } from '../js/a11y-accordion.js';
+
+        // Initialize accordions after DOM is ready
+        document.addEventListener('DOMContentLoaded', () => {
+            initAccordions();
+        });
+    </script>
     <script src="demo.js"></script>
 </body>
 

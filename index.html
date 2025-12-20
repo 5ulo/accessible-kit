@@ -602,11 +602,10 @@ initTabs();</code></pre>
 
             <h3>Which method to use?</h3>
             <ul>
-                <li>🌐 <strong>CDN / direct files</strong> → Auto-initialization (easiest)</li>
+                <li>📦 <strong>Module bundler (Astro/Vite/Webpack)</strong> → ES6 import with <code>initComponentName()</code> (Recommended)</li>
                 <li>⚙️ <strong>Need callbacks and options</strong> → Manual initialization with <code>new AccessibleComponent()</code></li>
-                <li>📦 <strong>Module bundler (Astro/Vite/Webpack)</strong> → ES6 import with <code>initComponentName()</code></li>
                 <li>🎯 <strong>Need small bundle size</strong> → Named imports of only needed components</li>
-                <li>⚡ <strong>Quick prototyping</strong> → Wildcard import <code>import * as a11yKit</code> or <code>initAll()</code></li>
+                <li>⚡ <strong>Quick prototyping</strong> → <code>initAll()</code> to initialize all components</li>
             </ul>
         </section>
 

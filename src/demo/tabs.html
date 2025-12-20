@@ -288,24 +288,15 @@
 
             <h3>JavaScript Initialization:</h3>
 
-            <h4>1. Auto-initialization (CDN)</h4>
-            <pre><code>&lt;script src="js/a11y-tabs.js"&gt;&lt;/script&gt;
-&lt;!-- Automatically initializes all tabs --&gt;</code></pre>
+            <h4>1. ES6 Module Import - init functions (Recommended)</h4>
+            <pre><code>import { initTabs } from './a11y-kit/a11y-tabs.js';
 
-            <h4>2. CDN with window.a11yKit namespace (recommended)</h4>
-            <pre><code>&lt;script src="js/a11y-tabs.js"&gt;&lt;/script&gt;
-&lt;script&gt;
-  // Init function
-  a11yKit.initTabs();
+// Initialize after DOM is ready
+document.addEventListener('DOMContentLoaded', () => {
+  initTabs();
+});</code></pre>
 
-  // Bootstrap style - short alias
-  const tabs = new a11yKit.Tabs(element, {
-    activeIndex: 0,
-    onChange: (tab, panel, index) => console.log('Tab changed')
-  });
-&lt;/script&gt;</code></pre>
-
-            <h4>3. ES6 Module Import - Bootstrap Style</h4>
+            <h4>2. ES6 Module Import - Bootstrap Style</h4>
             <pre><code>import { Tabs } from './a11y-kit/a11y-tabs.js';
 
 const tabs = new Tabs(element, {
@@ -316,15 +307,19 @@ const tabs = new Tabs(element, {
     onTabClick: (tab, index) => console.log('Clicked:', index)
 });</code></pre>
 
-            <h4>4. Wildcard / NPM Package</h4>
-            <pre><code>// Wildcard
-import * as a11yKit from './a11y-kit';
-a11yKit.initTabs();
-const tabs = new a11yKit.Tabs(element, options);
+            <h4>3. NPM package (Module bundlers: Astro, Vite, Webpack)</h4>
+            <pre><code>npm install accessible-kit
 
-// NPM
+// Import only what you need (best for tree-shaking)
 import { initTabs, Tabs } from 'accessible-kit/tabs';
-initTabs(); // or new Tabs(element, options);</code></pre>
+
+// Initialize after DOM is ready
+document.addEventListener('DOMContentLoaded', () => {
+  initTabs(); // Auto-init all tabs
+
+  // OR create instances manually
+  const tabs = new Tabs(element, options);
+});</code></pre>
 
             <h3>Variants:</h3>
             <pre><code>&lt;!-- Boxed variant --&gt;
@@ -381,7 +376,14 @@ initTabs(); // or new Tabs(element, options);</code></pre>
         </section>
     </div>
 
-    <script type="module" src="../js/a11y-tabs.js"></script>
+    <script type="module">
+        import { initTabs } from '../js/a11y-tabs.js';
+
+        // Initialize tabs after DOM is ready
+        document.addEventListener('DOMContentLoaded', () => {
+            initTabs();
+        });
+    </script>
     <script src="demo.js"></script>
 </body>
 

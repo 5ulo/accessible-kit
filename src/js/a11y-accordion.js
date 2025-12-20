@@ -408,32 +408,20 @@ class AccessibleCollapse extends AccessibleAccordion {
     }
 }
 
-// Auto-initialize standalone collapses only
+/**
+ * Initialize standalone collapses only
+ * Call this manually after DOM is ready
+ */
 function initCollapses() {
     return new AccessibleCollapse();
 }
 
-// Auto-initialize accordions (both collapses and accordion groups)
+/**
+ * Initialize accordions (both collapses and accordion groups)
+ * Call this manually after DOM is ready
+ */
 function initAccordions() {
     return new AccessibleAccordion();
-}
-
-// Initialize on DOM ready (only if not using module bundler)
-if (typeof window !== 'undefined' && !window.a11yKitManualInit) {
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initAccordions);
-    } else {
-        initAccordions();
-    }
-}
-
-// Register in global namespace for CDN usage
-if (typeof window !== 'undefined') {
-    window.a11yKit = window.a11yKit || {};
-    window.a11yKit.Collapse = AccessibleCollapse;
-    window.a11yKit.Accordion = AccessibleAccordion;
-    window.a11yKit.initCollapses = initCollapses;
-    window.a11yKit.initAccordions = initAccordions;
 }
 
 // ES6 exports with short aliases

@@ -259,7 +259,10 @@ class AccessibleOffcanvas {
     }
 }
 
-// Auto-initialize offcanvas
+/**
+ * Initialize all offcanvas elements on the page
+ * Call this manually after DOM is ready
+ */
 function initOffcanvas() {
     const offcanvasElements = document.querySelectorAll("[data-offcanvas]");
     const instances = [];
@@ -276,22 +279,6 @@ function initOffcanvas() {
     });
 
     return instances;
-}
-
-// Initialize on DOM ready (only if not using module bundler)
-if (typeof window !== 'undefined' && !window.a11yKitManualInit) {
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initOffcanvas);
-    } else {
-        initOffcanvas();
-    }
-}
-
-// Register in global namespace for CDN usage
-if (typeof window !== 'undefined') {
-    window.a11yKit = window.a11yKit || {};
-    window.a11yKit.Offcanvas = AccessibleOffcanvas;
-    window.a11yKit.initOffcanvas = initOffcanvas;
 }
 
 // ES6 exports with short aliases

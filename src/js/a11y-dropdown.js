@@ -5,6 +5,9 @@
  */
 
 class AccessibleDropdown {
+    // Static array to track all dropdown instances
+    static instances = [];
+
     constructor(element, options = {}) {
         this.dropdown = element;
         this.button = element.querySelector("[data-dropdown-button]");
@@ -28,12 +31,8 @@ class AccessibleDropdown {
         this.currentIndex = -1;
         this.hoverTimeout = null;
 
-        // Register instance globally for managing multiple dropdowns
-        if (typeof window !== 'undefined') {
-            window.a11yKit = window.a11yKit || {};
-            window.a11yKit._dropdownInstances = window.a11yKit._dropdownInstances || [];
-            window.a11yKit._dropdownInstances.push(this);
-        }
+        // Register this instance
+        AccessibleDropdown.instances.push(this);
 
         this.init();
     }
@@ -120,13 +119,11 @@ class AccessibleDropdown {
         if (this.isOpen) return;
 
         // Close other dropdowns first
-        if (typeof window !== 'undefined' && window.a11yKit._dropdownInstances) {
-            window.a11yKit._dropdownInstances.forEach(instance => {
-                if (instance !== this && instance.isOpen) {
-                    instance.close();
-                }
-            });
-        }
+        AccessibleDropdown.instances.forEach(instance => {
+            if (instance !== this && instance.isOpen) {
+                instance.close();
+            }
+        });
 
         this.isOpen = true;
         this.dropdown.classList.add("is-open");
@@ -313,7 +310,10 @@ class AccessibleDropdown {
     }
 }
 
-// Auto-initialize dropdowns
+/**
+ * Initialize all dropdowns on the page
+ * Call this manually after DOM is ready
+ */
 function initDropdowns() {
     const dropdowns = document.querySelectorAll("[data-dropdown]");
     const instances = [];
@@ -331,22 +331,6 @@ function initDropdowns() {
     });
 
     return instances;
-}
-
-// Initialize on DOM ready (only if not using module bundler)
-if (typeof window !== 'undefined' && !window.a11yKitManualInit) {
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initDropdowns);
-    } else {
-        initDropdowns();
-    }
-}
-
-// Register in global namespace for CDN usage
-if (typeof window !== 'undefined') {
-    window.a11yKit = window.a11yKit || {};
-    window.a11yKit.Dropdown = AccessibleDropdown;
-    window.a11yKit.initDropdowns = initDropdowns;
 }
 
 // ES6 exports with short aliases

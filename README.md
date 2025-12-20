@@ -54,21 +54,24 @@ npm install accessible-kit
 yarn add accessible-kit
 ```
 
-### CDN
+### CDN (ES Modules)
 
 ```html
-<!-- All components -->
-<script src="https://unpkg.com/accessible-kit/src/js/index.js"></script>
+<!-- Individual component with manual initialization -->
+<script type="module">
+  import { initDropdowns } from 'https://unpkg.com/accessible-kit/src/js/a11y-dropdown.js';
 
-<!-- Individual component -->
-<script src="https://unpkg.com/accessible-kit/src/js/a11y-dropdown.js"></script>
+  document.addEventListener('DOMContentLoaded', () => {
+    initDropdowns();
+  });
+</script>
 <link rel="stylesheet" href="https://unpkg.com/accessible-kit/src/css/a11y-dropdown.core.css">
 <link rel="stylesheet" href="https://unpkg.com/accessible-kit/src/css/a11y-dropdown.theme.css">
 ```
 
 ## 🚀 Quick Start
 
-### Using CDN
+### Using ES Modules (Recommended for Modern Browsers)
 
 ```html
 <!DOCTYPE html>
@@ -93,7 +96,13 @@ yarn add accessible-kit
     </div>
   </div>
 
-  <script src="https://unpkg.com/accessible-kit/src/js/a11y-dropdown.js"></script>
+  <script type="module">
+    import { initDropdowns } from 'https://unpkg.com/accessible-kit/src/js/a11y-dropdown.js';
+
+    document.addEventListener('DOMContentLoaded', () => {
+      initDropdowns();
+    });
+  </script>
 </body>
 </html>
 ```
@@ -101,21 +110,26 @@ yarn add accessible-kit
 ### Using NPM/Modules
 
 ```javascript
-// Import all components
-import 'accessible-kit';
-
-// Or import specific components
-import 'accessible-kit/dropdown';
-import 'accessible-kit/tabs';
+// Import specific components (best for tree-shaking)
+import { initDropdowns } from 'accessible-kit/dropdown';
+import { initTabs } from 'accessible-kit/tabs';
 
 // Import styles
 import 'accessible-kit/styles/dropdown-core';
 import 'accessible-kit/styles/dropdown-theme';
 
-// Initialize
-a11yKit.initAll();
-// or
-a11yKit.initDropdowns();
+// Initialize after DOM is ready
+document.addEventListener('DOMContentLoaded', () => {
+  initDropdowns();
+  initTabs();
+});
+
+// Or import all components
+import { initAll } from 'accessible-kit';
+
+document.addEventListener('DOMContentLoaded', () => {
+  initAll();
+});
 ```
 
 ### Module Imports (ES6+)
@@ -202,11 +216,15 @@ Fully accessible dropdown component with keyboard navigation and ARIA support.
 ### JavaScript Initialization
 
 ```javascript
-// Auto-initialize all dropdowns
-initDropdowns();
+import { initDropdowns, Dropdown } from 'accessible-kit/dropdown';
+
+// Initialize all dropdowns
+document.addEventListener('DOMContentLoaded', () => {
+  initDropdowns();
+});
 
 // Or manual initialization with options
-const dropdown = new AccessibleDropdown(element, {
+const dropdown = new Dropdown(element, {
   closeOnSelect: true,
   closeOnOutsideClick: true,
   closeOnEscape: true,
@@ -390,11 +408,15 @@ Fully accessible tabs component following WAI-ARIA Tabs Pattern.
 ### JavaScript Initialization
 
 ```javascript
-// Auto-initialize all tabs
-initTabs();
+import { initTabs, Tabs } from 'accessible-kit/tabs';
 
-// Manual initialization
-const tabs = new AccessibleTabs(element, {
+// Initialize all tabs
+document.addEventListener('DOMContentLoaded', () => {
+  initTabs();
+});
+
+// Or manual initialization with options
+const tabs = new Tabs(element, {
   activeIndex: 0,           // Initial active tab (0-based)
   automatic: true,          // Auto-activate on arrow keys
   orientation: 'horizontal', // 'horizontal' or 'vertical'
@@ -591,11 +613,15 @@ Fully accessible accordion component with keyboard navigation.
 ### JavaScript Initialization
 
 ```javascript
-// Auto-initialize all accordions
-initAccordions();
+import { initAccordions, Accordion } from 'accessible-kit/accordion';
 
-// Manual initialization
-const accordion = new AccessibleAccordion(element, {
+// Initialize all accordions
+document.addEventListener('DOMContentLoaded', () => {
+  initAccordions();
+});
+
+// Or manual initialization with options
+const accordion = new Accordion(element, {
   allowMultiple: false,
   allowToggle: true,
   defaultExpanded: [],
@@ -808,11 +834,15 @@ Accessible modal dialogs with focus trap following WAI-ARIA Dialog Pattern.
 ### JavaScript Initialization
 
 ```javascript
-// Auto-initialize all modals
-initModals();
+import { initModals, Modal } from 'accessible-kit/modal';
 
-// Manual initialization
-const modal = new AccessibleModal(element, {
+// Initialize all modals
+document.addEventListener('DOMContentLoaded', () => {
+  initModals();
+});
+
+// Or manual initialization with options
+const modal = new Modal(element, {
   closeOnBackdropClick: true,
   closeOnEscape: true,
   lockScroll: true,

@@ -2,7 +2,7 @@
  * a11y-kit
  * Lightweight, accessible UI component library with full ARIA support
  *
- * @version 1.0.0
+ * @version 1.0.1
  * @license MIT
  */
 
@@ -15,7 +15,7 @@ export { AccessibleCollapse, Collapse, initCollapses, AccessibleAccordion, Accor
 
 /**
  * Initialize all components at once
- * Convenient helper for auto-initializing all a11y-kit components
+ * Convenient helper for manually initializing all a11y-kit components
  */
 export function initAll() {
     const instances = {
@@ -28,19 +28,4 @@ export function initAll() {
     };
 
     return instances;
-}
-
-// Auto-initialize on DOM ready if not using module bundler
-if (typeof window !== 'undefined' && !window.a11yKitManualInit) {
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initAll);
-    } else {
-        initAll();
-    }
-}
-
-// Register in global namespace for CDN usage
-if (typeof window !== 'undefined') {
-    window.a11yKit = window.a11yKit || {};
-    window.a11yKit.initAll = initAll;
 }

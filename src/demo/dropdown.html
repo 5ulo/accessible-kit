@@ -407,28 +407,15 @@
 
             <h3>JavaScript Initialization:</h3>
 
-            <h4>1. Auto-initialization (CDN)</h4>
-            <pre><code>&lt;script src="js/a11y-dropdown.js"&gt;&lt;/script&gt;
-&lt;!-- Automatically initializes all dropdowns --&gt;</code></pre>
-
-            <h4>2. CDN with window.a11yKit namespace (recommended)</h4>
-            <pre><code>&lt;script src="js/a11y-dropdown.js"&gt;&lt;/script&gt;
-&lt;script&gt;
-  // Via namespace (recommended - no collisions)
-  a11yKit.initDropdowns();
-
-  // Bootstrap style - short alias
-  const dropdown = new a11yKit.Dropdown(element, {
-    closeOnSelect: true,
-    onOpen: (instance) => console.log('Opened!')
-  });
-&lt;/script&gt;</code></pre>
-
-            <h4>3. ES6 Module Import - init functions</h4>
+            <h4>1. ES6 Module Import - init functions (Recommended)</h4>
             <pre><code>import { initDropdowns } from './a11y-kit/a11y-dropdown.js';
-initDropdowns();</code></pre>
 
-            <h4>4. ES6 Module Import - Bootstrap style (short aliases)</h4>
+// Initialize after DOM is ready
+document.addEventListener('DOMContentLoaded', () => {
+  initDropdowns();
+});</code></pre>
+
+            <h4>2. ES6 Module Import - Bootstrap style (short aliases)</h4>
             <pre><code>// Import short alias
 import { Dropdown } from './a11y-kit/a11y-dropdown.js';
 
@@ -442,23 +429,19 @@ const dropdown = new Dropdown(element, {
   onSelect: (item, index) => console.log('Selected:', item)
 });</code></pre>
 
-            <h4>5. Wildcard import</h4>
-            <pre><code>import * as a11yKit from './a11y-kit';
-
-// Init function:
-a11yKit.initDropdowns();
-
-// Bootstrap style:
-const dropdown = new a11yKit.Dropdown(element, options);</code></pre>
-
-            <h4>6. NPM package</h4>
+            <h4>3. NPM package (Module bundlers: Astro, Vite, Webpack)</h4>
             <pre><code>npm install accessible-kit
 
-// Import
+// Import only what you need (best for tree-shaking)
 import { initDropdowns, Dropdown } from 'accessible-kit/dropdown';
 
-initDropdowns(); // or
-const dropdown = new Dropdown(element, options);</code></pre>
+// Initialize after DOM is ready
+document.addEventListener('DOMContentLoaded', () => {
+  initDropdowns(); // Auto-init all dropdowns
+
+  // OR create instances manually
+  const dropdown = new Dropdown(element, options);
+});</code></pre>
 
             <div class="info-box info-box--keyboard">
                 <h3>Keyboard Navigation</h3>
@@ -492,7 +475,14 @@ const dropdown = new Dropdown(element, options);</code></pre>
         </section>
     </div>
 
-    <script type="module" src="../js/a11y-dropdown.js"></script>
+    <script type="module">
+        import { initDropdowns } from '../js/a11y-dropdown.js';
+
+        // Initialize dropdowns after DOM is ready
+        document.addEventListener('DOMContentLoaded', () => {
+            initDropdowns();
+        });
+    </script>
     <script src="demo.js"></script>
 </body>
 
