@@ -8,8 +8,6 @@
     max-width: 100%;
     background: #fff;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-    transition: transform var(--a11y-offcanvas-duration, 0.3s) var(--a11y-offcanvas-easing, ease),
-                visibility var(--a11y-offcanvas-duration, 0.3s) var(--a11y-offcanvas-easing, ease);
     display: flex;
     flex-direction: column;
 }
@@ -80,8 +78,6 @@
 /* Backdrop */
 [data-offcanvas-backdrop] {
     background: rgba(0, 0, 0, 0.5);
-    transition: opacity var(--a11y-offcanvas-duration, 0.3s) var(--a11y-offcanvas-easing, ease),
-                visibility var(--a11y-offcanvas-duration, 0.3s) var(--a11y-offcanvas-easing, ease);
 }
 
 /* Wide variant */
@@ -160,10 +156,8 @@
     }
 }
 
-/* Reduced motion support */
+/* Reduced motion support for theme transitions */
 @media (prefers-reduced-motion: reduce) {
-    [data-offcanvas-panel],
-    [data-offcanvas-backdrop],
     [data-offcanvas-close] {
         transition: none !important;
     }

@@ -5,8 +5,6 @@
 /* Modal wrapper */
 [data-modal] {
     padding: 1rem;
-    transition: opacity var(--a11y-modal-duration, 0.2s) var(--a11y-modal-easing, ease),
-                visibility var(--a11y-modal-duration, 0.2s) var(--a11y-modal-easing, ease);
 }
 
 /* Modal dialog */
@@ -16,7 +14,6 @@
     border-radius: 0.5rem;
     box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
         0 10px 10px -5px rgba(0, 0, 0, 0.04);
-    transition: transform var(--a11y-modal-duration, 0.2s) var(--a11y-modal-easing, ease);
 }
 
 /* Modal header */
@@ -208,10 +205,8 @@
     }
 }
 
-/* Reduced motion support */
+/* Reduced motion support for theme transitions */
 @media (prefers-reduced-motion: reduce) {
-    [data-modal],
-    [data-modal-dialog],
     [data-modal-close] {
         transition: none !important;
     }

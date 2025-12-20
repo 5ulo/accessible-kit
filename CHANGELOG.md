@@ -5,6 +5,30 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.3] - 2025-12-20
+
+### Fixed
+- **CSS Architecture**: Fixed inconsistent placement of animations in Offcanvas and Modal components
+- Moved `transition` properties from `theme.css` to `core.css` for Offcanvas component
+- Moved `transition` properties from `theme.css` to `core.css` for Modal component
+- Animations now work out-of-the-box even when using custom themes without importing `theme.css`
+
+### Changed
+- Updated `package.json` exports to include `style` condition for better CSS import compatibility
+- Improved CSS imports documentation for Tailwind CSS and other bundlers
+
+### Details
+All components now follow consistent CSS architecture:
+- **Core CSS** (`*.core.css`): Contains layout, positioning, behavior, and **animations**
+- **Theme CSS** (`*.theme.css`): Contains only visual styling (colors, spacing, borders, shadows)
+
+This ensures animations work correctly even when developers create custom themes.
+
+## [1.0.2] - 2025-12-20
+
+### Changed
+- Minor version bump for package.json exports improvements
+
 ## [1.0.1] - 2025-12-20
 
 ### Changed
@@ -65,5 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
 - Zero dependencies
 - Full TypeScript-ready exports
 
+[1.0.3]: https://github.com/5ulo/accessible-kit/compare/v1.0.2...v1.0.3
+[1.0.2]: https://github.com/5ulo/accessible-kit/compare/v1.0.1...v1.0.2
 [1.0.1]: https://github.com/5ulo/accessible-kit/compare/v1.0.0...v1.0.1
 [1.0.0]: https://github.com/5ulo/accessible-kit/releases/tag/v1.0.0

@@ -9,6 +9,8 @@
     visibility: hidden;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
+    transition: transform var(--a11y-offcanvas-duration, 0.3s) var(--a11y-offcanvas-easing, ease),
+                visibility var(--a11y-offcanvas-duration, 0.3s) var(--a11y-offcanvas-easing, ease);
 }
 
 [data-offcanvas-panel][aria-hidden="false"] {
@@ -96,6 +98,8 @@
     z-index: 999;
     visibility: hidden;
     opacity: 0;
+    transition: opacity var(--a11y-offcanvas-duration, 0.3s) var(--a11y-offcanvas-easing, ease),
+                visibility var(--a11y-offcanvas-duration, 0.3s) var(--a11y-offcanvas-easing, ease);
 }
 
 [data-offcanvas-backdrop][aria-hidden="false"] {
