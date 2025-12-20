@@ -406,7 +406,6 @@ git commit -m "docs: update accordion API documentation"
 
 Don't hesitate to ask questions by:
 
-- Opening a [GitHub Discussion](https://github.com/5ulo/accessible-kit/discussions)
 - Creating an issue with the `question` label
 - Reaching out to maintainers
 

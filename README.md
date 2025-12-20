@@ -1032,7 +1032,6 @@ Built with a focus on accessibility and usability, following:
 
 - 📖 [Documentation](https://5ulo.github.io/accessible-kit/)
 - 🐛 [Issue Tracker](https://github.com/5ulo/accessible-kit/issues)
-- 💡 [Discussions](https://github.com/5ulo/accessible-kit/discussions)
 
 ---
 
