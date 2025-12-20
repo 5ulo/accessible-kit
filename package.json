@@ -61,16 +61,46 @@
     "./accordion": {
       "import": "./src/js/a11y-accordion.js"
     },
-    "./styles/dropdown-core": "./src/css/a11y-dropdown.core.css",
-    "./styles/dropdown-theme": "./src/css/a11y-dropdown.theme.css",
-    "./styles/tabs-core": "./src/css/a11y-tabs.core.css",
-    "./styles/tabs-theme": "./src/css/a11y-tabs.theme.css",
-    "./styles/offcanvas-core": "./src/css/a11y-offcanvas.core.css",
-    "./styles/offcanvas-theme": "./src/css/a11y-offcanvas.theme.css",
-    "./styles/modal-core": "./src/css/a11y-modal.core.css",
-    "./styles/modal-theme": "./src/css/a11y-modal.theme.css",
-    "./styles/accordion-core": "./src/css/a11y-accordion.core.css",
-    "./styles/accordion-theme": "./src/css/a11y-accordion.theme.css"
+    "./styles/dropdown-core": {
+      "style": "./src/css/a11y-dropdown.core.css",
+      "default": "./src/css/a11y-dropdown.core.css"
+    },
+    "./styles/dropdown-theme": {
+      "style": "./src/css/a11y-dropdown.theme.css",
+      "default": "./src/css/a11y-dropdown.theme.css"
+    },
+    "./styles/tabs-core": {
+      "style": "./src/css/a11y-tabs.core.css",
+      "default": "./src/css/a11y-tabs.core.css"
+    },
+    "./styles/tabs-theme": {
+      "style": "./src/css/a11y-tabs.theme.css",
+      "default": "./src/css/a11y-tabs.theme.css"
+    },
+    "./styles/offcanvas-core": {
+      "style": "./src/css/a11y-offcanvas.core.css",
+      "default": "./src/css/a11y-offcanvas.core.css"
+    },
+    "./styles/offcanvas-theme": {
+      "style": "./src/css/a11y-offcanvas.theme.css",
+      "default": "./src/css/a11y-offcanvas.theme.css"
+    },
+    "./styles/modal-core": {
+      "style": "./src/css/a11y-modal.core.css",
+      "default": "./src/css/a11y-modal.core.css"
+    },
+    "./styles/modal-theme": {
+      "style": "./src/css/a11y-modal.theme.css",
+      "default": "./src/css/a11y-modal.theme.css"
+    },
+    "./styles/accordion-core": {
+      "style": "./src/css/a11y-accordion.core.css",
+      "default": "./src/css/a11y-accordion.core.css"
+    },
+    "./styles/accordion-theme": {
+      "style": "./src/css/a11y-accordion.theme.css",
+      "default": "./src/css/a11y-accordion.theme.css"
+    }
   },
   "files": [
     "src/js",
