@@ -1,0 +1,169 @@
+/* Accessible Dropdown - Core Styles */
+/* Obsahuje iba logiku, positioning, layout a spravanie */
+/* Pre vizualne nastavenia pouzite a11y-dropdown-theme.css */
+/* Používa data atribúty pre základnú funkcionalitu */
+
+/* Container */
+[data-dropdown] {
+    position: relative;
+    display: inline-block;
+}
+
+/* Button */
+[data-dropdown-button] {
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+[data-dropdown-button]:focus {
+    outline-offset: 2px;
+}
+
+/* Button icon/arrow */
+[data-dropdown-arrow] {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: 4px solid currentColor;
+}
+
+[data-dropdown].is-open [data-dropdown-arrow] {
+    transform: rotate(180deg);
+}
+
+/* Menu - default (no animation) */
+[data-dropdown-menu] {
+    position: absolute;
+    top: calc(100% + 0.25rem);
+    left: 0;
+    z-index: 1000;
+    min-width: 100%;
+    width: max-content;
+    max-width: 20rem;
+    display: none;
+}
+
+[data-dropdown-menu].is-open {
+    display: block;
+}
+
+/* CSS Grid animation is DEFAULT (unless data-no-animation is set) */
+[data-dropdown-menu]:not([data-no-animation]) {
+    display: grid;
+    grid-template-rows: 0fr;
+    opacity: 0;
+    visibility: hidden;
+    transition: grid-template-rows var(--a11y-dropdown-duration, 0.2s) var(--a11y-dropdown-easing, ease),
+                opacity calc(var(--a11y-dropdown-duration, 0.2s) * 0.75) var(--a11y-dropdown-easing, ease),
+                visibility 0s var(--a11y-dropdown-duration, 0.2s);
+}
+
+[data-dropdown-menu]:not([data-no-animation]).is-open {
+    grid-template-rows: 1fr;
+    opacity: 1;
+    visibility: visible;
+    transition: grid-template-rows var(--a11y-dropdown-duration, 0.2s) var(--a11y-dropdown-easing, ease),
+                opacity calc(var(--a11y-dropdown-duration, 0.2s) * 0.75) var(--a11y-dropdown-easing, ease),
+                visibility 0s;
+}
+
+/* Inner wrapper must have overflow: hidden */
+[data-dropdown-menu]:not([data-no-animation]) > * {
+    overflow: hidden;
+}
+
+/* No animation variant - simple show/hide */
+[data-dropdown-menu][data-no-animation] {
+    display: none;
+}
+
+[data-dropdown-menu][data-no-animation].is-open {
+    display: block;
+}
+
+/* Align menu to right */
+[data-dropdown-menu="right"] {
+    left: auto;
+    right: 0;
+}
+
+/* Menu items */
+[data-dropdown-item] {
+    display: block;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+[data-dropdown-item]:focus {
+    outline: none;
+}
+
+/* Divider */
+[data-dropdown-divider] {
+    height: 1px;
+    border: none;
+}
+
+/* Disabled item */
+[data-dropdown-item]:disabled,
+[data-dropdown-item][aria-disabled="true"] {
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+/* Item with icon */
+[data-dropdown-item-icon] {
+    display: inline-flex;
+    align-items: center;
+}
+
+[data-dropdown-item-icon] svg,
+[data-dropdown-item-icon] img {
+    width: 1rem;
+    height: 1rem;
+    flex-shrink: 0;
+}
+
+/* Navigation variant */
+[data-dropdown][data-variant="nav"] [data-dropdown-button]:focus {
+    outline-offset: 2px;
+}
+
+/* Language switcher variant */
+[data-dropdown][data-variant="language"] [data-dropdown-item] {
+    display: flex;
+    align-items: center;
+}
+
+[data-dropdown][data-variant="language"] [data-dropdown-item-flag] {
+    width: 1.25rem;
+    height: 1.25rem;
+    object-fit: cover;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+    [data-dropdown-menu] {
+        min-width: 12rem;
+    }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    [data-dropdown-item]:focus {
+        outline-offset: -2px;
+    }
+}
+
+/* Reduced motion support - disable animations */
+@media (prefers-reduced-motion: reduce) {
+    [data-dropdown-menu]:not([data-no-animation]),
+    [data-dropdown-menu]:not([data-no-animation]).is-open {
+        transition: none !important;
+    }
+}

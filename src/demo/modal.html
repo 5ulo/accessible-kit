@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modal - Accessible Kit</title>
+    <link rel="stylesheet" href="demo.css">
+    <link rel="stylesheet" href="../css/a11y-modal.core.css">
+    <link rel="stylesheet" href="../css/a11y-modal.theme.css">
+    <style>
+        .demo-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .btn {
+            padding: 0.625rem 1.25rem;
+            background: #3b82f6;
+            color: #fff;
+            border: none;
+            border-radius: 0.375rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.15s ease;
+        }
+
+        .btn:hover {
+            background: #2563eb;
+        }
+
+        .btn:focus {
+            outline: 2px solid #3b82f6;
+            outline-offset: 2px;
+        }
+
+        .btn--secondary {
+            background: #6b7280;
+        }
+
+        .btn--secondary:hover {
+            background: #4b5563;
+        }
+
+        .btn--success {
+            background: #10b981;
+        }
+
+        .btn--success:hover {
+            background: #059669;
+        }
+
+        .btn--danger {
+            background: #ef4444;
+        }
+
+        .btn--danger:hover {
+            background: #dc2626;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="page-header">
+            <div class="breadcrumb">
+                <a href="../../index.html">Accessible Kit</a>
+                <span class="breadcrumb-separator">/</span>
+                <span>Modal</span>
+            </div>
+            <h1>Accessible Modal</h1>
+            <p class="subtitle">Modal dialog with focus trap and full a11y support</p>
+        </div>
+
+        <!-- Basic Modal -->
+        <section>
+            <h2>Basic Modal</h2>
+            <p class="description">
+                Simple modal with title, content, and footer buttons
+            </p>
+
+            <div class="demo-buttons">
+                <button class="btn" data-modal-trigger="modal-basic">Open Modal</button>
+            </div>
+        </section>
+
+        <!-- Size Variants -->
+        <section>
+            <h2>Sizes</h2>
+            <p class="description">
+                Modal supports different sizes: small (400px), medium (600px), large (800px), fullscreen
+            </p>
+
+            <div class="demo-buttons">
+                <button class="btn" data-modal-trigger="modal-sm">Small Modal</button>
+                <button class="btn" data-modal-trigger="modal-md">Medium Modal</button>
+                <button class="btn" data-modal-trigger="modal-lg">Large Modal</button>
+                <button class="btn" data-modal-trigger="modal-fullscreen">Fullscreen Modal</button>
+            </div>
+        </section>
+
+        <!-- Confirmation Dialog -->
+        <section>
+            <h2>Confirmation Dialogs</h2>
+            <p class="description">
+                Modals for different types of actions (delete, save, warning)
+            </p>
+
+            <div class="demo-buttons">
+                <button class="btn btn--danger" data-modal-trigger="modal-delete">Delete Item</button>
+                <button class="btn btn--success" data-modal-trigger="modal-save">Save Changes</button>
+            </div>
+        </section>
+
+        <!-- With Form -->
+        <section>
+            <h2>With Form</h2>
+            <p class="description">
+                Modal with focus trap works perfectly with forms
+            </p>
+
+            <div class="demo-buttons">
+                <button class="btn" data-modal-trigger="modal-form">Open Form</button>
+            </div>
+        </section>
+
+        <!-- Scrollable Content -->
+        <section>
+            <h2>Scrollable Content</h2>
+            <p class="description">
+                Modal with long content automatically adds a scrollbar
+            </p>
+
+            <div class="demo-buttons">
+                <button class="btn" data-modal-trigger="modal-scrollable">Long Content</button>
+            </div>
+        </section>
+
+        <!-- Usage -->
+        <section>
+            <h2>Usage</h2>
+
+            <h3>Basic HTML Structure:</h3>
+            <pre><code>&lt;!-- Trigger button --&gt;
+&lt;button data-modal-trigger="my-modal"&gt;Open Modal&lt;/button&gt;
+
+&lt;!-- Modal --&gt;
+&lt;div data-modal id="my-modal"&gt;
+    &lt;div data-modal-dialog&gt;
+        &lt;div data-modal-header&gt;
+            &lt;h2 data-modal-title&gt;Title&lt;/h2&gt;
+            &lt;button data-modal-close aria-label="Close"&gt;&times;&lt;/button&gt;
+        &lt;/div&gt;
+
+        &lt;div data-modal-body&gt;
+            Modal content...
+        &lt;/div&gt;
+
+        &lt;div data-modal-footer&gt;
+            &lt;button data-modal-close&gt;Cancel&lt;/button&gt;
+            &lt;button&gt;Confirm&lt;/button&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div data-modal-backdrop&gt;&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+            <h3>JavaScript Initialization:</h3>
+
+            <h4>1. Auto-initialization (CDN)</h4>
+            <pre><code>&lt;script src="js/a11y-modal.js"&gt;&lt;/script&gt;
+&lt;!-- Automatically initializes all modals --&gt;</code></pre>
+
+            <h4>2. CDN with window.a11yKit namespace (recommended)</h4>
+            <pre><code>&lt;script src="js/a11y-modal.js"&gt;&lt;/script&gt;
+&lt;script&gt;
+  // Init function
+  a11yKit.initModals();
+
+  // Bootstrap style
+  const modal = new a11yKit.Modal(element, {
+    closeOnBackdrop: true,
+    onOpen: (instance) => console.log('Opened')
+  });
+&lt;/script&gt;</code></pre>
+
+            <h4>3. ES6 Module Import - Bootstrap Style</h4>
+            <pre><code>import { Modal } from './a11y-kit/a11y-modal.js';
+
+const modal = new Modal(element, {
+    closeOnBackdrop: true,
+    closeOnEscape: true,
+    trapFocus: true,
+    scrollLock: true,
+    onOpen: (instance) => console.log('Opened'),
+    onClose: (instance) => console.log('Closed')
+});</code></pre>
+
+            <h4>4. Wildcard / NPM Package</h4>
+            <pre><code>// Wildcard
+import * as a11yKit from './a11y-kit';
+const modal = new a11yKit.Modal(element, options);
+
+// NPM
+import { initModals, Modal } from 'accessible-kit/modal';
+initModals(); // or new Modal(element, options);</code></pre>
+
+            <h3>Sizes:</h3>
+            <pre><code>&lt;!-- Small (400px) --&gt;
+&lt;div data-modal-dialog data-size="sm"&gt;...&lt;/div&gt;
+
+&lt;!-- Medium (600px) - default --&gt;
+&lt;div data-modal-dialog&gt;...&lt;/div&gt;
+
+&lt;!-- Large (800px) --&gt;
+&lt;div data-modal-dialog data-size="lg"&gt;...&lt;/div&gt;
+
+&lt;!-- Fullscreen --&gt;
+&lt;div data-modal-dialog data-size="fullscreen"&gt;...&lt;/div&gt;</code></pre>
+
+            <div class="info-box info-box--keyboard">
+                <h3>Keyboard Navigation</h3>
+                <ul>
+                    <li><kbd>Tab</kbd> - Navigate between focusable elements (with focus trap)</li>
+                    <li><kbd>Shift</kbd> + <kbd>Tab</kbd> - Reverse navigation (with focus trap)</li>
+                    <li><kbd>Esc</kbd> - Close modal and return focus to trigger</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Features -->
+        <section>
+            <h2>Features</h2>
+            <ul style="margin-left: 1.5rem;">
+                <li>✅ Full ARIA attributes support (role="dialog", aria-modal="true")</li>
+                <li>✅ Focus trap - Tab cycles only through elements in modal</li>
+                <li>✅ Return focus - Returns focus to trigger after closing</li>
+                <li>✅ Scroll lock - Locks body scrolling</li>
+                <li>✅ Escape to close</li>
+                <li>✅ Backdrop click to close</li>
+                <li>✅ Multiple sizes (sm, md, lg, fullscreen)</li>
+                <li>✅ Configurable behavior</li>
+                <li>✅ Responsive design</li>
+                <li>✅ Dark mode support</li>
+                <li>✅ Reduced motion support</li>
+            </ul>
+        </section>
+    </div>
+
+    <!-- Modal instances -->
+
+    <!-- Basic Modal -->
+    <div data-modal id="modal-basic">
+        <div data-modal-dialog>
+            <div data-modal-header>
+                <h2 data-modal-title>Basic Modal</h2>
+                <button data-modal-close aria-label="Close">&times;</button>
+            </div>
+
+            <div data-modal-body>
+                <p>This is a basic modal with title, content, and footer buttons.</p>
+                <p>Focus is trapped - try pressing Tab to navigate through focusable elements.</p>
+                <p>Press <kbd>Esc</kbd> or click on backdrop to close.</p>
+            </div>
+
+            <div data-modal-footer>
+                <button class="btn btn--secondary" data-modal-close>Cancel</button>
+                <button class="btn">Confirm</button>
+            </div>
+        </div>
+
+        <div data-modal-backdrop></div>
+    </div>
+
+    <!-- Small Modal -->
+    <div data-modal id="modal-sm">
+        <div data-modal-dialog data-size="sm">
+            <div data-modal-header>
+                <h2 data-modal-title>Small Modal</h2>
+                <button data-modal-close aria-label="Close">&times;</button>
+            </div>
+
+            <div data-modal-body>
+                <p>This is a small modal (400px).</p>
+                <p>Suitable for simple alerts or short messages.</p>
+            </div>
+
+            <div data-modal-footer>
+                <button class="btn" data-modal-close>Close</button>
+            </div>
+        </div>
+
+        <div data-modal-backdrop></div>
+    </div>
+
+    <!-- Medium Modal -->
+    <div data-modal id="modal-md">
+        <div data-modal-dialog>
+            <div data-modal-header>
+                <h2 data-modal-title>Medium Modal</h2>
+                <button data-modal-close aria-label="Close">&times;</button>
+            </div>
+
+            <div data-modal-body>
+                <p>This is a medium modal (600px) - default size.</p>
+                <p>Suitable for most use cases.</p>
+            </div>
+
+            <div data-modal-footer>
+                <button class="btn btn--secondary" data-modal-close>Cancel</button>
+                <button class="btn">Confirm</button>
+            </div>
+        </div>
+
+        <div data-modal-backdrop></div>
+    </div>
+
+    <!-- Large Modal -->
+    <div data-modal id="modal-lg">
+        <div data-modal-dialog data-size="lg">
+            <div data-modal-header>
+                <h2 data-modal-title>Large Modal</h2>
+                <button data-modal-close aria-label="Close">&times;</button>
+            </div>
+
+            <div data-modal-body>
+                <p>This is a large modal (800px).</p>
+                <p>Suitable for forms, tables, or more detailed content.</p>
+                <div style="background: #f3f4f6; padding: 1rem; border-radius: 0.25rem; margin-top: 1rem;">
+                    <h3 style="margin-top: 0;">Example Content</h3>
+                    <p>Larger modal provides more space for complex content.</p>
+                </div>
+            </div>
+
+            <div data-modal-footer>
+                <button class="btn btn--secondary" data-modal-close>Cancel</button>
+                <button class="btn">Save</button>
+            </div>
+        </div>
+
+        <div data-modal-backdrop></div>
+    </div>
+
+    <!-- Fullscreen Modal -->
+    <div data-modal id="modal-fullscreen">
+        <div data-modal-dialog data-size="fullscreen">
+            <div data-modal-header>
+                <h2 data-modal-title>Fullscreen Modal</h2>
+                <button data-modal-close aria-label="Close">&times;</button>
+            </div>
+
+            <div data-modal-body>
+                <p>This is a fullscreen modal that fills the entire screen.</p>
+                <p>Suitable for complex forms, editors, or detailed views.</p>
+                <div style="background: #f3f4f6; padding: 2rem; border-radius: 0.25rem; margin-top: 2rem;">
+                    <h3>Space for Complex Content</h3>
+                    <p>Fullscreen modal provides maximum use of screen space.</p>
+                </div>
+            </div>
+
+            <div data-modal-footer>
+                <button class="btn btn--secondary" data-modal-close>Close</button>
+            </div>
+        </div>
+
+        <div data-modal-backdrop></div>
+    </div>
+
+    <!-- Delete Confirmation -->
+    <div data-modal id="modal-delete">
+        <div data-modal-dialog data-size="sm">
+            <div data-modal-header>
+                <h2 data-modal-title>Confirm Deletion</h2>
+                <button data-modal-close aria-label="Close">&times;</button>
+            </div>
+
+            <div data-modal-body>
+                <p>Are you sure you want to delete this item?</p>
+                <p style="color: #ef4444; font-size: 0.875rem;">This action cannot be undone.</p>
+            </div>
+
+            <div data-modal-footer>
+                <button class="btn btn--secondary" data-modal-close>Cancel</button>
+                <button class="btn btn--danger" data-modal-close>Delete</button>
+            </div>
+        </div>
+
+        <div data-modal-backdrop></div>
+    </div>
+
+    <!-- Save Confirmation -->
+    <div data-modal id="modal-save">
+        <div data-modal-dialog data-size="sm">
+            <div data-modal-header>
+                <h2 data-modal-title>Save Changes</h2>
+                <button data-modal-close aria-label="Close">&times;</button>
+            </div>
+
+            <div data-modal-body>
+                <p>Do you want to save the changes?</p>
+            </div>
+
+            <div data-modal-footer>
+                <button class="btn btn--secondary" data-modal-close>Cancel</button>
+                <button class="btn btn--success" data-modal-close>Save</button>
+            </div>
+        </div>
+
+        <div data-modal-backdrop></div>
+    </div>
+
+    <!-- Form Modal -->
+    <div data-modal id="modal-form">
+        <div data-modal-dialog>
+            <div data-modal-header>
+                <h2 data-modal-title>Contact Form</h2>
+                <button data-modal-close aria-label="Close">&times;</button>
+            </div>
+
+            <div data-modal-body>
+                <form style="display: flex; flex-direction: column; gap: 1rem;">
+                    <div>
+                        <label for="form-name" style="display: block; margin-bottom: 0.25rem; font-weight: 500;">Name *</label>
+                        <input type="text" id="form-name" required style="width: 100%; padding: 0.5rem; border: 1px solid #d1d5db; border-radius: 0.25rem;">
+                    </div>
+                    <div>
+                        <label for="form-email" style="display: block; margin-bottom: 0.25rem; font-weight: 500;">Email *</label>
+                        <input type="email" id="form-email" required style="width: 100%; padding: 0.5rem; border: 1px solid #d1d5db; border-radius: 0.25rem;">
+                    </div>
+                    <div>
+                        <label for="form-subject" style="display: block; margin-bottom: 0.25rem; font-weight: 500;">Subject</label>
+                        <input type="text" id="form-subject" style="width: 100%; padding: 0.5rem; border: 1px solid #d1d5db; border-radius: 0.25rem;">
+                    </div>
+                    <div>
+                        <label for="form-message" style="display: block; margin-bottom: 0.25rem; font-weight: 500;">Message *</label>
+                        <textarea id="form-message" rows="4" required style="width: 100%; padding: 0.5rem; border: 1px solid #d1d5db; border-radius: 0.25rem;"></textarea>
+                    </div>
+                </form>
+            </div>
+
+            <div data-modal-footer>
+                <button class="btn btn--secondary" data-modal-close>Cancel</button>
+                <button class="btn">Send</button>
+            </div>
+        </div>
+
+        <div data-modal-backdrop></div>
+    </div>
+
+    <!-- Scrollable Modal -->
+    <div data-modal id="modal-scrollable">
+        <div data-modal-dialog>
+            <div data-modal-header>
+                <h2 data-modal-title>Scrollable Modal</h2>
+                <button data-modal-close aria-label="Close">&times;</button>
+            </div>
+
+            <div data-modal-body>
+                <h3>Lorem Ipsum</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+
+                <h3>Long Content</h3>
+                <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+                <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+                <h3>Section 3</h3>
+                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
+                <p>Totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+
+                <h3>Section 4</h3>
+                <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit.</p>
+                <p>Sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
+
+                <h3>Section 5</h3>
+                <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit.</p>
+                <p>Sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.</p>
+
+                <h3>Conclusion</h3>
+                <p>Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam.</p>
+                <p>Nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur.</p>
+            </div>
+
+            <div data-modal-footer>
+                <button class="btn" data-modal-close>Close</button>
+            </div>
+        </div>
+
+        <div data-modal-backdrop></div>
+    </div>
+
+    <script type="module" src="../js/a11y-modal.js"></script>
+    <script src="demo.js"></script>
+</body>
+
+</html>

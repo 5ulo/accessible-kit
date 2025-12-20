@@ -1,0 +1,120 @@
+/* Accessible Tabs - Core Styles */
+/* Obsahuje iba logiku, positioning, layout a spravanie */
+/* Pre vizualne nastavenia pouzite a11y-tabs.theme.css */
+
+/* Container */
+[data-tabs] {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Tab list */
+[data-tabs-list] {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* Vertical variant */
+[data-tabs][data-orientation="vertical"] {
+    flex-direction: row;
+}
+
+[data-tabs][data-orientation="vertical"] [data-tabs-list] {
+    flex-direction: column;
+}
+
+[data-tabs][data-orientation="vertical"] [data-tabs-panels] {
+    flex: 1;
+}
+
+/* Tab button */
+[data-tabs-tab] {
+    cursor: pointer;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+[data-tabs-tab][aria-selected="true"] {
+    cursor: default;
+}
+
+[data-tabs-tab]:disabled,
+[data-tabs-tab][aria-disabled="true"] {
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+[data-tabs-tab]:focus {
+    outline-offset: -2px;
+}
+
+/* Tab panels container */
+[data-tabs-panels] {
+    position: relative;
+}
+
+/* Tab panel */
+[data-tabs-panel] {
+    display: none;
+}
+
+[data-tabs-panel][aria-hidden="false"] {
+    display: block;
+}
+
+/* Focus within panel */
+[data-tabs-panel]:focus {
+    outline: none;
+}
+
+/* View Transitions API uses default cross-fade animation */
+/* Customization via pseudo-elements */
+::view-transition-old(root),
+::view-transition-new(root) {
+    animation-duration: var(--a11y-tabs-duration, 0.2s);
+    animation-timing-function: var(--a11y-tabs-easing, ease);
+}
+
+/* Fallback for browsers without View Transitions API */
+@supports not selector(::view-transition) {
+    [data-tabs]:not([data-no-animation]) [data-tabs-panels] {
+        position: relative;
+    }
+
+    [data-tabs]:not([data-no-animation]) [data-tabs-panel] {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transition: opacity var(--a11y-tabs-duration, 0.2s) var(--a11y-tabs-easing, ease),
+                    visibility var(--a11y-tabs-duration, 0.2s) var(--a11y-tabs-easing, ease);
+    }
+
+    [data-tabs]:not([data-no-animation]) [data-tabs-panel][aria-hidden="false"] {
+        position: relative;
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+    }
+}
+
+/* No animation variant - simple show/hide */
+[data-tabs][data-no-animation] [data-tabs-panel][aria-hidden="true"] {
+    display: none;
+}
+
+[data-tabs][data-no-animation] [data-tabs-panel][aria-hidden="false"] {
+    display: block;
+}
+
+/* Reduced motion support - disable animations */
+@media (prefers-reduced-motion: reduce) {
+    [data-tabs]:not([data-no-animation]) [data-tabs-panel] {
+        transition: none !important;
+    }
+}

@@ -1,0 +1,218 @@
+/* Accessible Modal - Theme Styles */
+/* Obsahuje vizualne nastavenia: farby, velkosti, bordery, radiusy, spacing */
+/* Pre zmenu vzhladu upravte tento subor */
+
+/* Modal wrapper */
+[data-modal] {
+    padding: 1rem;
+    transition: opacity var(--a11y-modal-duration, 0.2s) var(--a11y-modal-easing, ease),
+                visibility var(--a11y-modal-duration, 0.2s) var(--a11y-modal-easing, ease);
+}
+
+/* Modal dialog */
+[data-modal-dialog] {
+    width: 600px;
+    background: #fff;
+    border-radius: 0.5rem;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+        0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    transition: transform var(--a11y-modal-duration, 0.2s) var(--a11y-modal-easing, ease);
+}
+
+/* Modal header */
+[data-modal-header] {
+    padding: 1.5rem;
+    border-bottom: 1px solid #e5e7eb;
+    gap: 1rem;
+}
+
+[data-modal-title] {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #111827;
+}
+
+/* Modal body */
+[data-modal-body] {
+    padding: 1.5rem;
+    color: #374151;
+    line-height: 1.6;
+}
+
+/* Modal footer */
+[data-modal-footer] {
+    padding: 1rem 1.5rem;
+    border-top: 1px solid #e5e7eb;
+    gap: 0.75rem;
+}
+
+/* Close button */
+[data-modal-close] {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    padding: 0;
+    background: transparent;
+    border: none;
+    border-radius: 0.25rem;
+    color: #6b7280;
+    font-size: 1.5rem;
+    line-height: 1;
+    transition: all 0.15s ease;
+}
+
+[data-modal-close]:hover {
+    background: #f3f4f6;
+    color: #111827;
+}
+
+[data-modal-close]:focus {
+    outline: 2px solid #3b82f6;
+    outline-offset: 2px;
+}
+
+/* Backdrop */
+[data-modal-backdrop] {
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+}
+
+/* Size variants */
+[data-modal-dialog][data-modal-dialog][data-size="sm"] {
+    border-radius: 0.375rem;
+}
+
+[data-modal-dialog][data-modal-dialog][data-size="sm"] [data-modal-header],
+[data-modal-dialog][data-modal-dialog][data-size="sm"] [data-modal-body],
+[data-modal-dialog][data-modal-dialog][data-size="sm"] [data-modal-footer] {
+    padding: 1.25rem;
+}
+
+[data-modal-dialog][data-modal-dialog][data-size="lg"] [data-modal-header],
+[data-modal-dialog][data-modal-dialog][data-size="lg"] [data-modal-body] {
+    padding: 2rem;
+}
+
+[data-modal-dialog][data-modal-dialog][data-size="fullscreen"] {
+    border-radius: 0;
+}
+
+/* Centered content variant */
+[data-modal-body].modal__body--centered {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+/* Scrollable body */
+[data-modal-body]::-webkit-scrollbar {
+    width: 8px;
+}
+
+[data-modal-body]::-webkit-scrollbar-track {
+    background: #f3f4f6;
+}
+
+[data-modal-body]::-webkit-scrollbar-thumb {
+    background: #d1d5db;
+    border-radius: 4px;
+}
+
+[data-modal-body]::-webkit-scrollbar-thumb:hover {
+    background: #9ca3af;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+    [data-modal] {
+        padding: 0.5rem;
+    }
+
+    [data-modal-dialog] {
+        border-radius: 0.5rem;
+    }
+
+    [data-modal-header] {
+        padding: 1.25rem;
+    }
+
+    [data-modal-body] {
+        padding: 1.25rem;
+    }
+
+    [data-modal-footer] {
+        padding: 1rem 1.25rem;
+    }
+}
+
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+    [data-modal-dialog] {
+        background: #1f2937;
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5),
+            0 10px 10px -5px rgba(0, 0, 0, 0.3);
+    }
+
+    [data-modal-header],
+    [data-modal-footer] {
+        border-color: #374151;
+    }
+
+    [data-modal-title] {
+        color: #f9fafb;
+    }
+
+    [data-modal-body] {
+        color: #e5e7eb;
+    }
+
+    [data-modal-close] {
+        color: #9ca3af;
+    }
+
+    [data-modal-close]:hover {
+        background: #374151;
+        color: #f9fafb;
+    }
+
+    [data-modal-backdrop] {
+        background: rgba(0, 0, 0, 0.7);
+    }
+
+    [data-modal-body]::-webkit-scrollbar-track {
+        background: #374151;
+    }
+
+    [data-modal-body]::-webkit-scrollbar-thumb {
+        background: #4b5563;
+    }
+
+    [data-modal-body]::-webkit-scrollbar-thumb:hover {
+        background: #6b7280;
+    }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+    [data-modal-dialog] {
+        border: 2px solid currentColor;
+    }
+
+    [data-modal-close]:focus {
+        outline-width: 3px;
+    }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    [data-modal],
+    [data-modal-dialog],
+    [data-modal-close] {
+        transition: none !important;
+    }
+}

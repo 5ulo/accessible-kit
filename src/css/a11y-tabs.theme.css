@@ -1,0 +1,312 @@
+/* Accessible Tabs - Theme Styles */
+/* Obsahuje vizualne nastavenia: farby, velkosti, bordery, radiusy, spacing */
+/* Pre zmenu vzhladu upravte tento subor */
+
+/* Tab list */
+[data-tabs-list] {
+    gap: 0.25rem;
+    border-bottom: 2px solid #e5e7eb;
+}
+
+/* Vertical variant */
+[data-tabs][data-tabs][data-orientation="vertical"] [data-tabs-list] {
+    gap: 0.125rem;
+    border-bottom: none;
+    border-right: 2px solid #e5e7eb;
+    min-width: 12rem;
+}
+
+/* Tab button */
+[data-tabs-tab] {
+    padding: 0.75rem 1.25rem;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid transparent;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #6b7280;
+    transition: all 0.15s ease;
+    position: relative;
+    bottom: -2px;
+}
+
+[data-tabs-tab]:hover {
+    color: #374151;
+    background: #f9fafb;
+}
+
+[data-tabs-tab]:focus {
+    outline: 2px solid #3b82f6;
+    color: #374151;
+}
+
+[data-tabs-tab][aria-selected="true"] {
+    color: #3b82f6;
+    border-bottom-color: #3b82f6;
+    background: transparent;
+}
+
+[data-tabs-tab]:disabled,
+[data-tabs-tab][aria-disabled="true"] {
+    color: #d1d5db;
+}
+
+/* Vertical tabs */
+[data-tabs][data-tabs][data-orientation="vertical"] [data-tabs-tab] {
+    border-bottom: none;
+    border-right: 2px solid transparent;
+    bottom: auto;
+    right: -2px;
+    text-align: left;
+}
+
+[data-tabs][data-tabs][data-orientation="vertical"] [data-tabs-tab][aria-selected="true"] {
+    border-right-color: #3b82f6;
+    border-bottom-color: transparent;
+}
+
+/* Tab panels */
+[data-tabs-panels] {
+    padding: 1.5rem 0;
+}
+
+[data-tabs][data-tabs][data-orientation="vertical"] [data-tabs-panels] {
+    padding: 0 0 0 1.5rem;
+}
+
+/* Tab panel */
+[data-tabs-panel] {
+    color: #374151;
+    line-height: 1.6;
+}
+
+/* Boxed variant */
+[data-tabs][data-tabs][data-variant="boxed"] [data-tabs-list] {
+    border-bottom: 1px solid #e5e7eb;
+    gap: 0;
+}
+
+[data-tabs][data-tabs][data-variant="boxed"] [data-tabs-tab] {
+    border: 1px solid transparent;
+    border-bottom: none;
+    border-radius: 0.375rem 0.375rem 0 0;
+    margin-bottom: 0;
+    bottom: -1px;
+}
+
+[data-tabs][data-tabs][data-variant="boxed"] [data-tabs-tab]:hover {
+    border-color: #e5e7eb;
+    background: #f9fafb;
+}
+
+[data-tabs][data-tabs][data-variant="boxed"] [data-tabs-tab][aria-selected="true"] {
+    border-color: #e5e7eb;
+    border-bottom-color: #fff;
+    background: #fff;
+    color: #111827;
+}
+
+[data-tabs][data-tabs][data-variant="boxed"] [data-tabs-panels] {
+    border: 1px solid #e5e7eb;
+    border-top: none;
+    padding: 1.5rem;
+    background: #fff;
+}
+
+/* Pills variant */
+[data-tabs][data-tabs][data-variant="pills"] [data-tabs-list] {
+    border-bottom: none;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+[data-tabs][data-tabs][data-variant="pills"] [data-tabs-tab] {
+    border: none;
+    border-radius: 0.375rem;
+    padding: 0.5rem 1rem;
+    bottom: auto;
+}
+
+[data-tabs][data-tabs][data-variant="pills"] [data-tabs-tab]:hover {
+    background: #f3f4f6;
+}
+
+[data-tabs][data-tabs][data-variant="pills"] [data-tabs-tab][aria-selected="true"] {
+    background: #3b82f6;
+    color: #fff;
+}
+
+[data-tabs][data-tabs][data-variant="pills"] [data-tabs-tab]:focus {
+    outline-color: #3b82f6;
+}
+
+/* Icon tabs */
+.tabs__tab-icon {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.tabs__tab-icon svg,
+.tabs__tab-icon img {
+    width: 1rem;
+    height: 1rem;
+    flex-shrink: 0;
+}
+
+/* Badge in tab */
+.tabs__tab-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 1.25rem;
+    height: 1.25rem;
+    padding: 0 0.375rem;
+    margin-left: 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    background: #e5e7eb;
+    color: #374151;
+    border-radius: 0.75rem;
+}
+
+[data-tabs-tab][aria-selected="true"] .tabs__tab-badge {
+    background: #3b82f6;
+    color: #fff;
+}
+
+[data-tabs][data-tabs][data-variant="pills"] [data-tabs-tab][aria-selected="true"] .tabs__tab-badge {
+    background: #fff;
+    color: #3b82f6;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+    [data-tabs-tab] {
+        padding: 0.625rem 1rem;
+        font-size: 0.8125rem;
+    }
+
+    [data-tabs][data-tabs][data-orientation="vertical"] {
+        flex-direction: column;
+    }
+
+    [data-tabs][data-tabs][data-orientation="vertical"] [data-tabs-list] {
+        flex-direction: row;
+        border-right: none;
+        border-bottom: 2px solid #e5e7eb;
+        min-width: auto;
+        overflow-x: auto;
+    }
+
+    [data-tabs][data-tabs][data-orientation="vertical"] [data-tabs-tab] {
+        border-right: none;
+        border-bottom: 2px solid transparent;
+        right: auto;
+        bottom: -2px;
+    }
+
+    [data-tabs][data-tabs][data-orientation="vertical"] [data-tabs-tab][aria-selected="true"] {
+        border-right-color: transparent;
+        border-bottom-color: #3b82f6;
+    }
+
+    [data-tabs][data-tabs][data-orientation="vertical"] [data-tabs-panels] {
+        padding: 1.5rem 0;
+    }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+    [data-tabs-tab] {
+        border-width: 2px;
+    }
+
+    [data-tabs-tab]:focus {
+        outline-width: 3px;
+    }
+}
+
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+    [data-tabs-list] {
+        border-bottom-color: #374151;
+    }
+
+    [data-tabs][data-tabs][data-orientation="vertical"] [data-tabs-list] {
+        border-right-color: #374151;
+    }
+
+    [data-tabs-tab] {
+        color: #9ca3af;
+    }
+
+    [data-tabs-tab]:hover {
+        color: #f9fafb;
+        background: #1f2937;
+    }
+
+    [data-tabs-tab]:focus {
+        color: #f9fafb;
+    }
+
+    [data-tabs-tab][aria-selected="true"] {
+        color: #60a5fa;
+        border-bottom-color: #60a5fa;
+    }
+
+    [data-tabs][data-tabs][data-orientation="vertical"] [data-tabs-tab][aria-selected="true"] {
+        border-right-color: #60a5fa;
+    }
+
+    [data-tabs][data-tabs][data-variant="boxed"] [data-tabs-tab]:hover {
+        border-color: #374151;
+        background: #1f2937;
+    }
+
+    [data-tabs][data-tabs][data-variant="boxed"] [data-tabs-tab][aria-selected="true"] {
+        border-color: #374151;
+        border-bottom-color: #111827;
+        background: #111827;
+        color: #f9fafb;
+    }
+
+    [data-tabs][data-tabs][data-variant="boxed"] [data-tabs-panels] {
+        border-color: #374151;
+        background: #111827;
+    }
+
+    [data-tabs][data-tabs][data-variant="pills"] [data-tabs-tab]:hover {
+        background: #374151;
+    }
+
+    [data-tabs][data-tabs][data-variant="pills"] [data-tabs-tab][aria-selected="true"] {
+        background: #3b82f6;
+    }
+
+    [data-tabs-panel] {
+        color: #e5e7eb;
+    }
+
+    .tabs__tab-badge {
+        background: #374151;
+        color: #e5e7eb;
+    }
+
+    [data-tabs-tab][aria-selected="true"] .tabs__tab-badge {
+        background: #60a5fa;
+        color: #111827;
+    }
+
+    [data-tabs][data-tabs][data-variant="pills"] [data-tabs-tab][aria-selected="true"] .tabs__tab-badge {
+        background: #111827;
+        color: #60a5fa;
+    }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    [data-tabs-tab] {
+        transition: none !important;
+    }
+}

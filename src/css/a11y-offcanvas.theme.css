@@ -1,0 +1,170 @@
+/* Accessible Offcanvas - Theme Styles */
+/* Obsahuje vizualne nastavenia: farby, velkosti, bordery, radiusy, spacing */
+/* Pre zmenu vzhladu upravte tento subor */
+
+/* Offcanvas panel */
+[data-offcanvas-panel] {
+    width: 320px;
+    max-width: 100%;
+    background: #fff;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    transition: transform var(--a11y-offcanvas-duration, 0.3s) var(--a11y-offcanvas-easing, ease),
+                visibility var(--a11y-offcanvas-duration, 0.3s) var(--a11y-offcanvas-easing, ease);
+    display: flex;
+    flex-direction: column;
+}
+
+/* Top and bottom offcanvas */
+[data-offcanvas-panel].offcanvas--top,
+[data-offcanvas-panel].offcanvas--bottom {
+    width: 100%;
+    height: auto;
+    max-height: 50vh;
+}
+
+/* Offcanvas header */
+[data-offcanvas-header] {
+    padding: 1.25rem 1.5rem;
+    border-bottom: 1px solid #e5e7eb;
+    gap: 1rem;
+}
+
+[data-offcanvas-title] {
+    margin: 0;
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #111827;
+}
+
+/* Offcanvas body */
+[data-offcanvas-body] {
+    padding: 1.5rem;
+    color: #374151;
+    line-height: 1.6;
+}
+
+/* Offcanvas footer */
+[data-offcanvas-footer] {
+    padding: 1rem 1.5rem;
+    border-top: 1px solid #e5e7eb;
+    gap: 0.75rem;
+}
+
+/* Close button */
+[data-offcanvas-close] {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    padding: 0;
+    background: transparent;
+    border: none;
+    border-radius: 0.25rem;
+    color: #6b7280;
+    font-size: 1.25rem;
+    line-height: 1;
+    transition: all 0.15s ease;
+}
+
+[data-offcanvas-close]:hover {
+    background: #f3f4f6;
+    color: #111827;
+}
+
+[data-offcanvas-close]:focus {
+    outline: 2px solid #3b82f6;
+    outline-offset: 2px;
+}
+
+/* Backdrop */
+[data-offcanvas-backdrop] {
+    background: rgba(0, 0, 0, 0.5);
+    transition: opacity var(--a11y-offcanvas-duration, 0.3s) var(--a11y-offcanvas-easing, ease),
+                visibility var(--a11y-offcanvas-duration, 0.3s) var(--a11y-offcanvas-easing, ease);
+}
+
+/* Wide variant */
+[data-offcanvas-panel][data-offcanvas-panel][data-width="wide"] {
+    width: 480px;
+}
+
+/* Full width variant (for top/bottom) */
+[data-offcanvas-panel][data-offcanvas-panel][data-width="full"] {
+    max-height: 100vh;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+    [data-offcanvas-panel] {
+        width: 100%;
+        max-width: 85vw;
+    }
+
+    [data-offcanvas-panel].offcanvas--left,
+    [data-offcanvas-panel].offcanvas--right {
+        width: 85vw;
+    }
+
+    [data-offcanvas-header] {
+        padding: 1rem 1.25rem;
+    }
+
+    [data-offcanvas-body] {
+        padding: 1.25rem;
+    }
+}
+
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+    [data-offcanvas-panel] {
+        background: #1f2937;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    }
+
+    [data-offcanvas-header],
+    [data-offcanvas-footer] {
+        border-color: #374151;
+    }
+
+    [data-offcanvas-title] {
+        color: #f9fafb;
+    }
+
+    [data-offcanvas-body] {
+        color: #e5e7eb;
+    }
+
+    [data-offcanvas-close] {
+        color: #9ca3af;
+    }
+
+    [data-offcanvas-close]:hover {
+        background: #374151;
+        color: #f9fafb;
+    }
+
+    [data-offcanvas-backdrop] {
+        background: rgba(0, 0, 0, 0.7);
+    }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+    [data-offcanvas-panel] {
+        border: 2px solid currentColor;
+    }
+
+    [data-offcanvas-close]:focus {
+        outline-width: 3px;
+    }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    [data-offcanvas-panel],
+    [data-offcanvas-backdrop],
+    [data-offcanvas-close] {
+        transition: none !important;
+    }
+}

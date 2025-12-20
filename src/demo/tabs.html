@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabs - Accessible Kit</title>
+    <link rel="stylesheet" href="demo.css">
+    <link rel="stylesheet" href="../css/a11y-tabs.core.css">
+    <link rel="stylesheet" href="../css/a11y-tabs.theme.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="page-header">
+            <div class="breadcrumb">
+                <a href="../../index.html">Accessible Kit</a>
+                <span class="breadcrumb-separator">/</span>
+                <span>Tabs</span>
+            </div>
+            <h1>Accessible Tabs</h1>
+            <p class="subtitle">Fully accessible tabs with keyboard navigation and ARIA support</p>
+        </div>
+
+        <!-- Basic Tabs -->
+        <section>
+            <h2>Basic Tabs</h2>
+            <p class="description">
+                Standard tabs component with horizontal navigation
+            </p>
+
+            <div data-tabs>
+                <div role="tablist" data-tabs-list>
+                    <button data-tabs-tab>Overview</button>
+                    <button data-tabs-tab>Specifications</button>
+                    <button data-tabs-tab>Reviews</button>
+                </div>
+
+                <div data-tabs-panel>
+                    <h3>Product Overview</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut
+                        labore et dolore magna aliqua.</p>
+                </div>
+
+                <div data-tabs-panel>
+                    <h3>Technical Specifications</h3>
+                    <ul>
+                        <li>Screen: 15.6 inches</li>
+                        <li>Processor: Intel Core i7</li>
+                        <li>RAM: 16GB DDR4</li>
+                        <li>Storage: 512GB SSD</li>
+                    </ul>
+                </div>
+
+                <div data-tabs-panel>
+                    <h3>Customer Reviews</h3>
+                    <p>⭐⭐⭐⭐⭐ "Great product, very satisfied!" - John K.</p>
+                    <p>⭐⭐⭐⭐ "Good quality for the price." - Mary V.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Boxed Tabs -->
+        <section>
+            <h2>Boxed Variant</h2>
+            <p class="description">
+                Tabs with a border around the content
+            </p>
+
+            <div data-tabs data-variant="boxed">
+                <div role="tablist" data-tabs-list>
+                    <button data-tabs-tab>Dashboard</button>
+                    <button data-tabs-tab>Settings</button>
+                    <button data-tabs-tab>Profile</button>
+                    <button data-tabs-tab disabled>Archive</button>
+                </div>
+
+                <div data-tabs-panels>
+                    <div data-tabs-panel>
+                        <h3>Dashboard</h3>
+                        <p>Welcome to your dashboard. Here you'll find an overview of all activities.</p>
+                    </div>
+
+                    <div data-tabs-panel>
+                        <h3>Settings</h3>
+                        <p>Application configuration and user preferences.</p>
+                    </div>
+
+                    <div data-tabs-panel>
+                        <h3>User Profile</h3>
+                        <p>Edit your personal information and account settings.</p>
+                    </div>
+
+                    <div data-tabs-panel>
+                        <h3>Archive</h3>
+                        <p>Archived items (this tab is disabled).</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pills Tabs -->
+        <section>
+            <h2>Pills Variant</h2>
+            <p class="description">
+                Tabs styled as pills/buttons
+            </p>
+
+            <div data-tabs data-variant="pills">
+                <div role="tablist" data-tabs-list>
+                    <button data-tabs-tab>
+                        <span class="tabs__tab-icon">
+                            📊 Statistics
+                        </span>
+                    </button>
+                    <button data-tabs-tab>
+                        <span class="tabs__tab-icon">
+                            📈 Charts
+                        </span>
+                    </button>
+                    <button data-tabs-tab>
+                        <span class="tabs__tab-icon">
+                            📋 Reports
+                        </span>
+                    </button>
+                </div>
+
+                <div data-tabs-panel>
+                    <h3>Statistics</h3>
+                    <p>Overview of key metrics and statistics.</p>
+                </div>
+
+                <div data-tabs-panel>
+                    <h3>Visualizations</h3>
+                    <p>Graphical display of data and trends.</p>
+                </div>
+
+                <div data-tabs-panel>
+                    <h3>Generated Reports</h3>
+                    <p>Exportable reports and analyses.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Vertical Tabs -->
+        <section>
+            <h2>Vertical Tabs</h2>
+            <p class="description">
+                Tabs with vertical navigation (displayed horizontally on mobile)
+            </p>
+
+            <div data-tabs data-orientation="vertical">
+                <div role="tablist" data-tabs-list>
+                    <button data-tabs-tab>Account</button>
+                    <button data-tabs-tab>Security</button>
+                    <button data-tabs-tab>Notifications</button>
+                    <button data-tabs-tab>Privacy</button>
+                </div>
+
+                <div data-tabs-panels>
+                    <div data-tabs-panel>
+                        <h3>Account Settings</h3>
+                        <p>Manage basic account information.</p>
+                    </div>
+
+                    <div data-tabs-panel>
+                        <h3>Security</h3>
+                        <p>Password settings and two-factor authentication.</p>
+                    </div>
+
+                    <div data-tabs-panel>
+                        <h3>Notifications</h3>
+                        <p>Configure email and push notifications.</p>
+                    </div>
+
+                    <div data-tabs-panel>
+                        <h3>Privacy</h3>
+                        <p>Visibility and data sharing settings.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tabs with Badges -->
+        <section>
+            <h2>Tabs with Badges</h2>
+            <p class="description">
+                Tabs with counters or badge indicators
+            </p>
+
+            <div data-tabs>
+                <div role="tablist" data-tabs-list>
+                    <button data-tabs-tab>
+                        All
+                        <span class="tabs__tab-badge">24</span>
+                    </button>
+                    <button data-tabs-tab>
+                        Active
+                        <span class="tabs__tab-badge">12</span>
+                    </button>
+                    <button data-tabs-tab>
+                        Completed
+                        <span class="tabs__tab-badge">10</span>
+                    </button>
+                    <button data-tabs-tab>
+                        Archived
+                        <span class="tabs__tab-badge">2</span>
+                    </button>
+                </div>
+
+                <div data-tabs-panel>
+                    <h3>All Tasks</h3>
+                    <p>Showing all 24 tasks regardless of status.</p>
+                </div>
+
+                <div data-tabs-panel>
+                    <h3>Active Tasks</h3>
+                    <p>12 tasks you're currently working on.</p>
+                </div>
+
+                <div data-tabs-panel>
+                    <h3>Completed Tasks</h3>
+                    <p>10 tasks you've already finished.</p>
+                </div>
+
+                <div data-tabs-panel>
+                    <h3>Archived Tasks</h3>
+                    <p>2 archived tasks for future reference.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Fade Animation -->
+        <section>
+            <h2>Fade Animation</h2>
+            <p class="description">
+                Tabs with smooth transitions between panels
+            </p>
+
+            <div data-variant="pills" data-tabs>
+                <div role="tablist" data-tabs-list>
+                    <button data-tabs-tab>Slide 1</button>
+                    <button data-tabs-tab>Slide 2</button>
+                    <button data-tabs-tab>Slide 3</button>
+                </div>
+
+                <div data-tabs-panel>
+                    <h3>First Slide</h3>
+                    <p>Content with fade animation when switching.</p>
+                </div>
+
+                <div data-tabs-panel>
+                    <h3>Second Slide</h3>
+                    <p>Smooth transition between content.</p>
+                </div>
+
+                <div data-tabs-panel>
+                    <h3>Third Slide</h3>
+                    <p>Last panel with animated transition.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Usage -->
+        <section>
+            <h2>Usage</h2>
+
+            <h3>Basic HTML Structure:</h3>
+            <pre><code>&lt;div data-tabs&gt;
+    &lt;div role="tablist" data-tabs-list&gt;
+        &lt;button data-tabs-tab&gt;Tab 1&lt;/button&gt;
+        &lt;button data-tabs-tab&gt;Tab 2&lt;/button&gt;
+        &lt;button data-tabs-tab&gt;Tab 3&lt;/button&gt;
+    &lt;/div&gt;
+
+    &lt;div data-tabs-panel&gt;
+        Tab 1 content
+    &lt;/div&gt;
+
+    &lt;div data-tabs-panel&gt;
+        Tab 2 content
+    &lt;/div&gt;
+
+    &lt;div data-tabs-panel&gt;
+        Tab 3 content
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+            <h3>JavaScript Initialization:</h3>
+
+            <h4>1. Auto-initialization (CDN)</h4>
+            <pre><code>&lt;script src="js/a11y-tabs.js"&gt;&lt;/script&gt;
+&lt;!-- Automatically initializes all tabs --&gt;</code></pre>
+
+            <h4>2. CDN with window.a11yKit namespace (recommended)</h4>
+            <pre><code>&lt;script src="js/a11y-tabs.js"&gt;&lt;/script&gt;
+&lt;script&gt;
+  // Init function
+  a11yKit.initTabs();
+
+  // Bootstrap style - short alias
+  const tabs = new a11yKit.Tabs(element, {
+    activeIndex: 0,
+    onChange: (tab, panel, index) => console.log('Tab changed')
+  });
+&lt;/script&gt;</code></pre>
+
+            <h4>3. ES6 Module Import - Bootstrap Style</h4>
+            <pre><code>import { Tabs } from './a11y-kit/a11y-tabs.js';
+
+const tabs = new Tabs(element, {
+    activeIndex: 0,
+    automatic: true,
+    orientation: 'horizontal',
+    onChange: (tab, panel, index) => console.log('Tab changed:', index),
+    onTabClick: (tab, index) => console.log('Clicked:', index)
+});</code></pre>
+
+            <h4>4. Wildcard / NPM Package</h4>
+            <pre><code>// Wildcard
+import * as a11yKit from './a11y-kit';
+a11yKit.initTabs();
+const tabs = new a11yKit.Tabs(element, options);
+
+// NPM
+import { initTabs, Tabs } from 'accessible-kit/tabs';
+initTabs(); // or new Tabs(element, options);</code></pre>
+
+            <h3>Variants:</h3>
+            <pre><code>&lt;!-- Boxed variant --&gt;
+&lt;div data-tabs data-variant="boxed"&gt;...&lt;/div&gt;
+
+&lt;!-- Pills variant --&gt;
+&lt;div data-tabs data-variant="pills"&gt;...&lt;/div&gt;
+
+&lt;!-- Vertical variant --&gt;
+&lt;div data-tabs data-orientation="vertical"&gt;...&lt;/div&gt;
+
+&lt;!-- Fade animations are default --&gt;
+&lt;div data-tabs&gt;...&lt;/div&gt;
+
+&lt;!-- Disable animations --&gt;
+&lt;div data-tabs data-no-animation&gt;...&lt;/div&gt;
+
+&lt;!-- Disabled tab --&gt;
+&lt;button data-tabs-tab disabled&gt;Disabled&lt;/button&gt;
+
+&lt;!-- Badge (optional class for styling) --&gt;
+&lt;span class="tabs__tab-badge"&gt;12&lt;/span&gt;</code></pre>
+
+            <div class="info-box info-box--keyboard">
+                <h3>Keyboard Navigation</h3>
+                <ul>
+                    <li><kbd>←</kbd> / <kbd>→</kbd> - Navigate between tabs (horizontal)</li>
+                    <li><kbd>↑</kbd> / <kbd>↓</kbd> - Navigate between tabs (vertical)</li>
+                    <li><kbd>Home</kbd> - Jump to first tab</li>
+                    <li><kbd>End</kbd> - Jump to last tab</li>
+                    <li><kbd>Enter</kbd> / <kbd>Space</kbd> - Activate focused tab (manual activation)</li>
+                    <li><kbd>Tab</kbd> - Move focus to panel content</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Features -->
+        <section>
+            <h2>Features</h2>
+            <ul style="margin-left: 1.5rem;">
+                <li>✅ Full ARIA attributes support (role, aria-selected, aria-controls)</li>
+                <li>✅ Keyboard navigation (arrows, Home, End)</li>
+                <li>✅ Automatic and manual activation</li>
+                <li>✅ Focus management for screen readers</li>
+                <li>✅ Disabled tabs support</li>
+                <li>✅ Horizontal and vertical orientation</li>
+                <li>✅ Multiple visual variants (basic, boxed, pills)</li>
+                <li>✅ Fade animations</li>
+                <li>✅ Responsive design</li>
+                <li>✅ Dark mode support</li>
+                <li>✅ High contrast mode support</li>
+                <li>✅ Reduced motion support</li>
+            </ul>
+        </section>
+    </div>
+
+    <script type="module" src="../js/a11y-tabs.js"></script>
+    <script src="demo.js"></script>
+</body>
+
+</html>

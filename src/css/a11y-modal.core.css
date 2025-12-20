@@ -1,0 +1,136 @@
+/* Accessible Modal - Core Styles */
+/* Obsahuje iba logiku, positioning, layout a spravanie */
+/* Pre vizualne nastavenia pouzite a11y-modal.theme.css */
+
+/* Modal wrapper */
+[data-modal] {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    visibility: hidden;
+    opacity: 0;
+}
+
+[data-modal][aria-hidden="false"] {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* Modal dialog */
+[data-modal-dialog] {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    max-height: 90vh;
+    max-width: 90vw;
+    overflow: hidden;
+    transform: scale(0.95);
+}
+
+[data-modal][aria-hidden="false"] [data-modal-dialog] {
+    transform: scale(1);
+}
+
+/* Size variants */
+[data-modal-dialog][data-size="sm"] {
+    width: 400px;
+}
+
+[data-modal-dialog][data-size="md"] {
+    width: 600px;
+}
+
+[data-modal-dialog][data-size="lg"] {
+    width: 800px;
+}
+
+[data-modal-dialog][data-size="fullscreen"] {
+    width: 100vw;
+    height: 100vh;
+    max-width: 100vw;
+    max-height: 100vh;
+}
+
+/* Modal header */
+[data-modal-header] {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-shrink: 0;
+}
+
+/* Modal body */
+[data-modal-body] {
+    flex: 1;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Modal footer */
+[data-modal-footer] {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-shrink: 0;
+}
+
+/* Close button */
+[data-modal-close] {
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+/* Backdrop */
+[data-modal-backdrop] {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity var(--a11y-modal-duration, 0.2s) var(--a11y-modal-easing, ease);
+}
+
+[data-modal][aria-hidden="false"] [data-modal-backdrop] {
+    opacity: 1;
+}
+
+/* Body scroll lock */
+body.modal-open {
+    overflow: hidden;
+}
+
+/* Focus trap */
+[data-modal-dialog]:focus {
+    outline: none;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+    [data-modal-dialog] {
+        max-width: 95vw;
+        max-height: 95vh;
+    }
+
+    [data-modal-dialog][data-size="sm"],
+    [data-modal-dialog][data-size="md"],
+    [data-modal-dialog][data-size="lg"] {
+        width: 95vw;
+    }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    [data-modal],
+    [data-modal-dialog],
+    [data-modal-backdrop] {
+        transition: none !important;
+    }
+}

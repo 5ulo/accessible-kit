@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dropdown - Accessible Kit</title>
+    <link rel="stylesheet" href="demo.css">
+    <link rel="stylesheet" href="../css/a11y-dropdown.core.css">
+    <link rel="stylesheet" href="../css/a11y-dropdown.theme.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="page-header">
+            <div class="breadcrumb">
+                <a href="../../index.html">Accessible Kit</a>
+                <span class="breadcrumb-separator">/</span>
+                <span>Dropdown</span>
+            </div>
+            <h1>Accessible Dropdown</h1>
+            <p class="subtitle">Fully accessible dropdown with keyboard navigation and ARIA support</p>
+        </div>
+
+        <!-- Navigation Demo -->
+        <section>
+            <h2>Navigation Menu</h2>
+            <p class="description">
+                Dropdown used in navigation with multiple items
+            </p>
+
+            <div class="nav-header">
+                <div class="nav-header__logo">My Website</div>
+                <nav class="nav-header__menu">
+                    <div data-variant="nav" data-dropdown>
+                        <button data-dropdown-button>
+                            Products
+                            <span class="dropdown__arrow"></span>
+                        </button>
+                        <div data-dropdown-menu>
+                            <div>
+                                <div>
+                                    <a href="#product1" data-dropdown-item>Product 1</a>
+                                    <a href="#product2" data-dropdown-item>Product 2</a>
+                                    <a href="#product3" data-dropdown-item>Product 3</a>
+                                    <hr class="dropdown__divider">
+                                    <a href="#all-products" data-dropdown-item>All Products</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div data-variant="nav" data-dropdown>
+                        <button data-dropdown-button>
+                            Services
+                            <span class="dropdown__arrow"></span>
+                        </button>
+                        <div data-dropdown-menu>
+                            <div>
+                                <div>
+                                    <a href="#service1" data-dropdown-item>Consulting</a>
+                                    <a href="#service2" data-dropdown-item>Development</a>
+                                    <a href="#service3" data-dropdown-item>Support</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div data-variant="language" data-dropdown>
+                        <button data-dropdown-button>
+                            🇬🇧 EN
+                            <span class="dropdown__arrow"></span>
+                        </button>
+                        <div data-dropdown-menu="right">
+                            <div>
+                                <div>
+                                    <button data-dropdown-item>
+                                        <span class="dropdown__item-flag">🇬🇧</span>
+                                        English
+                                    </button>
+                                    <button data-dropdown-item>
+                                        <span class="dropdown__item-flag">🇸🇰</span>
+                                        Slovak
+                                    </button>
+                                    <button data-dropdown-item>
+                                        <span class="dropdown__item-flag">🇨🇿</span>
+                                        Czech
+                                    </button>
+                                    <button data-dropdown-item>
+                                        <span class="dropdown__item-flag">🇩🇪</span>
+                                        German
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </section>
+
+        <!-- Animation Examples -->
+        <section>
+            <h2>Animation</h2>
+            <p class="description">
+                Comparison of dropdown menu without animation and with CSS Grid animation
+            </p>
+
+            <div class="demo-grid">
+                <!-- Without animation -->
+                <div class="demo-item">
+                    <h3>Without Animation</h3>
+                    <p class="description">Menu shows/hides instantly</p>
+                    <div data-dropdown>
+                        <button data-dropdown-button>
+                            Options
+                            <span class="dropdown__arrow"></span>
+                        </button>
+                        <div data-dropdown-menu data-no-animation>
+                            <div>
+                                <div>
+                                    <button data-dropdown-item>Edit</button>
+                                    <button data-dropdown-item>Duplicate</button>
+                                    <button data-dropdown-item>Archive</button>
+                                    <hr class="dropdown__divider">
+                                    <button data-dropdown-item>Delete</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- With animation -->
+                <div class="demo-item">
+                    <h3>Dropdown (animations default)</h3>
+                    <p class="description">Smooth animation using grid-template-rows is default</p>
+                    <div data-dropdown>
+                        <button data-dropdown-button>
+                            Options
+                            <span class="dropdown__arrow"></span>
+                        </button>
+                        <div data-dropdown-menu>
+                            <div>
+                                <div>
+                                    <button data-dropdown-item>Edit</button>
+                                    <button data-dropdown-item>Duplicate</button>
+                                    <button data-dropdown-item>Archive</button>
+                                    <hr class="dropdown__divider">
+                                    <button data-dropdown-item>Delete</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Custom Animation Speed -->
+        <section>
+            <h2>Custom Animation Speed</h2>
+            <p class="description">
+                Animation speed can be set using CSS custom properties (variables).
+                You can set them globally in CSS or inline using the <code>style</code> attribute.
+            </p>
+
+            <div class="demo-grid">
+                <div class="demo-item">
+                    <h3>Slow Animation (0.5s)</h3>
+                    <div data-dropdown style="--a11y-dropdown-duration: 0.5s;">
+                        <button data-dropdown-button>
+                            Slow Menu
+                            <span class="dropdown__arrow"></span>
+                        </button>
+                        <div data-dropdown-menu>
+                            <div>
+                                <div>
+                                    <button data-dropdown-item>Item 1</button>
+                                    <button data-dropdown-item>Item 2</button>
+                                    <button data-dropdown-item>Item 3</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="demo-item">
+                    <h3>Fast Animation (0.1s)</h3>
+                    <div data-dropdown style="--a11y-dropdown-duration: 0.1s;">
+                        <button data-dropdown-button>
+                            Fast Menu
+                            <span class="dropdown__arrow"></span>
+                        </button>
+                        <div data-dropdown-menu>
+                            <div>
+                                <div>
+                                    <button data-dropdown-item>Item 1</button>
+                                    <button data-dropdown-item>Item 2</button>
+                                    <button data-dropdown-item>Item 3</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="demo-item">
+                    <h3>Custom Easing (bounce)</h3>
+                    <div data-dropdown style="--a11y-dropdown-duration: 0.4s; --a11y-dropdown-easing: cubic-bezier(0.68, -0.55, 0.265, 1.55);">
+                        <button data-dropdown-button>
+                            Bounce Menu
+                            <span class="dropdown__arrow"></span>
+                        </button>
+                        <div data-dropdown-menu>
+                            <div>
+                                <div>
+                                    <button data-dropdown-item>Item 1</button>
+                                    <button data-dropdown-item>Item 2</button>
+                                    <button data-dropdown-item>Item 3</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Simple Examples -->
+        <section>
+            <h2>Simple Examples</h2>
+
+            <div class="demo-grid">
+                <!-- Basic dropdown -->
+                <div class="demo-item">
+                    <h3>Basic Dropdown</h3>
+                    <div data-dropdown>
+                        <button data-dropdown-button>
+                            Options
+                            <span class="dropdown__arrow"></span>
+                        </button>
+                        <div data-dropdown-menu>
+                            <div>
+                                <div>
+                                    <button data-dropdown-item>Edit</button>
+                                    <button data-dropdown-item>Duplicate</button>
+                                    <button data-dropdown-item>Archive</button>
+                                    <hr class="dropdown__divider">
+                                    <button data-dropdown-item>Delete</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Language switcher -->
+                <div class="demo-item">
+                    <h3>Language Switcher</h3>
+                    <div data-variant="language" data-dropdown>
+                        <button data-dropdown-button>
+                            🇬🇧 English
+                            <span class="dropdown__arrow"></span>
+                        </button>
+                        <div data-dropdown-menu>
+                            <div>
+                                <div>
+                                    <button data-dropdown-item>
+                                        <span class="dropdown__item-flag">🇬🇧</span>
+                                        English
+                                    </button>
+                                    <button data-dropdown-item>
+                                        <span class="dropdown__item-flag">🇸🇰</span>
+                                        Slovak
+                                    </button>
+                                    <button data-dropdown-item>
+                                        <span class="dropdown__item-flag">🇨🇿</span>
+                                        Czech
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right aligned -->
+                <div class="demo-item">
+                    <h3>Right Aligned</h3>
+                    <div data-dropdown style="float: right;">
+                        <button data-dropdown-button>
+                            Profile
+                            <span class="dropdown__arrow"></span>
+                        </button>
+                        <div data-dropdown-menu="right">
+                            <div>
+                                <div>
+                                    <a href="#profile" data-dropdown-item>My Profile</a>
+                                    <a href="#settings" data-dropdown-item>Settings</a>
+                                    <hr class="dropdown__divider">
+                                    <a href="#logout" data-dropdown-item>Logout</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Custom behavior -->
+                <div class="demo-item">
+                    <h3>Custom Behavior</h3>
+                    <div data-dropdown data-close-on-select="false">
+                        <button data-dropdown-button>
+                            Filter
+                            <span class="dropdown__arrow"></span>
+                        </button>
+                        <div data-dropdown-menu>
+                            <div>
+                                <div>
+                                    <button data-dropdown-item>
+                                        <input type="checkbox" id="opt1"> Option 1
+                                    </button>
+                                    <button data-dropdown-item>
+                                        <input type="checkbox" id="opt2"> Option 2
+                                    </button>
+                                    <button data-dropdown-item>
+                                        <input type="checkbox" id="opt3"> Option 3
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Usage -->
+        <section>
+            <h2>Usage</h2>
+
+            <h3>Basic HTML Structure (without animation):</h3>
+            <pre><code>&lt;div data-dropdown&gt;
+    &lt;button data-dropdown-button&gt;
+        Button Text
+        &lt;span class="dropdown__arrow"&gt;&lt;/span&gt;
+    &lt;/button&gt;
+    &lt;div data-dropdown-menu data-no-animation&gt;
+        &lt;div&gt;
+            &lt;div&gt;
+                &lt;a href="#" data-dropdown-item&gt;Item 1&lt;/a&gt;
+                &lt;a href="#" data-dropdown-item&gt;Item 2&lt;/a&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+            <h3>Animations (default):</h3>
+            <pre><code>&lt;!-- Animations are default, no need to add any attribute --&gt;
+&lt;div data-dropdown&gt;
+    &lt;button data-dropdown-button&gt;
+        Button Text
+        &lt;span class="dropdown__arrow"&gt;&lt;/span&gt;
+    &lt;/button&gt;
+    &lt;div data-dropdown-menu&gt;
+        &lt;!-- Two wrapper divs REQUIRED for animations --&gt;
+        &lt;div&gt;
+            &lt;div&gt;
+                &lt;a href="#" data-dropdown-item&gt;Item 1&lt;/a&gt;
+                &lt;a href="#" data-dropdown-item&gt;Item 2&lt;/a&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+            <p class="description" style="margin-top: 1rem;">
+                <strong>Important for animations:</strong><br>
+                • Animations are default - automatically enabled<br>
+                • Content in <code>data-dropdown-menu</code> must be wrapped in two <code>&lt;div&gt;</code> wrappers<br>
+                • Animation uses modern CSS Grid approach (grid-template-rows: 0fr → 1fr)<br>
+                • Works without needing to know menu height beforehand<br>
+                • Better alternative to transform and fixed height animations<br>
+                • Animation speed: use CSS custom property <code>--a11y-dropdown-duration</code> (default: 0.2s)<br>
+                • Easing function: use CSS custom property <code>--a11y-dropdown-easing</code> (default: ease)<br>
+                • Automatic <code>prefers-reduced-motion</code> support
+            </p>
+
+            <h3>Setting Animation Speed:</h3>
+            <pre><code>&lt;!-- Inline using style attribute --&gt;
+&lt;div data-dropdown style="--a11y-dropdown-duration: 0.5s;"&gt;
+    &lt;button data-dropdown-button&gt;Menu&lt;/button&gt;
+    &lt;div data-dropdown-menu&gt;
+        &lt;div&gt;&lt;div&gt;...&lt;/div&gt;&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Custom easing --&gt;
+&lt;div data-dropdown
+     style="--a11y-dropdown-duration: 0.3s; --a11y-dropdown-easing: ease-in-out;"&gt;
+    &lt;!-- dropdown menu --&gt;
+&lt;/div&gt;
+
+&lt;!-- Or globally in CSS --&gt;
+&lt;style&gt;
+:root {
+    --a11y-dropdown-duration: 0.25s;
+    --a11y-dropdown-easing: cubic-bezier(0.4, 0, 0.2, 1);
+}
+&lt;/style&gt;
+
+&lt;!-- Disable animations --&gt;
+&lt;div data-dropdown-menu data-no-animation&gt;
+    &lt;!-- menu without animations --&gt;
+&lt;/div&gt;</code></pre>
+
+            <h3>JavaScript Initialization:</h3>
+
+            <h4>1. Auto-initialization (CDN)</h4>
+            <pre><code>&lt;script src="js/a11y-dropdown.js"&gt;&lt;/script&gt;
+&lt;!-- Automatically initializes all dropdowns --&gt;</code></pre>
+
+            <h4>2. CDN with window.a11yKit namespace (recommended)</h4>
+            <pre><code>&lt;script src="js/a11y-dropdown.js"&gt;&lt;/script&gt;
+&lt;script&gt;
+  // Via namespace (recommended - no collisions)
+  a11yKit.initDropdowns();
+
+  // Bootstrap style - short alias
+  const dropdown = new a11yKit.Dropdown(element, {
+    closeOnSelect: true,
+    onOpen: (instance) => console.log('Opened!')
+  });
+&lt;/script&gt;</code></pre>
+
+            <h4>3. ES6 Module Import - init functions</h4>
+            <pre><code>import { initDropdowns } from './a11y-kit/a11y-dropdown.js';
+initDropdowns();</code></pre>
+
+            <h4>4. ES6 Module Import - Bootstrap style (short aliases)</h4>
+            <pre><code>// Import short alias
+import { Dropdown } from './a11y-kit/a11y-dropdown.js';
+
+// Use like Bootstrap
+const dropdown = new Dropdown(element, {
+  closeOnSelect: true,
+  closeOnOutsideClick: true,
+  closeOnEscape: true,
+  onOpen: (instance) => console.log('Opened'),
+  onClose: (instance) => console.log('Closed'),
+  onSelect: (item, index) => console.log('Selected:', item)
+});</code></pre>
+
+            <h4>5. Wildcard import</h4>
+            <pre><code>import * as a11yKit from './a11y-kit';
+
+// Init function:
+a11yKit.initDropdowns();
+
+// Bootstrap style:
+const dropdown = new a11yKit.Dropdown(element, options);</code></pre>
+
+            <h4>6. NPM package</h4>
+            <pre><code>npm install accessible-kit
+
+// Import
+import { initDropdowns, Dropdown } from 'accessible-kit/dropdown';
+
+initDropdowns(); // or
+const dropdown = new Dropdown(element, options);</code></pre>
+
+            <div class="info-box info-box--keyboard">
+                <h3>Keyboard Navigation</h3>
+                <ul>
+                    <li><kbd>Enter</kbd> / <kbd>Space</kbd> - Open/close menu or select item</li>
+                    <li><kbd>↓</kbd> / <kbd>↑</kbd> - Navigate between items</li>
+                    <li><kbd>Home</kbd> / <kbd>End</kbd> - Jump to first/last item</li>
+                    <li><kbd>Esc</kbd> - Close menu and return focus to button</li>
+                    <li><kbd>Tab</kbd> - Close menu and move focus</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Features -->
+        <section>
+            <h2>Features</h2>
+            <ul style="margin-left: 1.5rem;">
+                <li>✅ Full ARIA attributes support</li>
+                <li>✅ Keyboard navigation (arrows, Enter, Space, Esc, Home, End)</li>
+                <li>✅ Focus management for screen readers</li>
+                <li>✅ Auto-close on outside click</li>
+                <li>✅ Close on Escape</li>
+                <li>✅ CSS Grid animations by default (disable with data-no-animation)</li>
+                <li>✅ Configurable behavior</li>
+                <li>✅ Zero dependencies (vanilla JS)</li>
+                <li>✅ Responsive design</li>
+                <li>✅ Dark mode support</li>
+                <li>✅ High contrast mode support</li>
+                <li>✅ Reduced motion support</li>
+            </ul>
+        </section>
+    </div>
+
+    <script type="module" src="../js/a11y-dropdown.js"></script>
+    <script src="demo.js"></script>
+</body>
+
+</html>

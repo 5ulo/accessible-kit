@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accessible Kit - Accessible UI Component Library</title>
+    <link rel="stylesheet" href="demo/demo.css">
+    <style>
+        .hero {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 0.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            opacity: 0.95;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .feature {
+            text-align: center;
+            padding: 1.5rem;
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature h3 {
+            margin-bottom: 0.5rem;
+            color: #111827;
+        }
+
+        .feature p {
+            color: #6b7280;
+            font-size: 0.875rem;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-left: 0.5rem;
+        }
+
+        .status-badge--ready {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .status-badge--soon {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .feature h3 {
+                color: #f9fafb;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="hero">
+            <h1>Accessible Kit</h1>
+            <p>Lightweight, accessible UI component library with full ARIA support</p>
+            <p style="font-size: 1rem; margin-top: 0.5rem;">Collection of fully accessible UI components for modern web applications. Zero dependencies, vanilla JavaScript.</p>
+        </div>
+
+        <section>
+            <h2>Components</h2>
+            <p class="description">
+                <strong>5 ready components (v1.0)</strong> + <strong>6 in roadmap (v1.1+)</strong>
+                <br>
+                All components are built following WAI-ARIA Authoring Practices Guide with full keyboard navigation and screen reader support.
+            </p>
+
+            <div class="component-grid">
+                <a href="demo/dropdown.html" class="component-card">
+                    <h3>
+                        Dropdown
+                        <span class="status-badge status-badge--ready">Ready</span>
+                    </h3>
+                    <p>Accessible dropdown with keyboard navigation for navigation menus, language switchers, and action menus.
+                    </p>
+                    <ul class="component-card__features">
+                        <li>✓ ARIA attributes</li>
+                        <li>✓ Keyboard navigation</li>
+                        <li>✓ Multiple variants</li>
+                        <li>✓ Dark mode support</li>
+                    </ul>
+                </a>
+
+                <a href="demo/tabs.html" class="component-card">
+                    <h3>
+                        Tabs
+                        <span class="status-badge status-badge--ready">Ready</span>
+                    </h3>
+                    <p>Tabs with full a11y support for organizing content into separate sections.</p>
+                    <ul class="component-card__features">
+                        <li>✓ Horizontal & Vertical</li>
+                        <li>✓ Multiple styles</li>
+                        <li>✓ Disabled tabs</li>
+                        <li>✓ Automatic activation</li>
+                    </ul>
+                </a>
+
+                <a href="demo/offcanvas.html" class="component-card">
+                    <h3>
+                        Offcanvas
+                        <span class="status-badge status-badge--ready">Ready</span>
+                    </h3>
+                    <p>Sliding side panel with focus trap and full a11y support for navigation and sidebars.</p>
+                    <ul class="component-card__features">
+                        <li>✓ Focus trap</li>
+                        <li>✓ 4 positions</li>
+                        <li>✓ Scroll lock</li>
+                        <li>✓ Backdrop support</li>
+                    </ul>
+                </a>
+
+                <a href="demo/modal.html" class="component-card">
+                    <h3>
+                        Modal
+                        <span class="status-badge status-badge--ready">Ready</span>
+                    </h3>
+                    <p>Modal dialog with focus trap and proper focus management for overlay interactions.</p>
+                    <ul class="component-card__features">
+                        <li>✓ Focus trap</li>
+                        <li>✓ Backdrop click</li>
+                        <li>✓ Scroll lock</li>
+                        <li>✓ Size variants</li>
+                    </ul>
+                </a>
+
+                <a href="demo/accordion.html#collapse" class="component-card">
+                    <h3>
+                        Collapse
+                        <span class="status-badge status-badge--ready">Ready</span>
+                    </h3>
+                    <p>Standalone collapse toggle for show/hide functionality with ARIA support.</p>
+                    <ul class="component-card__features">
+                        <li>✓ Standalone toggles</li>
+                        <li>✓ CSS selector support</li>
+                        <li>✓ Dynamic text</li>
+                        <li>✓ Multiple panels</li>
+                    </ul>
+                </a>
+
+                <a href="demo/accordion.html" class="component-card">
+                    <h3>
+                        Accordion
+                        <span class="status-badge status-badge--ready">Ready</span>
+                    </h3>
+                    <p>Accessible accordion with keyboard navigation for groups of collapsible sections.</p>
+                    <ul class="component-card__features">
+                        <li>✓ Single/Multiple expand</li>
+                        <li>✓ Keyboard navigation</li>
+                        <li>✓ Toggle all control</li>
+                        <li>✓ Dynamic text</li>
+                    </ul>
+                </a>
+
+                <a href="#" class="component-card" style="opacity: 0.6; pointer-events: none;">
+                    <h3>
+                        Tooltip
+                        <span class="status-badge status-badge--soon">Coming Soon</span>
+                    </h3>
+                    <p>Accessible tooltip with ARIA support and smart positioning.</p>
+                    <ul class="component-card__features">
+                        <li>✓ ARIA role="tooltip"</li>
+                        <li>✓ Smart positioning</li>
+                        <li>✓ Delay support</li>
+                        <li>✓ ESC to close</li>
+                    </ul>
+                </a>
+
+                <a href="#" class="component-card" style="opacity: 0.6; pointer-events: none;">
+                    <h3>
+                        Toast/Notification
+                        <span class="status-badge status-badge--soon">Coming Soon</span>
+                    </h3>
+                    <p>Live region announcements with auto-dismiss and notification stacking.</p>
+                    <ul class="component-card__features">
+                        <li>✓ aria-live regions</li>
+                        <li>✓ Auto-dismiss timer</li>
+                        <li>✓ Stacking support</li>
+                        <li>✓ Multiple positions</li>
+                    </ul>
+                </a>
+
+                <a href="#" class="component-card" style="opacity: 0.6; pointer-events: none;">
+                    <h3>
+                        Toggle Switch
+                        <span class="status-badge status-badge--soon">Coming Soon</span>
+                    </h3>
+                    <p>Switch component with localStorage/preferences support and ARIA attributes.</p>
+                    <ul class="component-card__features">
+                        <li>✓ role="switch"</li>
+                        <li>✓ localStorage support</li>
+                        <li>✓ Smooth animations</li>
+                        <li>✓ Labels & descriptions</li>
+                    </ul>
+                </a>
+
+                <a href="#" class="component-card" style="opacity: 0.6; pointer-events: none;">
+                    <h3>
+                        Popover
+                        <span class="status-badge status-badge--soon">Coming Soon</span>
+                    </h3>
+                    <p>Interactive popover with positioning and focus management for rich content.</p>
+                    <ul class="component-card__features">
+                        <li>✓ Interactive content</li>
+                        <li>✓ Smart positioning</li>
+                        <li>✓ Focus management</li>
+                        <li>✓ Close on outside click</li>
+                    </ul>
+                </a>
+
+                <a href="#" class="component-card" style="opacity: 0.6; pointer-events: none;">
+                    <h3>
+                        Alert/Banner
+                        <span class="status-badge status-badge--soon">Coming Soon</span>
+                    </h3>
+                    <p>ARIA alert component with dismissible support and various message types.</p>
+                    <ul class="component-card__features">
+                        <li>✓ role="alert"</li>
+                        <li>✓ Dismissible/Persistent</li>
+                        <li>✓ Info/Warning/Error</li>
+                        <li>✓ Icon support</li>
+                    </ul>
+                </a>
+
+                <a href="#" class="component-card" style="opacity: 0.6; pointer-events: none;">
+                    <h3>
+                        Combobox/Autocomplete
+                        <span class="status-badge status-badge--soon">Coming Soon</span>
+                    </h3>
+                    <p>Complex ARIA pattern for search, autocomplete, and filtering with keyboard navigation.</p>
+                    <ul class="component-card__features">
+                        <li>✓ role="combobox"</li>
+                        <li>✓ Search & filter</li>
+                        <li>✓ Keyboard navigation</li>
+                        <li>✓ Highlight matches</li>
+                    </ul>
+                </a>
+            </div>
+        </section>
+
+        <section>
+            <h2>Key Features</h2>
+
+            <div class="features-grid">
+                <div class="feature">
+                    <div class="feature-icon">♿</div>
+                    <h3>Fully Accessible</h3>
+                    <p>All components follow WAI-ARIA standards</p>
+                </div>
+
+                <div class="feature">
+                    <div class="feature-icon">⌨️</div>
+                    <h3>Keyboard Navigation</h3>
+                    <p>Complete keyboard navigation support</p>
+                </div>
+
+                <div class="feature">
+                    <div class="feature-icon">🎨</div>
+                    <h3>Customizable</h3>
+                    <p>Separated core and theme CSS for easy customization</p>
+                </div>
+
+                <div class="feature">
+                    <div class="feature-icon">📦</div>
+                    <h3>Zero Dependencies</h3>
+                    <p>Vanilla JavaScript without external libraries</p>
+                </div>
+
+                <div class="feature">
+                    <div class="feature-icon">📱</div>
+                    <h3>Responsive</h3>
+                    <p>Works on all devices and screen sizes</p>
+                </div>
+
+                <div class="feature">
+                    <div class="feature-icon">🌙</div>
+                    <h3>Dark Mode</h3>
+                    <p>Automatic dark mode support</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Quick Start</h2>
+
+            <h3>1. Add CSS Files</h3>
+            <pre><code>&lt;!-- Core CSS (logic) --&gt;
+&lt;link rel="stylesheet" href="css/a11y-dropdown.core.css"&gt;
+&lt;link rel="stylesheet" href="css/a11y-tabs.core.css"&gt;
+&lt;link rel="stylesheet" href="css/a11y-offcanvas.core.css"&gt;
+&lt;link rel="stylesheet" href="css/a11y-modal.core.css"&gt;
+&lt;link rel="stylesheet" href="css/a11y-accordion.core.css"&gt;
+
+&lt;!-- Theme CSS (visual) --&gt;
+&lt;link rel="stylesheet" href="css/a11y-dropdown.theme.css"&gt;
+&lt;link rel="stylesheet" href="css/a11y-tabs.theme.css"&gt;
+&lt;link rel="stylesheet" href="css/a11y-offcanvas.theme.css"&gt;
+&lt;link rel="stylesheet" href="css/a11y-modal.theme.css"&gt;
+&lt;link rel="stylesheet" href="css/a11y-accordion.theme.css"&gt;</code></pre>
+
+            <h3>2. Add JavaScript</h3>
+            <pre><code>&lt;script src="js/a11y-dropdown.js"&gt;&lt;/script&gt;
+&lt;script src="js/a11y-tabs.js"&gt;&lt;/script&gt;
+&lt;script src="js/a11y-offcanvas.js"&gt;&lt;/script&gt;
+&lt;script src="js/a11y-modal.js"&gt;&lt;/script&gt;
+&lt;script src="js/a11y-accordion.js"&gt;&lt;/script&gt;</code></pre>
+
+            <h3>3. Use in HTML</h3>
+            <pre><code>&lt;!-- Dropdown --&gt;
+&lt;div data-dropdown&gt;
+    &lt;button data-dropdown-button&gt;
+        Options
+        &lt;span class="dropdown__arrow"&gt;&lt;/span&gt;
+    &lt;/button&gt;
+    &lt;div data-dropdown-menu&gt;
+        &lt;button data-dropdown-item&gt;Item 1&lt;/button&gt;
+        &lt;button data-dropdown-item&gt;Item 2&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Tabs --&gt;
+&lt;div data-tabs&gt;
+    &lt;div role="tablist" data-tabs-list&gt;
+        &lt;button data-tabs-tab&gt;Tab 1&lt;/button&gt;
+        &lt;button data-tabs-tab&gt;Tab 2&lt;/button&gt;
+    &lt;/div&gt;
+    &lt;div data-tabs-panel&gt;Content 1&lt;/div&gt;
+    &lt;div data-tabs-panel&gt;Content 2&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Offcanvas --&gt;
+&lt;button data-offcanvas-trigger="menu"&gt;☰ Menu&lt;/button&gt;
+&lt;div data-offcanvas id="menu"&gt;
+    &lt;div data-position="left" data-offcanvas-panel&gt;
+        &lt;div data-offcanvas-header&gt;
+            &lt;h2 data-offcanvas-title&gt;Menu&lt;/h2&gt;
+            &lt;button data-offcanvas-close&gt;&times;&lt;/button&gt;
+        &lt;/div&gt;
+        &lt;div data-offcanvas-body&gt;Content...&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div data-offcanvas-backdrop&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Modal --&gt;
+&lt;button data-modal-trigger="my-modal"&gt;Open Modal&lt;/button&gt;
+&lt;div data-modal id="my-modal"&gt;
+    &lt;div data-modal-dialog&gt;
+        &lt;div data-modal-header&gt;
+            &lt;h2 data-modal-title&gt;Title&lt;/h2&gt;
+            &lt;button data-modal-close&gt;&times;&lt;/button&gt;
+        &lt;/div&gt;
+        &lt;div data-modal-body&gt;Content...&lt;/div&gt;
+        &lt;div data-modal-footer&gt;
+            &lt;button data-modal-close&gt;Close&lt;/button&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div data-modal-backdrop&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Accordion --&gt;
+&lt;div data-accordion&gt;
+    &lt;div data-accordion-item&gt;
+        &lt;button data-accordion-trigger&gt;Section 1&lt;/button&gt;
+        &lt;div data-accordion-panel&gt;Content 1&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div data-accordion-item&gt;
+        &lt;button data-accordion-trigger&gt;Section 2&lt;/button&gt;
+        &lt;div data-accordion-panel&gt;Content 2&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        </section>
+
+        <section>
+            <h2>Initialization and Import</h2>
+            <p class="description">
+                Accessible Kit supports multiple initialization methods according to your needs: automatic initialization via CDN,
+                manual initialization with callbacks, and ES6 import for module bundlers (Astro, Vite, Webpack).
+            </p>
+
+            <h3>1. Auto-initialization (CDN / direct files)</h3>
+            <p>When using via <code>&lt;script&gt;</code> tag, components initialize automatically:</p>
+            <pre><code>&lt;script src="js/a11y-dropdown.js"&gt;&lt;/script&gt;
+&lt;!-- Dropdown automatically initializes after DOM loads --&gt;</code></pre>
+
+            <h3>2. CDN with window.a11yKit namespace (recommended)</h3>
+            <pre><code>&lt;script src="js/a11y-dropdown.js"&gt;&lt;/script&gt;
+&lt;script src="js/a11y-tabs.js"&gt;&lt;/script&gt;
+&lt;!-- Or all at once: --&gt;
+&lt;script src="js/index.js"&gt;&lt;/script&gt;
+
+&lt;script&gt;
+  // Via global namespace (recommended - no collisions)
+  a11yKit.initAll(); // initializes all components
+
+  // Or individually
+  a11yKit.initDropdowns();
+  a11yKit.initTabs();
+  a11yKit.initCollapses();
+  a11yKit.initAccordions();
+
+  // Bootstrap style - short aliases
+  const dropdown = new a11yKit.Dropdown(element, options);
+  const modal = new a11yKit.Modal(element, options);
+  const collapse = new a11yKit.Collapse();
+  const accordion = new a11yKit.Accordion();
+&lt;/script&gt;</code></pre>
+
+            <h3>3. Manual initialization (with disabled auto-init)</h3>
+            <pre><code>&lt;script&gt;
+  window.a11yKitManualInit = true;
+&lt;/script&gt;
+&lt;script src="js/a11y-dropdown.js"&gt;&lt;/script&gt;
+&lt;script&gt;
+  // Via namespace (recommended)
+  a11yKit.initDropdowns();
+
+  // Or directly (backwards compatible)
+  initDropdowns();
+&lt;/script&gt;</code></pre>
+
+            <h3>4. ES6 Module Import (Astro, Vite, Webpack)</h3>
+
+            <h4>Named import - init functions</h4>
+            <pre><code>import { initDropdowns } from './a11y-kit/a11y-dropdown.js';
+import { initTabs } from './a11y-kit/a11y-tabs.js';
+
+initDropdowns();
+initTabs();</code></pre>
+
+            <h4>Named import - Bootstrap style (short aliases)</h4>
+            <pre><code>import { Dropdown, Modal, Tabs, Collapse, Accordion } from './a11y-kit/index.js';
+
+// Use like Bootstrap
+const dropdown = new Dropdown(element, {
+  closeOnSelect: true,
+  onOpen: (instance) => { console.log('Opened!'); }
+});
+
+const collapse = new Collapse();
+const accordion = new Accordion();</code></pre>
+
+            <h4>Wildcard import</h4>
+            <pre><code>import * as a11yKit from './a11y-kit/index.js';
+
+// Init functions:
+a11yKit.initAll();
+a11yKit.initDropdowns();
+a11yKit.initCollapses();
+a11yKit.initAccordions();
+
+// Bootstrap style:
+const dropdown = new a11yKit.Dropdown(element, options);
+const modal = new a11yKit.Modal(element, options);
+const collapse = new a11yKit.Collapse();
+const accordion = new a11yKit.Accordion();</code></pre>
+
+            <h4>Example for Astro</h4>
+            <pre><code>// src/layouts/Layout.astro
+&lt;script&gt;
+  // Variant 1: Named imports
+  import { initDropdowns } from '/src/assets/js/a11y-kit/a11y-dropdown.js';
+  import { initTabs } from '/src/assets/js/a11y-kit/a11y-tabs.js';
+
+  initDropdowns();
+  initTabs();
+&lt;/script&gt;
+
+&lt;!-- OR --&gt;
+
+&lt;script&gt;
+  // Variant 2: Wildcard import
+  import * as a11yKit from '/src/assets/js/a11y-kit';
+
+  a11yKit.initAll(); // all at once
+&lt;/script&gt;</code></pre>
+
+            <h4>Manual initialization with callbacks</h4>
+            <pre><code>import { AccessibleDropdown } from './a11y-kit/a11y-dropdown.js';
+
+const dropdown = new AccessibleDropdown(element, {
+  closeOnSelect: true,
+  onOpen: (instance) => {
+    console.log('Opened!');
+  },
+  onClose: (instance) => {
+    console.log('Closed!');
+  },
+  onSelect: (item, index) => {
+    console.log('Selected item:', item.textContent);
+  }
+});</code></pre>
+
+            <h4>NPM package import</h4>
+            <pre><code>// Installation
+npm install accessible-kit
+
+// Import
+import { initAll } from 'accessible-kit';
+initAll();
+
+// Or wildcard
+import * as a11yKit from 'accessible-kit';
+a11yKit.initDropdowns();
+
+// Or individual components (tree-shaking)
+import { initDropdowns } from 'accessible-kit/dropdown';
+import { initTabs } from 'accessible-kit/tabs';
+initDropdowns();
+initTabs();</code></pre>
+
+            <div style="background: #f3f4f6; color: #111827; padding: 1.5rem; border-radius: 0.5rem; margin-top: 1.5rem;">
+                <h4 style="margin-top: 0;">💡 Note about .js extensions</h4>
+                <ul style="margin-bottom: 0; padding-left: 1.5rem;">
+                    <li>✅ <strong>With extension</strong> (<code>./a11y-kit/a11y-dropdown.js</code>) - always works, clear and explicit</li>
+                    <li>✅ <strong>Without extension</strong> (<code>./a11y-kit/a11y-dropdown</code>) - works in most modern bundlers</li>
+                    <li>✅ <strong>Shorter paths</strong> (<code>./a11y-kit</code>) - works if you have <code>index.js</code></li>
+                </ul>
+            </div>
+
+            <h3>Which method to use?</h3>
+            <ul>
+                <li>🌐 <strong>CDN / direct files</strong> → Auto-initialization (easiest)</li>
+                <li>⚙️ <strong>Need callbacks and options</strong> → Manual initialization with <code>new AccessibleComponent()</code></li>
+                <li>📦 <strong>Module bundler (Astro/Vite/Webpack)</strong> → ES6 import with <code>initComponentName()</code></li>
+                <li>🎯 <strong>Need small bundle size</strong> → Named imports of only needed components</li>
+                <li>⚡ <strong>Quick prototyping</strong> → Wildcard import <code>import * as a11yKit</code> or <code>initAll()</code></li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Documentation</h2>
+            <p>
+                Detailed documentation for each component can be found in the <a href="../README.md"
+                    style="color: #3b82f6;">README.md</a> file or on the demo pages of individual components.
+            </p>
+        </section>
+    </div>
+
+    <script src="demo.js"></script>
+</body>
+
+</html>

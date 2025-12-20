@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accordion - Accessible Kit</title>
+    <link rel="stylesheet" href="demo.css">
+    <link rel="stylesheet" href="../css/a11y-accordion.core.css">
+    <link rel="stylesheet" href="../css/a11y-accordion.theme.css">
+    <style>
+        .demo-section {
+            margin: 2rem 0;
+        }
+
+        .demo-panel {
+            /* padding: 1rem; */
+            background: #374f67;
+            border-radius: 0.25rem;
+            margin-top: 1rem;
+        }
+
+        .btn {
+            padding: 0.625rem 1.25rem;
+            background: #3b82f6;
+            color: #fff;
+            border: none;
+            border-radius: 0.375rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.15s ease;
+        }
+
+        .btn:hover {
+            background: #2563eb;
+        }
+
+        .btn:focus {
+            outline: 2px solid #3b82f6;
+            outline-offset: 2px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="page-header">
+            <div class="breadcrumb">
+                <a href="../../index.html">Accessible Kit</a>
+                <span class="breadcrumb-separator">/</span>
+                <span>Accordion</span>
+            </div>
+            <h1>Accessible Accordion</h1>
+            <p class="subtitle">Accessible accordion/collapse with keyboard navigation and ARIA support</p>
+        </div>
+
+        <!-- Basic Accordion -->
+        <section>
+            <h2>Basic Accordion (without animation)</h2>
+            <p class="description">
+                Only one section can be open at a time. Without animation - content shows/hides instantly.
+            </p>
+
+            <div data-accordion data-no-animation>
+                <div data-accordion-item>
+                    <button data-accordion-trigger>
+                        What is web accessibility?
+                    </button>
+                    <div data-accordion-panel>
+                        <div>
+                            <div>
+                                <p>Web accessibility means that websites, tools, and technologies are designed and developed so that people with disabilities can use them.</p>
+                                <p>Specifically, it means that people can perceive, understand, navigate, and interact with the web.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div data-accordion-item>
+                    <button data-accordion-trigger>
+                        Why is accessibility important?
+                    </button>
+                    <div data-accordion-panel>
+                        <div>
+                            <div>
+                                <p>The web is an increasingly important resource in many aspects of life: education, employment, government, commerce, health care, recreation, and more.</p>
+                                <p>It is essential that the web be accessible to provide equal access and opportunity to people with diverse abilities.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div data-accordion-item>
+                    <button data-accordion-trigger>
+                        Who benefits from accessibility?
+                    </button>
+                    <div data-accordion-panel>
+                        <div>
+                            <div>
+                                <p>Web accessibility benefits people with disabilities, but also:</p>
+                                <ul>
+                                    <li>Older people with changing abilities due to aging</li>
+                                    <li>People with temporary disabilities (broken arm, lost glasses)</li>
+                                    <li>People in limited situations (bright sunlight, can't listen to audio)</li>
+                                    <li>People with slow internet connections</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Animated Accordion -->
+        <section>
+            <h2>Accordion (CSS Grid animations by default)</h2>
+            <p class="description">
+                Accordion has CSS Grid animations by default (grid-template-rows: 0fr → 1fr).
+                To disable animations, use the <code>data-no-animation</code> attribute.
+            </p>
+
+            <div data-accordion>
+                <div data-accordion-item>
+                    <button data-accordion-trigger>
+                        What is web accessibility?
+                    </button>
+                    <div data-accordion-panel>
+                        <div>
+                            <div>
+                                <p>Web accessibility means that websites, tools, and technologies are designed and developed so that people with disabilities can use them.</p>
+                                <p>Specifically, it means that people can perceive, understand, navigate, and interact with the web.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div data-accordion-item>
+                    <button data-accordion-trigger>
+                        Why is accessibility important?
+                    </button>
+                    <div data-accordion-panel>
+                        <div>
+                            <div>
+                                <p>The web is an increasingly important resource in many aspects of life: education, employment, government, commerce, health care, recreation, and more.</p>
+                                <p>It is essential that the web be accessible to provide equal access and opportunity to people with diverse abilities.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div data-accordion-item>
+                    <button data-accordion-trigger>
+                        Who benefits from accessibility?
+                    </button>
+                    <div data-accordion-panel>
+                        <div>
+                            <div>
+                                <p>Web accessibility benefits people with disabilities, but also:</p>
+                                <ul>
+                                    <li>Older people with changing abilities due to aging</li>
+                                    <li>People with temporary disabilities (broken arm, lost glasses)</li>
+                                    <li>People in limited situations (bright sunlight, can't listen to audio)</li>
+                                    <li>People with slow internet connections</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Custom Animation Speed -->
+        <section>
+            <h2>Custom Animation Speed</h2>
+            <p class="description">
+                Animation speed can be set using CSS custom properties (variables).
+                You can set them globally in CSS or inline using the <code>style</code> attribute.
+            </p>
+
+            <h3>Slow animation (0.6s)</h3>
+            <div data-accordion style="--a11y-accordion-duration: 0.6s;">
+                <div data-accordion-item>
+                    <button data-accordion-trigger>Slow animation</button>
+                    <div data-accordion-panel>
+                        <div>
+                            <div>
+                                <p>This section opens and closes slower (0.6s instead of default 0.3s).</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h3 style="margin-top: 2rem;">Fast animation (0.15s)</h3>
+            <div data-accordion style="--a11y-accordion-duration: 0.15s;">
+                <div data-accordion-item>
+                    <button data-accordion-trigger>Fast animation</button>
+                    <div data-accordion-panel>
+                        <div>
+                            <div>
+                                <p>This section opens and closes faster (0.15s instead of default 0.3s).</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h3 style="margin-top: 2rem;">Custom easing</h3>
+            <div data-accordion style="--a11y-accordion-duration: 0.4s; --a11y-accordion-easing: cubic-bezier(0.68, -0.55, 0.265, 1.55);">
+                <div data-accordion-item>
+                    <button data-accordion-trigger>Bounce effect</button>
+                    <div data-accordion-panel>
+                        <div>
+                            <div>
+                                <p>This section uses a custom easing function for a "bounce" effect.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Multiple Expand Accordion -->
+        <section>
+            <h2>Multiple Expand Accordion</h2>
+            <p class="description">
+                Multiple sections can be open simultaneously.
+            </p>
+
+            <div data-accordion data-accordion-multiple>
+                <div data-accordion-item>
+                    <button data-accordion-trigger>
+                        ARIA Attributes
+                    </button>
+                    <div data-accordion-panel>
+                        <div>
+                            <div>
+                                <p>ARIA (Accessible Rich Internet Applications) is a set of attributes that define ways to make web content and web applications more accessible to people with disabilities.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div data-accordion-item>
+                    <button data-accordion-trigger>
+                        Keyboard Navigation
+                    </button>
+                    <div data-accordion-panel>
+                        <div>
+                            <div>
+                                <p>All functionality must be available from a keyboard. Users with motor disabilities often use a keyboard instead of a mouse.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div data-accordion-item>
+                    <button data-accordion-trigger>
+                        Focus Management
+                    </button>
+                    <div data-accordion-panel>
+                        <div>
+                            <div>
+                                <p>Focus should always be visible and should follow a logical navigation order. Focus trap is used in modal dialogs and offcanvas panels.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- With Controls -->
+        <section>
+            <h2>With Toggle All Control</h2>
+            <p class="description">
+                Accordion with a single toggle button that toggles all sections at once. The button changes text and icon based on state (open/closed).
+            </p>
+
+            <div data-accordion data-accordion-multiple>
+                <!-- Toggle control at top (created automatically) -->
+                <div data-accordion-controls="top"></div>
+
+                <div data-accordion-item>
+                    <button data-accordion-trigger>
+                        HTML Basics
+                    </button>
+                    <div data-accordion-panel>
+                        <div>
+                            <div>
+                                <p>HTML (HyperText Markup Language) is the standard markup language for creating web pages.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div data-accordion-item>
+                    <button data-accordion-trigger>
+                        CSS Styling
+                    </button>
+                    <div data-accordion-panel>
+                        <div>
+                            <div>
+                                <p>CSS (Cascading Style Sheets) is the language used to describe the presentation of a document written in HTML.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div data-accordion-item>
+                    <button data-accordion-trigger>
+                        JavaScript Interactivity
+                    </button>
+                    <div data-accordion-panel>
+                        <div>
+                            <div>
+                                <p>JavaScript is a programming language that enables you to implement complex features on web pages.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Toggle control at bottom (created automatically) -->
+                <div data-accordion-controls="bottom"></div>
+            </div>
+        </section>
+
+        <!-- Standalone Toggles -->
+        <section>
+            <h2>Standalone Collapse Toggle (without animation)</h2>
+            <p class="description">
+                Standalone button that toggles visibility of panel(s) via CSS selector.
+            </p>
+
+            <button class="btn" data-collapse-toggle="#detail-panel">
+                Toggle Details
+            </button>
+
+            <div id="detail-panel" class="demo-panel" data-no-animation>
+                <div>
+                    <h3>Detailed Information</h3>
+                    <p>This is a panel that can be shown or hidden using a standalone toggle button.</p>
+                    <p>This pattern is useful for simple show/hide functionality outside of accordion groups.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Animated Standalone Toggle -->
+        <section>
+            <h2>Standalone Collapse (animations by default)</h2>
+            <p class="description">
+                Standalone panel has CSS Grid animation by default. To disable animations, use the <code>data-no-animation</code> attribute.
+            </p>
+
+            <button class="btn" data-collapse-toggle="#animated-panel">
+                Toggle Details (with animation)
+            </button>
+
+            <div id="animated-panel" class="demo-panel">
+                <div>
+                    <div>
+                        <h3>Animated Detailed Information</h3>
+                        <p>This panel uses CSS Grid for smooth animation when opening/closing.</p>
+                        <p>Animation works without needing to know the content height in advance.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Multiple Panels Toggle -->
+        <section>
+            <h2>Toggle Multiple Panels at Once</h2>
+            <p class="description">
+                One button can control multiple panels simultaneously using a class selector.
+            </p>
+
+            <button class="btn" data-collapse-toggle=".info-panel">
+                Toggle All Info Panels
+            </button>
+
+            <div class="info-panel demo-panel">
+                <div>
+                    <div>
+                        <strong>Info Panel 1:</strong> First information panel
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-panel demo-panel">
+                <div>
+                    <div>
+                        <strong>Info Panel 2:</strong> Second information panel
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-panel demo-panel">
+                <div>
+                    <div>
+                        <strong>Info Panel 3:</strong> Third information panel
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Variants -->
+        <section>
+            <h2>Style Variants</h2>
+
+            <h3>Bordered Variant</h3>
+            <p class="description">Accordion without borders, only separators between items.</p>
+
+            <div data-accordion data-variant="bordered">
+                <div data-accordion-item>
+                    <button data-accordion-trigger>Item 1</button>
+                    <div data-accordion-panel>
+                        <div>
+                            <div>
+                                <p>Content of the first item in bordered variant.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div data-accordion-item>
+                    <button data-accordion-trigger>Item 2</button>
+                    <div data-accordion-panel>
+                        <div>
+                            <div>
+                                <p>Content of the second item in bordered variant.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div data-accordion-item>
+                    <button data-accordion-trigger>Item 3</button>
+                    <div data-accordion-panel>
+                        <div>
+                            <div>
+                                <p>Content of the third item in bordered variant.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h3 style="margin-top: 2rem;">Separated Variant</h3>
+            <p class="description">Accordion with more spacing and shadow between items.</p>
+
+            <div data-accordion data-variant="separated" data-accordion-multiple>
+                <div data-accordion-item>
+                    <button data-accordion-trigger>Item 1</button>
+                    <div data-accordion-panel>
+                        <div>
+                            <div>
+                                <p>Content of the first item in separated variant.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div data-accordion-item>
+                    <button data-accordion-trigger>Item 2</button>
+                    <div data-accordion-panel>
+                        <div>
+                            <div>
+                                <p>Content of the second item in separated variant.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h3 style="margin-top: 2rem;">Compact Variant</h3>
+            <p class="description">Smaller padding and font size for a more compact look.</p>
+
+            <div data-accordion data-size="compact" data-accordion-multiple>
+                <div data-accordion-item>
+                    <button data-accordion-trigger>Compact Item 1</button>
+                    <div data-accordion-panel>
+                        <div>
+                            <div>
+                                <p>Content in compact style.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div data-accordion-item>
+                    <button data-accordion-trigger>Compact Item 2</button>
+                    <div data-accordion-panel>
+                        <div>
+                            <div>
+                                <p>More content in compact style.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h3 style="margin-top: 2rem;">Large Variant</h3>
+            <p class="description">Larger padding and font size for a more prominent look.</p>
+
+            <div data-accordion data-size="large" data-accordion-multiple>
+                <div data-accordion-item>
+                    <button data-accordion-trigger>Large Item 1</button>
+                    <div data-accordion-panel>
+                        <div>
+                            <div>
+                                <p>Content in large style with more padding.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div data-accordion-item>
+                    <button data-accordion-trigger>Large Item 2</button>
+                    <div data-accordion-panel>
+                        <div>
+                            <div>
+                                <p>More content in large style.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Usage -->
+        <section>
+            <h2>Usage</h2>
+
+            <h3>Basic Accordion (Single Expand):</h3>
+            <pre><code>&lt;div data-accordion&gt;
+    &lt;div data-accordion-item&gt;
+        &lt;button data-accordion-trigger&gt;
+            Section 1
+        &lt;/button&gt;
+        &lt;div data-accordion-panel&gt;
+            &lt;div&gt;
+                Section 1 content
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div data-accordion-item&gt;
+        &lt;button data-accordion-trigger&gt;
+            Section 2
+        &lt;/button&gt;
+        &lt;div data-accordion-panel&gt;
+            &lt;div&gt;
+                Section 2 content
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+            <h3>Animations (by default):</h3>
+            <pre><code>&lt;!-- Animations are default, no need to add any attribute --&gt;
+&lt;div data-accordion&gt;
+    &lt;div data-accordion-item&gt;
+        &lt;button data-accordion-trigger&gt;Section 1&lt;/button&gt;
+        &lt;div data-accordion-panel&gt;
+            &lt;!-- Wrapper div is REQUIRED for proper animation --&gt;
+            &lt;div&gt;
+                &lt;div&gt;
+                    Section 1 content
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+            <p class="description" style="margin-top: 1rem;">
+                <strong>Important for animation:</strong><br>
+                • Animations are default - automatically enabled<br>
+                • Required structure: <code>panel &gt; wrapper (overflow) &gt; content (padding)</code><br>
+                • First div: technical wrapper with <code>overflow: hidden</code> (NO padding)<br>
+                • Second div: content container (has padding)<br>
+                • Animation: CSS Grid (<code>grid-template-rows: 0fr → 1fr</code>)<br>
+                • Works without knowing content height in advance<br>
+                • Speed: <code>--a11y-accordion-duration</code> (default: 0.3s)<br>
+                • Easing: <code>--a11y-accordion-easing</code> (default: ease)<br>
+                • Automatic support for <code>prefers-reduced-motion</code>
+            </p>
+
+            <h3>Setting Animation Speed:</h3>
+            <pre><code>&lt;!-- Inline using style attribute --&gt;
+&lt;div data-accordion style="--a11y-accordion-duration: 0.6s;"&gt;
+    &lt;!-- accordion items --&gt;
+&lt;/div&gt;
+
+&lt;!-- Custom easing --&gt;
+&lt;div data-accordion
+     style="--a11y-accordion-duration: 0.4s; --a11y-accordion-easing: cubic-bezier(0.68, -0.55, 0.265, 1.55);"&gt;
+    &lt;!-- accordion items --&gt;
+&lt;/div&gt;
+
+&lt;!-- Or globally in CSS --&gt;
+&lt;style&gt;
+:root {
+    --a11y-accordion-duration: 0.5s;
+    --a11y-accordion-easing: ease-in-out;
+}
+&lt;/style&gt;
+
+&lt;!-- Disable animations --&gt;
+&lt;div data-accordion data-no-animation&gt;
+    &lt;!-- accordion without animations --&gt;
+&lt;/div&gt;</code></pre>
+
+            <h3>Multiple Expand Accordion:</h3>
+            <pre><code>&lt;div data-accordion data-accordion-multiple&gt;
+    &lt;!-- accordion items --&gt;
+&lt;/div&gt;</code></pre>
+
+            <h3>With Toggle All Control:</h3>
+            <pre><code>&lt;div data-accordion data-accordion-multiple&gt;
+    &lt;!-- Toggle control at top (created automatically) --&gt;
+    &lt;div data-accordion-controls="top"&gt;&lt;/div&gt;
+
+    &lt;!-- Accordion items --&gt;
+
+    &lt;!-- Toggle control at bottom (created automatically) --&gt;
+    &lt;div data-accordion-controls="bottom"&gt;&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+            <p class="description" style="margin-top: 1rem;">
+                <strong>Toggle button behavior:</strong><br>
+                • Created automatically with dynamic texts "Expand All" / "Collapse All"<br>
+                • Text in &lt;span&gt; changes: "Expand All" / "Collapse All"<br>
+                • Aria-label changes: "Expand all panels" / "Collapse all panels"<br>
+                • Toggle icon (plus/minus) changes based on state<br>
+                • Aria-expanded attribute reflects current state (true/false)<br>
+                • Aria-controls contains IDs of all panels<br>
+                • If multiple toggle buttons exist (top and bottom), all are synchronized on click
+            </p>
+
+            <h3 style="margin-top: 1.5rem;">Custom Toggle All Button:</h3>
+            <pre><code>&lt;div data-accordion data-accordion-multiple&gt;
+    &lt;div data-accordion-controls="top"&gt;
+        &lt;button
+            data-accordion-toggle-all
+            data-text-for-show="Expand All"
+            data-text-for-hide="Collapse All"
+            data-aria-label-for-show="Expand all sections"
+            data-aria-label-for-hide="Collapse all sections"&gt;
+            &lt;svg aria-hidden="true" width="16" height="16"&gt;
+              &lt;path class="toggle-icon-expand" d="M8 3v10M3 8h10"/&gt;
+              &lt;path class="toggle-icon-collapse" d="M3 8h10" style="display: none;"/&gt;
+            &lt;/svg&gt;
+            &lt;span&gt;Expand All&lt;/span&gt;
+        &lt;/button&gt;
+    &lt;/div&gt;
+    &lt;!-- accordion items --&gt;
+&lt;/div&gt;</code></pre>
+
+            <p class="description" style="margin-top: 1rem;">
+                <strong>Important:</strong><br>
+                • Button must contain a &lt;span&gt; element for dynamic text<br>
+                • Icons use classes .toggle-icon-expand and .toggle-icon-collapse<br>
+                • Attribute data-accordion-toggle-all is required<br>
+                • data-aria-label-for-show/hide are optional (if not set, text from data-text-for-show/hide is used)
+            </p>
+
+            <h3>Standalone Toggle (without animation):</h3>
+            <pre><code>&lt;!-- With ID selector --&gt;
+&lt;button data-collapse-toggle="#panel-1"&gt;
+    Open Panel
+&lt;/button&gt;
+
+&lt;div id="panel-1" data-no-animation&gt;
+    &lt;div&gt;
+        Panel content...
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- With class selector (controls multiple panels) --&gt;
+&lt;button data-collapse-toggle=".info-panel"&gt;
+    Toggle All Info Panels
+&lt;/button&gt;
+
+&lt;div class="info-panel" data-no-animation&gt;&lt;div&gt;&lt;div&gt;Panel 1&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class="info-panel" data-no-animation&gt;&lt;div&gt;&lt;div&gt;Panel 2&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;</code></pre>
+
+            <h3>Standalone Toggle (animations by default):</h3>
+            <pre><code>&lt;!-- Animations are default, no need to add any attribute --&gt;
+&lt;button data-collapse-toggle="#panel"&gt;
+    Open Panel
+&lt;/button&gt;
+
+&lt;div id="panel"&gt;
+    &lt;!-- First div: overflow wrapper (overflow: hidden, grid-row: 1/span 2) --&gt;
+    &lt;div&gt;
+        &lt;!-- Second div: content wrapper (padding) --&gt;
+        &lt;div&gt;
+            Panel content...
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Disable animations --&gt;
+&lt;div id="no-animation-panel" data-no-animation&gt;
+    &lt;div&gt;
+        &lt;div&gt;
+            Panel without animation
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+            <h3 style="margin-top: 1.5rem;">Standalone Toggle with Dynamic Texts:</h3>
+            <pre><code>&lt;!-- Same text for aria-label and visible text --&gt;
+&lt;button
+    data-collapse-toggle="#detail-panel"
+    data-text-for-show="Show Details"
+    data-text-for-hide="Hide Details"&gt;
+    &lt;span&gt;Show Details&lt;/span&gt;
+&lt;/button&gt;
+
+&lt;!-- Different texts for aria-label and visible text --&gt;
+&lt;button
+    data-collapse-toggle=".info-panel"
+    data-text-for-show="Show All"
+    data-text-for-hide="Hide All"
+    data-aria-label-for-show="Show all info panels"
+    data-aria-label-for-hide="Hide all info panels"&gt;
+    &lt;span&gt;Show All&lt;/span&gt;
+&lt;/button&gt;</code></pre>
+
+            <p class="description" style="margin-top: 1rem;">
+                <strong>Behavior:</strong><br>
+                • Button must contain a &lt;span&gt; element for dynamic text<br>
+                • Text in &lt;span&gt; changes based on data-text-for-show/hide<br>
+                • Aria-label changes based on data-aria-label-for-show/hide (if set)<br>
+                • If data-aria-label-* are not set, text from data-text-for-show/hide is used for aria-label as well<br>
+                • aria-expanded is automatically set to true/false
+            </p>
+
+            <h3>JavaScript Initialization:</h3>
+
+            <h4>1. Auto-initialization (CDN)</h4>
+            <pre><code>&lt;script src="js/a11y-accordion.js"&gt;&lt;/script&gt;
+&lt;!-- Automatically initializes all accordions --&gt;</code></pre>
+
+            <h4>2. CDN with window.a11yKit namespace (recommended)</h4>
+            <pre><code>&lt;script src="js/a11y-accordion.js"&gt;&lt;/script&gt;
+&lt;script&gt;
+  // Init functions
+  a11yKit.initCollapses();  // Only standalone collapse toggles
+  a11yKit.initAccordions(); // Everything (collapse + accordion groups)
+
+  // Bootstrap style - manual initialization
+  const collapse = new a11yKit.Collapse();  // Only collapse
+  const accordion = new a11yKit.Accordion(); // Everything
+&lt;/script&gt;</code></pre>
+
+            <h4>3. ES6 Module Import - Bootstrap Style</h4>
+            <pre><code>import { Collapse, Accordion } from './a11y-kit/a11y-accordion.js';
+
+// Only standalone collapse toggles
+const collapse = new Collapse();
+
+// Everything (collapse + accordion groups)
+const accordion = new Accordion();</code></pre>
+
+            <h4>4. Wildcard / NPM Package</h4>
+            <pre><code>// Wildcard
+import * as a11yKit from './a11y-kit';
+a11yKit.initCollapses();  // Only collapse
+a11yKit.initAccordions(); // Everything
+
+// NPM
+import { initCollapses, initAccordions, Collapse, Accordion } from 'accessible-kit/accordion';
+initCollapses();  // or initAccordions();</code></pre>
+
+            <div class="info-box info-box--keyboard">
+                <h3>Keyboard Navigation (in accordion groups)</h3>
+                <ul>
+                    <li><kbd>↓</kbd> - Move to next trigger</li>
+                    <li><kbd>↑</kbd> - Move to previous trigger</li>
+                    <li><kbd>Home</kbd> - Move to first trigger</li>
+                    <li><kbd>End</kbd> - Move to last trigger</li>
+                    <li><kbd>Enter</kbd> / <kbd>Space</kbd> - Toggle accordion item</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Features -->
+        <section>
+            <h2>Features</h2>
+            <ul style="margin-left: 1.5rem;">
+                <li>✅ Full ARIA attributes support (aria-expanded, aria-controls, role="region")</li>
+                <li>✅ Keyboard navigation (Arrow keys, Home, End)</li>
+                <li>✅ Single and multiple expand modes</li>
+                <li>✅ Toggle all functionality (single button with dynamic text and icon)</li>
+                <li>✅ Standalone collapse toggles (button + panel via selector)</li>
+                <li>✅ Dynamic texts for show/hide states (text in &lt;span&gt; and aria-label change automatically)</li>
+                <li>✅ Separate aria-label texts (data-aria-label-for-show/hide)</li>
+                <li>✅ Multiple visual variants</li>
+                <li>✅ Responsive design</li>
+                <li>✅ Dark mode support</li>
+                <li>✅ Reduced motion support</li>
+            </ul>
+        </section>
+    </div>
+
+    <script type="module" src="../js/a11y-accordion.js"></script>
+    <script src="demo.js"></script>
+</body>
+
+</html>

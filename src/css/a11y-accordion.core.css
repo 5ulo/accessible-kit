@@ -1,0 +1,94 @@
+/* Accessible Accordion - Core Styles */
+/* Obsahuje iba logiku, positioning, layout a spravanie */
+/* Pre vizualne nastavenia pouzite a11y-accordion.theme.css */
+
+/* Accordion group */
+[data-accordion] {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Accordion item */
+[data-accordion-item] {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Accordion trigger (button) */
+[data-accordion-trigger] {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+}
+
+/* Accordion panel - animations are DEFAULT */
+/* Use aria-hidden instead of [hidden] to avoid Tailwind's display: none !important */
+/* CSS Grid animation for all panels (unless data-no-animation is set) */
+[data-accordion-panel]:not([data-no-animation]),
+[data-collapse-panel]:not([data-no-animation]),
+[data-animated] {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows var(--a11y-accordion-duration, 0.3s) var(--a11y-accordion-easing, ease);
+}
+
+[data-accordion-panel]:not([data-no-animation]):not([aria-hidden="true"]),
+[data-collapse-panel]:not([data-no-animation]):not([aria-hidden="true"]),
+[data-animated]:not([aria-hidden="true"]) {
+    grid-template-rows: 1fr;
+}
+
+/* Inner wrapper must have overflow: hidden */
+[data-accordion-panel]:not([data-no-animation]) > *,
+[data-collapse-panel]:not([data-no-animation]) > *,
+[data-animated] > * {
+    grid-row: 1 / span 2;
+    overflow: hidden;
+}
+
+/* No animation variant - simple show/hide */
+[data-accordion-panel][data-no-animation][aria-hidden="true"],
+[data-collapse-panel][data-no-animation][aria-hidden="true"],
+[data-accordion][data-no-animation] [data-accordion-panel][aria-hidden="true"] {
+    display: none;
+}
+
+[data-accordion][data-no-animation] [data-accordion-panel]:not([aria-hidden="true"]),
+[data-collapse-panel][data-no-animation]:not([aria-hidden="true"]) {
+    display: block;
+}
+
+/* Standalone collapse toggle buttons */
+[data-collapse-toggle] {
+    cursor: pointer;
+}
+
+/* Controls container */
+[data-accordion-controls] {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+/* Control button (toggle all) */
+[data-accordion-toggle-all] {
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+[data-accordion-toggle-all] svg {
+    flex-shrink: 0;
+}
+
+/* Reduced motion support - disable animations */
+@media (prefers-reduced-motion: reduce) {
+    [data-accordion-panel]:not([data-no-animation]),
+    [data-collapse-panel]:not([data-no-animation]),
+    [data-animated] {
+        transition: none !important;
+    }
+}

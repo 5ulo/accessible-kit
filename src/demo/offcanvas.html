@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Offcanvas - Accessible Kit</title>
+    <link rel="stylesheet" href="demo.css">
+    <link rel="stylesheet" href="../css/a11y-offcanvas.core.css">
+    <link rel="stylesheet" href="../css/a11y-offcanvas.theme.css">
+    <style>
+        .demo-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .btn {
+            padding: 0.625rem 1.25rem;
+            background: #3b82f6;
+            color: #fff;
+            border: none;
+            border-radius: 0.375rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.15s ease;
+        }
+
+        .btn:hover {
+            background: #2563eb;
+        }
+
+        .btn:focus {
+            outline: 2px solid #3b82f6;
+            outline-offset: 2px;
+        }
+
+        .btn--secondary {
+            background: #6b7280;
+        }
+
+        .btn--secondary:hover {
+            background: #4b5563;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="page-header">
+            <div class="breadcrumb">
+                <a href="../../index.html">Accessible Kit</a>
+                <span class="breadcrumb-separator">/</span>
+                <span>Offcanvas</span>
+            </div>
+            <h1>Accessible Offcanvas</h1>
+            <p class="subtitle">Sliding side panel with focus trap and full a11y support</p>
+        </div>
+
+        <!-- Position Examples -->
+        <section>
+            <h2>Positions</h2>
+            <p class="description">
+                Offcanvas can be positioned from the left, right, top, or bottom
+            </p>
+
+            <div class="demo-buttons">
+                <button class="btn" data-offcanvas-trigger="offcanvas-left">Open from Left</button>
+                <button class="btn" data-offcanvas-trigger="offcanvas-right">Open from Right</button>
+                <button class="btn" data-offcanvas-trigger="offcanvas-top">Open from Top</button>
+                <button class="btn" data-offcanvas-trigger="offcanvas-bottom">Open from Bottom</button>
+            </div>
+        </section>
+
+        <!-- Navigation Example -->
+        <section>
+            <h2>Navigation Menu</h2>
+            <p class="description">
+                Typical use case of offcanvas for mobile navigation
+            </p>
+
+            <div class="demo-buttons">
+                <button class="btn" data-offcanvas-trigger="offcanvas-nav">☰ Menu</button>
+            </div>
+        </section>
+
+        <!-- Wide Variant -->
+        <section>
+            <h2>Wide Variant</h2>
+            <p class="description">
+                Wider version for more detailed content
+            </p>
+
+            <div class="demo-buttons">
+                <button class="btn" data-offcanvas-trigger="offcanvas-wide">Open Wide Panel</button>
+            </div>
+        </section>
+
+        <!-- With Form -->
+        <section>
+            <h2>With Form</h2>
+            <p class="description">
+                Offcanvas with focus trap works perfectly with forms
+            </p>
+
+            <div class="demo-buttons">
+                <button class="btn" data-offcanvas-trigger="offcanvas-form">Open Form</button>
+            </div>
+        </section>
+
+        <!-- Usage -->
+        <section>
+            <h2>Usage</h2>
+
+            <h3>Basic HTML Structure:</h3>
+            <pre><code>&lt;!-- Trigger button --&gt;
+&lt;button data-offcanvas-trigger="my-offcanvas"&gt;Open&lt;/button&gt;
+
+&lt;!-- Offcanvas --&gt;
+&lt;div data-offcanvas id="my-offcanvas"&gt;
+    &lt;div data-position="left" data-offcanvas-panel&gt;
+        &lt;div data-offcanvas-header&gt;
+            &lt;h2 data-offcanvas-title&gt;Title&lt;/h2&gt;
+            &lt;button data-offcanvas-close aria-label="Close"&gt;&times;&lt;/button&gt;
+        &lt;/div&gt;
+
+        &lt;div data-offcanvas-body&gt;
+            Offcanvas content...
+        &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div data-offcanvas-backdrop&gt;&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+            <h3>JavaScript Initialization:</h3>
+
+            <h4>1. Auto-initialization (CDN)</h4>
+            <pre><code>&lt;script src="js/a11y-offcanvas.js"&gt;&lt;/script&gt;
+&lt;!-- Automatically initializes all offcanvas --&gt;</code></pre>
+
+            <h4>2. CDN with window.a11yKit namespace (recommended)</h4>
+            <pre><code>&lt;script src="js/a11y-offcanvas.js"&gt;&lt;/script&gt;
+&lt;script&gt;
+  // Init function
+  a11yKit.initOffcanvas();
+
+  // Bootstrap style
+  const offcanvas = new a11yKit.Offcanvas(element, {
+    closeOnBackdrop: true,
+    onOpen: (instance) => console.log('Opened')
+  });
+&lt;/script&gt;</code></pre>
+
+            <h4>3. ES6 Module Import - Bootstrap Style</h4>
+            <pre><code>import { Offcanvas } from './a11y-kit/a11y-offcanvas.js';
+
+const offcanvas = new Offcanvas(element, {
+    closeOnBackdrop: true,
+    closeOnEscape: true,
+    trapFocus: true,
+    scrollLock: true,
+    onOpen: (instance) => console.log('Opened'),
+    onClose: (instance) => console.log('Closed')
+});</code></pre>
+
+            <h4>4. Wildcard / NPM Package</h4>
+            <pre><code>// Wildcard
+import * as a11yKit from './a11y-kit';
+const offcanvas = new a11yKit.Offcanvas(element, options);
+
+// NPM
+import { initOffcanvas, Offcanvas } from 'accessible-kit/offcanvas';
+initOffcanvas(); // or new Offcanvas(element, options);</code></pre>
+
+            <h3>Positions:</h3>
+            <pre><code>&lt;!-- From left --&gt;
+&lt;div data-position="left" data-offcanvas-panel&gt;...&lt;/div&gt;
+
+&lt;!-- From right --&gt;
+&lt;div data-position="right" data-offcanvas-panel&gt;...&lt;/div&gt;
+
+&lt;!-- From top --&gt;
+&lt;div data-position="top" data-offcanvas-panel&gt;...&lt;/div&gt;
+
+&lt;!-- From bottom --&gt;
+&lt;div data-position="bottom" data-offcanvas-panel&gt;...&lt;/div&gt;
+
+&lt;!-- Wide variant --&gt;
+&lt;div data-position="left" data-width="wide" data-offcanvas-panel&gt;...&lt;/div&gt;</code></pre>
+
+            <div class="info-box info-box--keyboard">
+                <h3>Keyboard Navigation</h3>
+                <ul>
+                    <li><kbd>Tab</kbd> - Navigate between focusable elements (with focus trap)</li>
+                    <li><kbd>Shift</kbd> + <kbd>Tab</kbd> - Reverse navigation (with focus trap)</li>
+                    <li><kbd>Esc</kbd> - Close offcanvas and return focus to trigger</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Features -->
+        <section>
+            <h2>Features</h2>
+            <ul style="margin-left: 1.5rem;">
+                <li>✅ Full ARIA attributes support (role="dialog", aria-modal="true")</li>
+                <li>✅ Focus trap - Tab cycles only through elements in offcanvas</li>
+                <li>✅ Return focus - Returns focus to trigger after closing</li>
+                <li>✅ Scroll lock - Locks body scrolling</li>
+                <li>✅ Escape to close</li>
+                <li>✅ Backdrop click to close</li>
+                <li>✅ 4 positions (left, right, top, bottom)</li>
+                <li>✅ Configurable behavior</li>
+                <li>✅ Responsive design</li>
+                <li>✅ Dark mode support</li>
+                <li>✅ Reduced motion support</li>
+            </ul>
+        </section>
+    </div>
+
+    <!-- Offcanvas instances -->
+
+    <!-- Left -->
+    <div data-offcanvas id="offcanvas-left">
+        <div data-position="left" data-offcanvas-panel>
+            <div data-offcanvas-header>
+                <h2 data-offcanvas-title>Offcanvas from Left</h2>
+                <button data-offcanvas-close aria-label="Close">&times;</button>
+            </div>
+
+            <div data-offcanvas-body>
+                <p>This is an offcanvas panel opened from the left side.</p>
+                <p>Focus is trapped - try pressing Tab to navigate through focusable elements.</p>
+                <button class="btn">First Button</button>
+                <button class="btn btn--secondary">Second Button</button>
+            </div>
+        </div>
+
+        <div data-offcanvas-backdrop></div>
+    </div>
+
+    <!-- Right -->
+    <div data-offcanvas id="offcanvas-right">
+        <div data-position="right" data-offcanvas-panel>
+            <div data-offcanvas-header>
+                <h2 data-offcanvas-title>Offcanvas from Right</h2>
+                <button data-offcanvas-close aria-label="Close">&times;</button>
+            </div>
+
+            <div data-offcanvas-body>
+                <p>This is an offcanvas panel opened from the right side.</p>
+                <p>Press <kbd>Esc</kbd> to close.</p>
+            </div>
+        </div>
+
+        <div data-offcanvas-backdrop></div>
+    </div>
+
+    <!-- Top -->
+    <div data-offcanvas id="offcanvas-top">
+        <div data-position="top" data-offcanvas-panel>
+            <div data-offcanvas-header>
+                <h2 data-offcanvas-title>Offcanvas from Top</h2>
+                <button data-offcanvas-close aria-label="Close">&times;</button>
+            </div>
+
+            <div data-offcanvas-body>
+                <p>This is an offcanvas panel opened from the top.</p>
+            </div>
+        </div>
+
+        <div data-offcanvas-backdrop></div>
+    </div>
+
+    <!-- Bottom -->
+    <div data-offcanvas id="offcanvas-bottom">
+        <div data-position="bottom" data-offcanvas-panel>
+            <div data-offcanvas-header>
+                <h2 data-offcanvas-title>Offcanvas from Bottom</h2>
+                <button data-offcanvas-close aria-label="Close">&times;</button>
+            </div>
+
+            <div data-offcanvas-body>
+                <p>This is an offcanvas panel opened from the bottom.</p>
+            </div>
+        </div>
+
+        <div data-offcanvas-backdrop></div>
+    </div>
+
+    <!-- Navigation -->
+    <div data-offcanvas id="offcanvas-nav">
+        <div data-position="left" data-offcanvas-panel>
+            <div data-offcanvas-header>
+                <h2 data-offcanvas-title>Navigation</h2>
+                <button data-offcanvas-close aria-label="Close">&times;</button>
+            </div>
+
+            <div data-offcanvas-body>
+                <nav style="display: flex; flex-direction: column; gap: 0.5rem;">
+                    <a href="#home" style="padding: 0.75rem; border-radius: 0.25rem; text-decoration: none; color: #374151;">Home</a>
+                    <a href="#about" style="padding: 0.75rem; border-radius: 0.25rem; text-decoration: none; color: #374151;">About</a>
+                    <a href="#services" style="padding: 0.75rem; border-radius: 0.25rem; text-decoration: none; color: #374151;">Services</a>
+                    <a href="#contact" style="padding: 0.75rem; border-radius: 0.25rem; text-decoration: none; color: #374151;">Contact</a>
+                </nav>
+            </div>
+        </div>
+
+        <div data-offcanvas-backdrop></div>
+    </div>
+
+    <!-- Wide -->
+    <div data-offcanvas id="offcanvas-wide">
+        <div data-position="left" data-width="wide" data-offcanvas-panel>
+            <div data-offcanvas-header>
+                <h2 data-offcanvas-title>Wide Panel</h2>
+                <button data-offcanvas-close aria-label="Close">&times;</button>
+            </div>
+
+            <div data-offcanvas-body>
+                <p>This is a wider offcanvas panel (480px instead of 320px).</p>
+                <p>Suitable for more detailed content or wider forms.</p>
+            </div>
+        </div>
+
+        <div data-offcanvas-backdrop></div>
+    </div>
+
+    <!-- With Form -->
+    <div data-offcanvas id="offcanvas-form">
+        <div data-position="right" data-offcanvas-panel>
+            <div data-offcanvas-header>
+                <h2 data-offcanvas-title>Contact Form</h2>
+                <button data-offcanvas-close aria-label="Close">&times;</button>
+            </div>
+
+            <div data-offcanvas-body>
+                <form style="display: flex; flex-direction: column; gap: 1rem;">
+                    <div>
+                        <label for="name" style="display: block; margin-bottom: 0.25rem; font-weight: 500;">Name</label>
+                        <input type="text" id="name" style="width: 100%; padding: 0.5rem; border: 1px solid #d1d5db; border-radius: 0.25rem;">
+                    </div>
+                    <div>
+                        <label for="email" style="display: block; margin-bottom: 0.25rem; font-weight: 500;">Email</label>
+                        <input type="email" id="email" style="width: 100%; padding: 0.5rem; border: 1px solid #d1d5db; border-radius: 0.25rem;">
+                    </div>
+                    <div>
+                        <label for="message" style="display: block; margin-bottom: 0.25rem; font-weight: 500;">Message</label>
+                        <textarea id="message" rows="4" style="width: 100%; padding: 0.5rem; border: 1px solid #d1d5db; border-radius: 0.25rem;"></textarea>
+                    </div>
+                </form>
+            </div>
+
+            <div data-offcanvas-footer>
+                <button class="btn btn--secondary" data-offcanvas-close>Cancel</button>
+                <button class="btn">Send</button>
+            </div>
+        </div>
+
+        <div data-offcanvas-backdrop></div>
+    </div>
+
+    <script type="module" src="../js/a11y-offcanvas.js"></script>
+    <script src="demo.js"></script>
+</body>
+
+</html>

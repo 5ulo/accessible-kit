@@ -1,0 +1,122 @@
+/* Accessible Offcanvas - Core Styles */
+/* Obsahuje iba logiku, positioning, layout a spravanie */
+/* Pre vizualne nastavenia pouzite a11y-offcanvas.theme.css */
+
+/* Offcanvas panel */
+[data-offcanvas-panel] {
+    position: fixed;
+    z-index: 1000;
+    visibility: hidden;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+[data-offcanvas-panel][aria-hidden="false"] {
+    visibility: visible;
+}
+
+/* Position variants */
+[data-offcanvas-panel][data-position="left"] {
+    top: 0;
+    left: 0;
+    bottom: 0;
+    transform: translateX(-100%);
+}
+
+[data-offcanvas-panel][data-position="left"][aria-hidden="false"] {
+    transform: translateX(0);
+}
+
+[data-offcanvas-panel][data-position="right"] {
+    top: 0;
+    right: 0;
+    bottom: 0;
+    transform: translateX(100%);
+}
+
+[data-offcanvas-panel][data-position="right"][aria-hidden="false"] {
+    transform: translateX(0);
+}
+
+[data-offcanvas-panel][data-position="top"] {
+    top: 0;
+    left: 0;
+    right: 0;
+    transform: translateY(-100%);
+}
+
+[data-offcanvas-panel][data-position="top"][aria-hidden="false"] {
+    transform: translateY(0);
+}
+
+[data-offcanvas-panel][data-position="bottom"] {
+    bottom: 0;
+    left: 0;
+    right: 0;
+    transform: translateY(100%);
+}
+
+[data-offcanvas-panel][data-position="bottom"][aria-hidden="false"] {
+    transform: translateY(0);
+}
+
+/* Offcanvas header */
+[data-offcanvas-header] {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Offcanvas body */
+[data-offcanvas-body] {
+    flex: 1;
+    overflow-y: auto;
+}
+
+/* Offcanvas footer */
+[data-offcanvas-footer] {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+/* Close button */
+[data-offcanvas-close] {
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+/* Backdrop */
+[data-offcanvas-backdrop] {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 999;
+    visibility: hidden;
+    opacity: 0;
+}
+
+[data-offcanvas-backdrop][aria-hidden="false"] {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* Body scroll lock */
+body.offcanvas-open {
+    overflow: hidden;
+}
+
+/* Focus trap */
+[data-offcanvas-panel]:focus {
+    outline: none;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    [data-offcanvas-panel],
+    [data-offcanvas-backdrop] {
+        transition: none !important;
+    }
+}
