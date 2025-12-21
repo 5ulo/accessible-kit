@@ -2,6 +2,12 @@
 /* Obsahuje vizualne nastavenia: farby, velkosti, bordery, radiusy, spacing */
 /* Pre zmenu vzhladu upravte tento subor */
 
+/* Focus visible for all focusable elements inside offcanvas */
+[data-offcanvas-panel] :focus-visible {
+    outline: 2px solid #3b82f6;
+    outline-offset: 2px;
+}
+
 /* Offcanvas panel */
 [data-offcanvas-panel] {
     width: 320px;
@@ -68,11 +74,6 @@
 [data-offcanvas-close]:hover {
     background: #f3f4f6;
     color: #111827;
-}
-
-[data-offcanvas-close]:focus {
-    outline: 2px solid #3b82f6;
-    outline-offset: 2px;
 }
 
 /* Backdrop */
@@ -151,7 +152,7 @@
         border: 2px solid currentColor;
     }
 
-    [data-offcanvas-close]:focus {
+    [data-offcanvas-panel] :focus-visible {
         outline-width: 3px;
     }
 }

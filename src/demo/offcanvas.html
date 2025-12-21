@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="demo.css">
     <link rel="stylesheet" href="../css/a11y-offcanvas.core.css">
     <link rel="stylesheet" href="../css/a11y-offcanvas.theme.css">
+    <link rel="stylesheet" href="../css/a11y-accordion.core.css">
+    <link rel="stylesheet" href="../css/a11y-accordion.theme.css">
     <style>
         .demo-buttons {
             display: flex;
@@ -297,7 +299,52 @@ document.addEventListener('DOMContentLoaded', () => {
                 <nav style="display: flex; flex-direction: column; gap: 0.5rem;">
                     <a href="#home" style="padding: 0.75rem; border-radius: 0.25rem; text-decoration: none; color: #374151;">Home</a>
                     <a href="#about" style="padding: 0.75rem; border-radius: 0.25rem; text-decoration: none; color: #374151;">About</a>
-                    <a href="#services" style="padding: 0.75rem; border-radius: 0.25rem; text-decoration: none; color: #374151;">Services</a>
+
+                    <!-- Services with nested collapse submenu -->
+                    <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                        <button
+                            data-collapse-toggle="#services-submenu"
+                            style="padding: 0.75rem; border-radius: 0.25rem; text-align: left; background: transparent; border: none; color: #374151; cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
+                            Services
+                            <span aria-hidden="true" style="transition: transform 0.2s;">▼</span>
+                        </button>
+                        <div
+                            id="services-submenu"
+                            data-no-animation
+                            style="padding-left: 1rem;">
+                            <div>
+                                <div style="display: flex; flex-direction: column; gap: 0.25rem;">
+                                    <a href="#web-design" style="padding: 0.5rem; border-radius: 0.25rem; text-decoration: none; color: #6b7280; font-size: 0.9rem;">Web Design</a>
+                                    <a href="#web-development" style="padding: 0.5rem; border-radius: 0.25rem; text-decoration: none; color: #6b7280; font-size: 0.9rem;">Web Development</a>
+                                    <a href="#seo" style="padding: 0.5rem; border-radius: 0.25rem; text-decoration: none; color: #6b7280; font-size: 0.9rem;">SEO</a>
+                                    <a href="#marketing" style="padding: 0.5rem; border-radius: 0.25rem; text-decoration: none; color: #6b7280; font-size: 0.9rem;">Marketing</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Products with nested collapse submenu -->
+                    <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                        <button
+                            data-collapse-toggle="#products-submenu"
+                            style="padding: 0.75rem; border-radius: 0.25rem; text-align: left; background: transparent; border: none; color: #374151; cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
+                            Products
+                            <span aria-hidden="true" style="transition: transform 0.2s;">▼</span>
+                        </button>
+                        <div
+                            id="products-submenu"
+                            data-no-animation
+                            style="padding-left: 1rem;">
+                            <div>
+                                <div style="display: flex; flex-direction: column; gap: 0.25rem;">
+                                    <a href="#product-a" style="padding: 0.5rem; border-radius: 0.25rem; text-decoration: none; color: #6b7280; font-size: 0.9rem;">Product A</a>
+                                    <a href="#product-b" style="padding: 0.5rem; border-radius: 0.25rem; text-decoration: none; color: #6b7280; font-size: 0.9rem;">Product B</a>
+                                    <a href="#product-c" style="padding: 0.5rem; border-radius: 0.25rem; text-decoration: none; color: #6b7280; font-size: 0.9rem;">Product C</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <a href="#contact" style="padding: 0.75rem; border-radius: 0.25rem; text-decoration: none; color: #374151;">Contact</a>
                 </nav>
             </div>
@@ -359,10 +406,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     <script type="module">
         import { initOffcanvas } from '../js/a11y-offcanvas.js';
+        import { initCollapses } from '../js/a11y-accordion.js';
 
-        // Initialize offcanvas after DOM is ready
+        // Initialize offcanvas and collapse after DOM is ready
         document.addEventListener('DOMContentLoaded', () => {
             initOffcanvas();
+            initCollapses();
         });
     </script>
     <script src="demo.js"></script>

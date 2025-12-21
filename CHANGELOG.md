@@ -5,6 +5,26 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.4] - 2025-12-21
+
+### Fixed
+- **Focus Trap**: Fixed focus trap in Offcanvas and Modal components
+  - Focus trap now correctly excludes elements with `aria-hidden="true"` and their children
+  - Fixed timing issue where `updateFocusableElements()` was called before CSS visibility changes applied
+  - Focus trap now properly skips hidden elements in collapsed/nested components (e.g., collapse submenus in navigation)
+  - Added comprehensive filtering for hidden, invisible, and aria-hidden elements
+  - Removed `visibility: hidden` check from filter to prevent false positives during panel opening
+
+### Added
+- Added `:focus-visible` styles to Offcanvas theme for better keyboard navigation visibility
+- Added navigation demo with nested collapse submenus to Offcanvas demo page
+
+### Details
+The focus trap improvements ensure that keyboard navigation works correctly in complex scenarios:
+- When offcanvas/modal contains collapse components, Tab key properly skips hidden submenu items
+- Focus is set after CSS transitions complete, preventing "no focusable elements" issue
+- Users can now navigate nested menus with full accessibility support
+
 ## [1.0.3] - 2025-12-20
 
 ### Fixed
@@ -89,6 +109,7 @@ document.addEventListener('DOMContentLoaded', () => {
 - Zero dependencies
 - Full TypeScript-ready exports
 
+[1.0.4]: https://github.com/5ulo/accessible-kit/compare/v1.0.3...v1.0.4
 [1.0.3]: https://github.com/5ulo/accessible-kit/compare/v1.0.2...v1.0.3
 [1.0.2]: https://github.com/5ulo/accessible-kit/compare/v1.0.1...v1.0.2
 [1.0.1]: https://github.com/5ulo/accessible-kit/compare/v1.0.0...v1.0.1

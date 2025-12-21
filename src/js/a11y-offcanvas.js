@@ -131,17 +131,16 @@ class AccessibleOffcanvas {
             document.body.classList.add("offcanvas-open");
         }
 
-        // Update focusable elements
-        this.updateFocusableElements();
-
-        // Focus first element
+        // Update focusable elements and focus - needs to wait for CSS to apply
         setTimeout(() => {
+            this.updateFocusableElements();
+
             if (this.firstFocusable) {
                 this.firstFocusable.focus();
             } else {
                 this.panel.focus();
             }
-        }, 100);
+        }, 50);
 
         // Callback
         if (this.options.onOpen) {
@@ -196,11 +195,38 @@ class AccessibleOffcanvas {
         this.focusableElements = Array.from(
             this.panel.querySelectorAll(focusableSelectors.join(","))
         ).filter((el) => {
-            return (
+            // Check if element is visible
+            const isVisible = (
                 el.offsetWidth > 0 ||
                 el.offsetHeight > 0 ||
                 el.getClientRects().length > 0
             );
+
+            if (!isVisible) {
+                return false;
+            }
+
+            // Check if element or any parent has aria-hidden="true"
+            let currentElement = el;
+            while (currentElement && currentElement !== this.panel) {
+                if (currentElement.getAttribute('aria-hidden') === 'true') {
+                    return false;
+                }
+                currentElement = currentElement.parentElement;
+            }
+
+            // Check if element has hidden attribute
+            if (el.hasAttribute('hidden')) {
+                return false;
+            }
+
+            // Check computed style for display (not visibility, as panel is opening)
+            const style = window.getComputedStyle(el);
+            if (style.display === 'none') {
+                return false;
+            }
+
+            return true;
         });
 
         this.firstFocusable = this.focusableElements[0] || null;
