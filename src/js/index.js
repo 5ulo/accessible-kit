@@ -2,7 +2,7 @@
  * a11y-kit
  * Lightweight, accessible UI component library with full ARIA support
  *
- * @version 1.0.4
+ * @version 1.0.5
  * @license MIT
  */
 

@@ -5,15 +5,40 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.5] - 2025-12-21
+
+### Fixed
+- **Focus Trap - Manual Tab Navigation**: Complete rewrite of Tab key handling in Offcanvas and Modal components
+  - **BREAKING CHANGE in behavior**: Focus trap now completely overrides native browser Tab behavior
+  - Always prevents default Tab action and manually controls focus movement
+  - Eliminates `aria-hidden` violations caused by browser trying to focus hidden elements
+  - `updateFocusableElements()` is called on every Tab keypress to catch dynamic DOM changes
+  - Focus only moves through elements in the filtered `focusableElements` list
+  - Properly handles nested collapse components - focus skips closed submenus and includes opened ones
+
+### Details
+**Problem solved:**
+When using Tab key in offcanvas/modal with dynamic content (e.g., collapse menus), the browser's native Tab behavior would attempt to focus elements with `aria-hidden="true"`, causing console warnings and accessibility violations.
+
+**Solution:**
+The focus trap now takes complete control of Tab navigation:
+1. Every Tab keypress prevents default browser behavior
+2. Updates the list of focusable elements to reflect current DOM state
+3. Manually calculates and focuses the next/previous element from the filtered list
+4. Elements inside `aria-hidden="true"` containers are never focused
+
+This ensures perfect compatibility with dynamic components like animated collapse panels in navigation menus.
+
 ## [1.0.4] - 2025-12-21
 
 ### Fixed
-- **Focus Trap**: Fixed focus trap in Offcanvas and Modal components
+- **Focus Trap - Initial Implementation**: Improved focus trap in Offcanvas and Modal components
   - Focus trap now correctly excludes elements with `aria-hidden="true"` and their children
   - Fixed timing issue where `updateFocusableElements()` was called before CSS visibility changes applied
-  - Focus trap now properly skips hidden elements in collapsed/nested components (e.g., collapse submenus in navigation)
+  - Focus trap now properly skips hidden elements in collapsed/nested components
   - Added comprehensive filtering for hidden, invisible, and aria-hidden elements
   - Removed `visibility: hidden` check from filter to prevent false positives during panel opening
+  - Works correctly with both animated (CSS Grid) and non-animated collapse panels
 
 ### Added
 - Added `:focus-visible` styles to Offcanvas theme for better keyboard navigation visibility
@@ -109,6 +134,7 @@ document.addEventListener('DOMContentLoaded', () => {
 - Zero dependencies
 - Full TypeScript-ready exports
 
+[1.0.5]: https://github.com/5ulo/accessible-kit/compare/v1.0.4...v1.0.5
 [1.0.4]: https://github.com/5ulo/accessible-kit/compare/v1.0.3...v1.0.4
 [1.0.3]: https://github.com/5ulo/accessible-kit/compare/v1.0.2...v1.0.3
 [1.0.2]: https://github.com/5ulo/accessible-kit/compare/v1.0.1...v1.0.2

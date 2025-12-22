@@ -194,6 +194,10 @@ class AccessibleModal {
                 el.getClientRects().length > 0
             );
 
+            if (!isVisible) {
+                return false;
+            }
+
             // Check if element or any parent has aria-hidden="true"
             let currentElement = el;
             while (currentElement && currentElement !== this.dialog) {
@@ -214,7 +218,7 @@ class AccessibleModal {
                 return false;
             }
 
-            return isVisible;
+            return true;
         });
 
         this.firstFocusable = this.focusableElements[0] || null;
@@ -225,24 +229,39 @@ class AccessibleModal {
     handleFocusTrap(e) {
         if (!this.isOpen || e.key !== "Tab") return;
 
+        // Update focusable elements before each Tab to catch dynamic changes (e.g., collapse panels)
+        this.updateFocusableElements();
+
         // If no focusable elements, prevent default
         if (this.focusableElements.length === 0) {
             e.preventDefault();
             return;
         }
 
+        // Always prevent default Tab behavior - we'll handle focus manually
+        e.preventDefault();
+
+        // Find current element index in focusable list
+        const currentIndex = this.focusableElements.indexOf(document.activeElement);
+
         // Shift + Tab (backward)
         if (e.shiftKey) {
-            if (document.activeElement === this.firstFocusable) {
-                e.preventDefault();
+            if (currentIndex <= 0) {
+                // At first element or not in list - go to last
                 this.lastFocusable.focus();
+            } else {
+                // Go to previous element
+                this.focusableElements[currentIndex - 1].focus();
             }
         }
         // Tab (forward)
         else {
-            if (document.activeElement === this.lastFocusable) {
-                e.preventDefault();
+            if (currentIndex === -1 || currentIndex >= this.focusableElements.length - 1) {
+                // Not in list or at last element - go to first
                 this.firstFocusable.focus();
+            } else {
+                // Go to next element
+                this.focusableElements[currentIndex + 1].focus();
             }
         }
     }
