@@ -18,6 +18,7 @@ class AccessibleDropdown {
 
         // Options
         this.options = {
+            dropdownRole: options.dropdownRole || "menu",
             closeOnSelect: options.closeOnSelect !== false,
             closeOnOutsideClick: options.closeOnOutsideClick !== false,
             closeOnEscape: options.closeOnEscape !== false,
@@ -91,18 +92,24 @@ class AccessibleDropdown {
                 .substr(2, 9)}`;
         }
 
-        // Button ARIA attributes
-        this.button.setAttribute("aria-haspopup", "true");
+        // Button ARIA attributes - set aria-haspopup based on dropdown role
+        const ariaHaspopupValue = this.options.dropdownRole === "menu" ? "true" : this.options.dropdownRole;
+        this.button.setAttribute("aria-haspopup", ariaHaspopupValue);
         this.button.setAttribute("aria-expanded", "false");
         this.button.setAttribute("aria-controls", this.menu.id);
 
-        // Menu ARIA attributes
-        this.menu.setAttribute("role", "menu");
+        // Menu ARIA attributes - set role based on dropdown role
+        this.menu.setAttribute("role", this.options.dropdownRole);
         this.menu.setAttribute("aria-labelledby", this.button.id);
 
-        // Menu items ARIA attributes
+        // Menu items ARIA attributes - set item role based on dropdown role
+        const itemRole = this.options.dropdownRole === "menu" ? "menuitem" :
+                         this.options.dropdownRole === "listbox" ? "option" : null;
+
         this.items.forEach((item) => {
-            item.setAttribute("role", "menuitem");
+            if (itemRole) {
+                item.setAttribute("role", itemRole);
+            }
             if (!item.hasAttribute("tabindex")) {
                 item.setAttribute("tabindex", "-1");
             }
@@ -184,31 +191,63 @@ class AccessibleDropdown {
     }
 
     handleItemKeydown(e, index) {
+        // Common navigation for all patterns
         switch (e.key) {
             case "Enter":
             case " ":
                 e.preventDefault();
                 this.selectItem(index);
                 break;
-            case "ArrowDown":
-                e.preventDefault();
-                this.focusNextItem();
-                break;
-            case "ArrowUp":
-                e.preventDefault();
-                this.focusPreviousItem();
-                break;
-            case "Home":
-                e.preventDefault();
-                this.setFocusedItem(0);
-                break;
-            case "End":
-                e.preventDefault();
-                this.setFocusedItem(this.items.length - 1);
-                break;
             case "Tab":
-                this.close();
+                // For dialog pattern, Tab should cycle within items
+                // For menu and listbox, close on Tab
+                if (this.options.dropdownRole === "dialog") {
+                    e.preventDefault();
+                    // Tab forward or backward through items
+                    if (e.shiftKey) {
+                        this.focusPreviousItem();
+                    } else {
+                        this.focusNextItem();
+                    }
+                } else {
+                    // Menu and listbox patterns close on Tab
+                    this.close();
+                }
                 break;
+        }
+
+        // Pattern-specific navigation
+        if (this.options.dropdownRole === "menu" || this.options.dropdownRole === "listbox") {
+            switch (e.key) {
+                case "ArrowDown":
+                    e.preventDefault();
+                    this.focusNextItem();
+                    break;
+                case "ArrowUp":
+                    e.preventDefault();
+                    this.focusPreviousItem();
+                    break;
+                case "Home":
+                    e.preventDefault();
+                    this.setFocusedItem(0);
+                    break;
+                case "End":
+                    e.preventDefault();
+                    this.setFocusedItem(this.items.length - 1);
+                    break;
+            }
+        } else if (this.options.dropdownRole === "dialog") {
+            // Dialog pattern: Arrow keys for navigation (less strict)
+            switch (e.key) {
+                case "ArrowDown":
+                    e.preventDefault();
+                    this.focusNextItem();
+                    break;
+                case "ArrowUp":
+                    e.preventDefault();
+                    this.focusPreviousItem();
+                    break;
+            }
         }
     }
 
@@ -320,6 +359,7 @@ function initDropdowns() {
 
     dropdowns.forEach((dropdown) => {
         const options = {
+            dropdownRole: dropdown.dataset.dropdownRole || "menu",
             closeOnSelect: dropdown.dataset.closeOnSelect !== "false",
             closeOnOutsideClick:
                 dropdown.dataset.closeOnOutsideClick !== "false",

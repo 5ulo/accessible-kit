@@ -168,11 +168,12 @@ const dropdown = new AccessibleDropdown(element, {
 
 ## Dropdown
 
-Fully accessible dropdown component with keyboard navigation and ARIA support.
+Fully accessible dropdown component with keyboard navigation and ARIA support. Supports multiple ARIA patterns (menu, dialog, listbox) for different use cases.
 
 ### Features
 
-- ✅ Full ARIA attributes support
+- ✅ Full ARIA attributes support (menu, dialog, and listbox patterns)
+- ✅ Flexible role patterns via `data-dropdown-role` attribute
 - ✅ Keyboard navigation (arrows, Enter, Space, Esc, Home, End)
 - ✅ Focus management
 - ✅ Auto-close on outside click
@@ -213,6 +214,57 @@ Fully accessible dropdown component with keyboard navigation and ARIA support.
 </div>
 ```
 
+### ARIA Patterns
+
+The dropdown component supports multiple ARIA patterns to match different use cases. By default, it uses the **menu pattern**, but you can change this using the `data-dropdown-role` attribute.
+
+#### When to Use Each Pattern
+
+**Menu Pattern (default)** - Use `role="menu"` for:
+- Navigation menus
+- Action menus (Edit, Delete, etc.)
+- Language/region selectors
+- User profile menus
+- Context menus
+
+**Dialog Pattern** - Use `data-dropdown-role="dialog"` for:
+- Media player playlists/controls
+- Complex interactive widgets
+- Custom form controls
+- Rich content with multiple focusable elements
+- Non-menu disclosure patterns
+
+**Example: Dialog Pattern (Radio Playlist)**
+
+```html
+<!-- Use data-dropdown-role="dialog" for playlists, controls, or interactive widgets -->
+<div data-dropdown data-dropdown-role="dialog">
+  <button data-dropdown-button>
+    🎵 Playlist
+    <span data-dropdown-arrow></span>
+  </button>
+  <div data-dropdown-menu>
+    <div>
+      <div>
+        <button data-dropdown-item>Station 1</button>
+        <button data-dropdown-item>Station 2</button>
+        <button data-dropdown-item>Station 3</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- This automatically sets:
+  - Button: aria-haspopup="dialog" (instead of "true")
+  - Menu: role="dialog" (instead of "menu")
+  - Items: No role attribute (instead of "menuitem")
+  - Keyboard: Tab allowed within dropdown (menu pattern closes on Tab)
+-->
+```
+
+**Why use dialog pattern?**
+When your dropdown contains complex interactive content (like a media player playlist), it's not semantically a "menu" of commands. The dialog pattern better represents this content structure and provides more appropriate keyboard behavior. Tab/Shift+Tab cycles through items within the dropdown (instead of closing it like menu pattern does).
+
 ### JavaScript Initialization
 
 ```javascript
@@ -225,6 +277,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Or manual initialization with options
 const dropdown = new Dropdown(element, {
+  dropdownRole: 'menu',          // 'menu' (default), 'dialog', or 'listbox'
   closeOnSelect: true,
   closeOnOutsideClick: true,
   closeOnEscape: true,
@@ -269,6 +322,9 @@ Dropdowns have **CSS Grid animations enabled by default**. The animation automat
 **Data attributes:**
 
 ```html
+<!-- Use dialog pattern for non-menu content -->
+<div data-dropdown data-dropdown-role="dialog">
+
 <!-- Keep dropdown open after selection -->
 <div data-dropdown data-close-on-select="false">
 
@@ -283,6 +339,7 @@ Dropdowns have **CSS Grid animations enabled by default**. The animation automat
 
 ```javascript
 {
+  dropdownRole: 'menu',          // ARIA pattern: 'menu', 'dialog', or 'listbox'
   closeOnSelect: true,           // Close after selecting item
   closeOnOutsideClick: true,     // Close on outside click
   closeOnEscape: true,           // Close on Escape key
@@ -295,11 +352,20 @@ Dropdowns have **CSS Grid animations enabled by default**. The animation automat
 
 ### Keyboard Navigation
 
+**Menu Pattern (default):**
+
 - **Enter** / **Space** - Open/close menu or select item
 - **↓** / **↑** - Navigate between items
 - **Home** / **End** - Jump to first/last item
 - **Esc** - Close menu and return focus to button
 - **Tab** - Close menu and move focus
+
+**Dialog Pattern:**
+
+- **Enter** / **Space** - Open/close or select item
+- **↓** / **↑** - Navigate between items
+- **Esc** - Close and return focus to button
+- **Tab** / **Shift+Tab** - Cycle through items within dialog (does not close)
 
 ### Variants
 

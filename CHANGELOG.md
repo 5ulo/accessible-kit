@@ -5,6 +5,24 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.6] - 2026-01-15
+
+### Added
+- **Dropdown - Multiple ARIA Pattern Support**: Added `data-dropdown-role` attribute to support dialog and listbox patterns in addition to the default menu pattern
+  - **New attribute**: `data-dropdown-role` accepts `"menu"` (default), `"dialog"`, or `"listbox"`
+  - Automatically sets appropriate `aria-haspopup` value based on role type:
+    - `role="menu"` → `aria-haspopup="true"`
+    - `role="dialog"` → `aria-haspopup="dialog"`
+    - `role="listbox"` → `aria-haspopup="listbox"`
+  - Conditionally applies correct item roles (`menuitem`, none for dialog, `option` for listbox)
+  - Pattern-specific keyboard navigation:
+    - Menu/listbox: Arrow keys, Home/End, Tab closes dropdown
+    - Dialog: Arrow keys, Tab navigates within (doesn't close)
+  - **Use case example**: Radio playlists, media controls, or complex interactive widgets that aren't semantic "menus"
+  - Added comprehensive documentation and live example (radio playlist) to demo page
+  - Updated README with ARIA pattern guidance and when to use each pattern
+  - **Backwards compatible**: Defaults to `"menu"` pattern, existing implementations unchanged
+
 ## [1.0.5] - 2025-12-21
 
 ### Fixed
@@ -134,6 +152,7 @@ document.addEventListener('DOMContentLoaded', () => {
 - Zero dependencies
 - Full TypeScript-ready exports
 
+[1.0.6]: https://github.com/5ulo/accessible-kit/compare/v1.0.5...v1.0.6
 [1.0.5]: https://github.com/5ulo/accessible-kit/compare/v1.0.4...v1.0.5
 [1.0.4]: https://github.com/5ulo/accessible-kit/compare/v1.0.3...v1.0.4
 [1.0.3]: https://github.com/5ulo/accessible-kit/compare/v1.0.2...v1.0.3

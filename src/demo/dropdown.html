@@ -249,6 +249,58 @@
                     </div>
                 </div>
 
+                <!-- Dialog Pattern Example - Radio Playlist -->
+                <div class="demo-item">
+                    <h3>Dialog Pattern (Playlist)</h3>
+                    <p class="description" style="font-size: 0.875rem; margin-bottom: 0.75rem;">
+                        Uses <code>data-dropdown-role="dialog"</code> for non-menu content.
+                        Ideal for media players, complex controls, or interactive widgets.
+                    </p>
+                    <div data-dropdown data-dropdown-role="dialog">
+                        <button data-dropdown-button>
+                            🎵 Playlist
+                            <span class="dropdown__arrow"></span>
+                        </button>
+                        <div data-dropdown-menu>
+                            <div>
+                                <div style="min-width: 250px;">
+                                    <div style="padding: 0.5rem 1rem; font-weight: 600; border-bottom: 1px solid var(--color-border, #e5e7eb);">
+                                        Now Playing
+                                    </div>
+                                    <button data-dropdown-item style="display: flex; align-items: center; gap: 0.75rem;">
+                                        <span style="font-size: 1.25rem;">▶️</span>
+                                        <div style="text-align: left;">
+                                            <div style="font-weight: 500;">Summer Vibes</div>
+                                            <div style="font-size: 0.75rem; opacity: 0.7;">Chill Radio</div>
+                                        </div>
+                                    </button>
+                                    <button data-dropdown-item style="display: flex; align-items: center; gap: 0.75rem;">
+                                        <span style="font-size: 1.25rem;">🎸</span>
+                                        <div style="text-align: left;">
+                                            <div style="font-weight: 500;">Rock Classics</div>
+                                            <div style="font-size: 0.75rem; opacity: 0.7;">Rock Radio</div>
+                                        </div>
+                                    </button>
+                                    <button data-dropdown-item style="display: flex; align-items: center; gap: 0.75rem;">
+                                        <span style="font-size: 1.25rem;">🎹</span>
+                                        <div style="text-align: left;">
+                                            <div style="font-weight: 500;">Jazz Evening</div>
+                                            <div style="font-size: 0.75rem; opacity: 0.7;">Jazz Radio</div>
+                                        </div>
+                                    </button>
+                                    <button data-dropdown-item style="display: flex; align-items: center; gap: 0.75rem;">
+                                        <span style="font-size: 1.25rem;">🎧</span>
+                                        <div style="text-align: left;">
+                                            <div style="font-weight: 500;">Electronic Beats</div>
+                                            <div style="font-size: 0.75rem; opacity: 0.7;">EDM Radio</div>
+                                        </div>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Language switcher -->
                 <div class="demo-item">
                     <h3>Language Switcher</h3>
@@ -331,6 +383,37 @@
         <section>
             <h2>Usage</h2>
 
+            <div class="info-box" style="background-color: #f0f9ff; border-left: 4px solid #0284c7; padding: 1rem; margin-bottom: 2rem;">
+                <h3 style="margin-top: 0; color: #0c4a6e;">When to Use Dialog vs Menu Pattern</h3>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 1rem;">
+                    <div>
+                        <h4 style="margin: 0 0 0.5rem 0; color: #0369a1;">✅ Use Menu Pattern (default)</h4>
+                        <p style="margin: 0 0 0.5rem 0; font-size: 0.875rem;"><code>role="menu"</code> + <code>aria-haspopup="true"</code></p>
+                        <ul style="margin: 0; padding-left: 1.5rem; font-size: 0.875rem;">
+                            <li>Navigation menus</li>
+                            <li>Action menus (Edit, Delete, etc.)</li>
+                            <li>Language/region selectors</li>
+                            <li>User profile menus</li>
+                            <li>Context menus</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 style="margin: 0 0 0.5rem 0; color: #0369a1;">✅ Use Dialog Pattern</h4>
+                        <p style="margin: 0 0 0.5rem 0; font-size: 0.875rem;"><code>role="dialog"</code> + <code>aria-haspopup="dialog"</code></p>
+                        <ul style="margin: 0; padding-left: 1.5rem; font-size: 0.875rem;">
+                            <li>Media player playlists/controls</li>
+                            <li>Complex interactive widgets</li>
+                            <li>Custom form controls</li>
+                            <li>Rich content with multiple focusable elements</li>
+                            <li>Non-menu disclosure patterns</li>
+                        </ul>
+                    </div>
+                </div>
+                <p style="margin: 1rem 0 0 0; font-size: 0.875rem; font-style: italic;">
+                    💡 Dialog pattern cykluje Tab navigáciu vnútri dropdownu (Tab/Shift+Tab medzi položkami), zatiaľ čo menu pattern sa zatvára pri Tab.
+                </p>
+            </div>
+
             <h3>Basic HTML Structure (without animation):</h3>
             <pre><code>&lt;div data-dropdown&gt;
     &lt;button data-dropdown-button&gt;
@@ -346,6 +429,30 @@
         &lt;/div&gt;
     &lt;/div&gt;
 &lt;/div&gt;</code></pre>
+
+            <h3>Dialog Pattern (for non-menu content):</h3>
+            <pre><code>&lt;!-- Use data-dropdown-role="dialog" for playlists, controls, or interactive widgets --&gt;
+&lt;div data-dropdown data-dropdown-role="dialog"&gt;
+    &lt;button data-dropdown-button&gt;
+        🎵 Playlist
+        &lt;span class="dropdown__arrow"&gt;&lt;/span&gt;
+    &lt;/button&gt;
+    &lt;div data-dropdown-menu&gt;
+        &lt;div&gt;
+            &lt;div&gt;
+                &lt;button data-dropdown-item&gt;Station 1&lt;/button&gt;
+                &lt;button data-dropdown-item&gt;Station 2&lt;/button&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- This sets:
+  - Button: aria-haspopup="dialog" (instead of "true")
+  - Menu: role="dialog" (instead of "menu")
+  - Items: No role attribute (instead of "menuitem")
+  - Keyboard: Tab allowed within dropdown (menu pattern closes on Tab)
+--&gt;</code></pre>
 
             <h3>Animations (default):</h3>
             <pre><code>&lt;!-- Animations are default, no need to add any attribute --&gt;
@@ -421,6 +528,7 @@ import { Dropdown } from './a11y-kit/a11y-dropdown.js';
 
 // Use like Bootstrap
 const dropdown = new Dropdown(element, {
+  dropdownRole: 'menu', // 'menu' (default), 'dialog', or 'listbox'
   closeOnSelect: true,
   closeOnOutsideClick: true,
   closeOnEscape: true,
@@ -445,12 +553,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
             <div class="info-box info-box--keyboard">
                 <h3>Keyboard Navigation</h3>
+                <h4 style="margin: 0.5rem 0; font-size: 0.875rem;">Menu Pattern (default):</h4>
                 <ul>
                     <li><kbd>Enter</kbd> / <kbd>Space</kbd> - Open/close menu or select item</li>
                     <li><kbd>↓</kbd> / <kbd>↑</kbd> - Navigate between items</li>
                     <li><kbd>Home</kbd> / <kbd>End</kbd> - Jump to first/last item</li>
                     <li><kbd>Esc</kbd> - Close menu and return focus to button</li>
                     <li><kbd>Tab</kbd> - Close menu and move focus</li>
+                </ul>
+                <h4 style="margin: 1rem 0 0.5rem 0; font-size: 0.875rem;">Dialog Pattern:</h4>
+                <ul>
+                    <li><kbd>Enter</kbd> / <kbd>Space</kbd> - Open/close or select item</li>
+                    <li><kbd>↓</kbd> / <kbd>↑</kbd> - Navigate between items</li>
+                    <li><kbd>Esc</kbd> - Close and return focus to button</li>
+                    <li><kbd>Tab</kbd> - Move focus within dialog (does not close)</li>
                 </ul>
             </div>
         </section>
@@ -459,7 +575,8 @@ document.addEventListener('DOMContentLoaded', () => {
         <section>
             <h2>Features</h2>
             <ul style="margin-left: 1.5rem;">
-                <li>✅ Full ARIA attributes support</li>
+                <li>✅ Full ARIA attributes support (menu, dialog, and listbox patterns)</li>
+                <li>✅ Flexible role patterns via <code>data-dropdown-role</code> attribute</li>
                 <li>✅ Keyboard navigation (arrows, Enter, Space, Esc, Home, End)</li>
                 <li>✅ Focus management for screen readers</li>
                 <li>✅ Auto-close on outside click</li>
