@@ -1,6 +1,6 @@
 {
   "name": "accessible-kit",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Lightweight, accessible UI component library with full ARIA support. Zero dependencies, vanilla JavaScript.",
   "main": "src/js/index.js",
   "type": "module",
