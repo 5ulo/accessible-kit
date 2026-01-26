@@ -16,10 +16,6 @@
     cursor: pointer;
 }
 
-[data-dropdown-button]:focus {
-    outline-offset: 2px;
-}
-
 /* Button icon/arrow */
 [data-dropdown-arrow] {
     display: inline-block;
@@ -99,10 +95,6 @@
     text-decoration: none;
 }
 
-[data-dropdown-item]:focus {
-    outline: none;
-}
-
 /* Divider */
 [data-dropdown-divider] {
     height: 1px;
@@ -130,9 +122,6 @@
 }
 
 /* Navigation variant */
-[data-dropdown][data-variant="nav"] [data-dropdown-button]:focus {
-    outline-offset: 2px;
-}
 
 /* Language switcher variant */
 [data-dropdown][data-variant="language"] [data-dropdown-item] {
@@ -150,13 +139,6 @@
 @media (max-width: 640px) {
     [data-dropdown-menu] {
         min-width: 12rem;
-    }
-}
-
-/* High contrast mode support */
-@media (prefers-contrast: high) {
-    [data-dropdown-item]:focus {
-        outline-offset: -2px;
     }
 }
 

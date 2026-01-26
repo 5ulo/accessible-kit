@@ -19,6 +19,7 @@ A collection of fully accessible UI components for modern web applications. Buil
 - **♿ Inclusive** - High contrast mode and reduced motion support
 - **🔧 Framework Agnostic** - Works with any framework or vanilla JS
 - **📦 Tree-shakeable** - Import only what you need
+- **⌨️ Focus Visible** - Uses `:focus-visible` for better keyboard navigation UX
 
 ## 📚 Table of Contents
 
@@ -1055,6 +1056,7 @@ Contains only logic, positioning, layout, and behavior:
 - Visibility states
 - Animations
 - Responsive breakpoints
+- **NO visual styling** - completely theme-agnostic
 
 **Do not modify** unless changing component functionality.
 
@@ -1066,6 +1068,7 @@ Contains all visual styling:
 - Typography
 - Borders and border-radius
 - Shadows
+- **All focus indicators** (`:focus-visible` with `outline`, `outline-offset`, etc.)
 - Dark mode
 - High contrast mode
 

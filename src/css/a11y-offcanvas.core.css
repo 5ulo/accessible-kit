@@ -112,11 +112,6 @@ body.offcanvas-open {
     overflow: hidden;
 }
 
-/* Focus trap */
-[data-offcanvas-panel]:focus {
-    outline: none;
-}
-
 /* Reduced motion support */
 @media (prefers-reduced-motion: reduce) {
     [data-offcanvas-panel],

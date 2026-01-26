@@ -35,8 +35,9 @@
     background: #f9fafb;
 }
 
-[data-tabs-tab]:focus {
+[data-tabs-tab]:focus-visible {
     outline: 2px solid #3b82f6;
+    outline-offset: -2px;
     color: #374151;
 }
 
@@ -78,6 +79,10 @@
 [data-tabs-panel] {
     color: #374151;
     line-height: 1.6;
+}
+
+[data-tabs-panel]:focus-visible {
+    outline: none;
 }
 
 /* Boxed variant */
@@ -136,7 +141,7 @@
     color: #fff;
 }
 
-[data-tabs][data-tabs][data-variant="pills"] [data-tabs-tab]:focus {
+[data-tabs][data-tabs][data-variant="pills"] [data-tabs-tab]:focus-visible {
     outline-color: #3b82f6;
 }
 
@@ -222,7 +227,7 @@
         border-width: 2px;
     }
 
-    [data-tabs-tab]:focus {
+    [data-tabs-tab]:focus-visible {
         outline-width: 3px;
     }
 }
@@ -246,7 +251,7 @@
         background: #1f2937;
     }
 
-    [data-tabs-tab]:focus {
+    [data-tabs-tab]:focus-visible {
         color: #f9fafb;
     }
 

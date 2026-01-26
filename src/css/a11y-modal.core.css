@@ -110,11 +110,6 @@ body.modal-open {
     overflow: hidden;
 }
 
-/* Focus trap */
-[data-modal-dialog]:focus {
-    outline: none;
-}
-
 /* Responsive */
 @media (max-width: 640px) {
     [data-modal-dialog] {

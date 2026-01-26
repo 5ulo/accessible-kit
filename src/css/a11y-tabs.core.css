@@ -46,10 +46,6 @@
     pointer-events: none;
 }
 
-[data-tabs-tab]:focus {
-    outline-offset: -2px;
-}
-
 /* Tab panels container */
 [data-tabs-panels] {
     position: relative;
@@ -62,11 +58,6 @@
 
 [data-tabs-panel][aria-hidden="false"] {
     display: block;
-}
-
-/* Focus within panel */
-[data-tabs-panel]:focus {
-    outline: none;
 }
 
 /* View Transitions API uses default cross-fade animation */

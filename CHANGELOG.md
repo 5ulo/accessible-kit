@@ -5,6 +5,25 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.7] - 2026-01-26
+
+### Changed
+- **All Components - Focus Indicator Improvements**: Migrated from `:focus` to `:focus-visible` for better keyboard navigation UX
+  - **Breaking Change for Custom Themes**: If you have custom theme files, update `:focus` selectors to `:focus-visible`
+  - **Complete separation of concerns**: ALL visual styling (including `outline` properties) moved from `*.core.css` to `*.theme.css` files
+  - Core CSS files now contain ZERO visual styling - only structural layout and behavior
+  - Theme CSS files contain all focus styling including `outline`, `outline-offset`, and `outline-color`
+  - **Benefits**:
+    - Focus indicators only appear for keyboard navigation, not on mouse clicks
+    - Perfect separation between core functionality and visual design
+    - Complete customization freedom - modify or remove all focus styling in theme files
+    - No hardcoded visual defaults in core files
+  - **Affected components**: Dropdown, Modal, Offcanvas, Tabs, Accordion
+  - **Migration guide**: 
+    - Update your custom theme `:focus` selectors to `:focus-visible`
+    - All `outline` customization should now be done in `*.theme.css` files only
+  - Updated documentation in README with focus-visible information
+
 ## [1.0.6] - 2026-01-15
 
 ### Added
@@ -152,6 +171,7 @@ document.addEventListener('DOMContentLoaded', () => {
 - Zero dependencies
 - Full TypeScript-ready exports
 
+[1.0.7]: https://github.com/5ulo/accessible-kit/compare/v1.0.6...v1.0.7
 [1.0.6]: https://github.com/5ulo/accessible-kit/compare/v1.0.5...v1.0.6
 [1.0.5]: https://github.com/5ulo/accessible-kit/compare/v1.0.4...v1.0.5
 [1.0.4]: https://github.com/5ulo/accessible-kit/compare/v1.0.3...v1.0.4
