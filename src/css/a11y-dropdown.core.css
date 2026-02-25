@@ -90,9 +90,7 @@
 [data-dropdown-item] {
     display: block;
     width: 100%;
-    text-align: left;
     cursor: pointer;
-    text-decoration: none;
 }
 
 /* Divider */
