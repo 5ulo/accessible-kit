@@ -173,7 +173,7 @@ Fully accessible dropdown component with keyboard navigation and ARIA support. S
 
 ### Features
 
-- ✅ Full ARIA attributes support (menu, dialog, and listbox patterns)
+- ✅ Full ARIA attributes support (menu, navigation, dialog, and listbox patterns)
 - ✅ Flexible role patterns via `data-dropdown-role` attribute
 - ✅ Keyboard navigation (arrows, Enter, Space, Esc, Home, End)
 - ✅ Focus management
@@ -222,11 +222,14 @@ The dropdown component supports multiple ARIA patterns to match different use ca
 #### When to Use Each Pattern
 
 **Menu Pattern (default)** - Use `role="menu"` for:
-- Navigation menus
 - Action menus (Edit, Delete, etc.)
-- Language/region selectors
-- User profile menus
-- Context menus
+- User profile menus (button items)
+- Context menus (button items)
+
+**Navigation Pattern** - Use `data-dropdown-role="navigation"` for:
+- Language/region switchers
+- Navigation dropdowns containing `<a>` links
+- Any disclosure widget where native `<nav>` landmark and link semantics must be preserved
 
 **Dialog Pattern** - Use `data-dropdown-role="dialog"` for:
 - Media player playlists/controls
@@ -266,6 +269,38 @@ The dropdown component supports multiple ARIA patterns to match different use ca
 **Why use dialog pattern?**
 When your dropdown contains complex interactive content (like a media player playlist), it's not semantically a "menu" of commands. The dialog pattern better represents this content structure and provides more appropriate keyboard behavior. Tab/Shift+Tab cycles through items within the dropdown (instead of closing it like menu pattern does).
 
+**Example: Navigation Pattern (Language Switcher)**
+
+```html
+<!-- Use data-dropdown-role="navigation" for language switchers and nav menus with links -->
+<div data-dropdown data-dropdown-role="navigation">
+  <button data-dropdown-button aria-label="Výber jazyka">
+    🇬🇧 English
+    <span data-dropdown-arrow></span>
+  </button>
+  <nav data-dropdown-menu aria-label="Výber jazyka">
+    <div>
+      <div>
+        <ul style="list-style: none; margin: 0; padding: 0;">
+          <li><a href="/en" hreflang="en" lang="en" data-dropdown-item aria-current="page">English</a></li>
+          <li><a href="/sk" hreflang="sk" lang="sk" data-dropdown-item>Slovensky</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</div>
+
+<!-- This automatically sets:
+  - Button: aria-expanded + aria-controls only (no aria-haspopup)
+  - Menu: no role override (preserves native <nav> landmark)
+  - Items: no role override (preserves native <a> link semantics)
+  - Keyboard: Arrow keys navigate, Tab closes (same as menu pattern)
+-->
+```
+
+**Why use navigation pattern?**
+Language switchers and nav dropdowns contain `<a>` links, not menu commands. The `role="menu"` + `role="menuitem"` pattern is semantically incorrect for links — it hides the native link semantics from screen readers. The navigation pattern keeps the `<nav>` landmark and `<a>` link roles intact, allowing users to understand they're navigating, not executing commands.
+
 ### JavaScript Initialization
 
 ```javascript
@@ -278,7 +313,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Or manual initialization with options
 const dropdown = new Dropdown(element, {
-  dropdownRole: 'menu',          // 'menu' (default), 'dialog', or 'listbox'
+  dropdownRole: 'menu',          // 'menu' (default), 'dialog', 'listbox', or 'navigation'
   closeOnSelect: true,
   closeOnOutsideClick: true,
   closeOnEscape: true,
@@ -340,7 +375,7 @@ Dropdowns have **CSS Grid animations enabled by default**. The animation automat
 
 ```javascript
 {
-  dropdownRole: 'menu',          // ARIA pattern: 'menu', 'dialog', or 'listbox'
+  dropdownRole: 'menu',          // ARIA pattern: 'menu', 'dialog', 'listbox', or 'navigation'
   closeOnSelect: true,           // Close after selecting item
   closeOnOutsideClick: true,     // Close on outside click
   closeOnEscape: true,           // Close on Escape key
@@ -368,6 +403,14 @@ Dropdowns have **CSS Grid animations enabled by default**. The animation automat
 - **Esc** - Close and return focus to button
 - **Tab** / **Shift+Tab** - Cycle through items within dialog (does not close)
 
+**Navigation Pattern:**
+
+- **↓** / **↑** - Navigate between links
+- **Home** / **End** - Jump to first/last link
+- **Esc** - Close and return focus to button
+- **Tab** - Close and move focus
+- **Enter** - Follow link (native browser behavior)
+
 ### Variants
 
 **Navigation menu:**
@@ -389,25 +432,31 @@ Dropdowns have **CSS Grid animations enabled by default**. The animation automat
 **Language switcher:**
 
 ```html
-<div data-dropdown data-variant="language">
-  <button data-dropdown-button>
+<div data-dropdown data-variant="language" data-dropdown-role="navigation">
+  <button data-dropdown-button aria-label="Výber jazyka">
     🇬🇧 EN
     <span data-dropdown-arrow></span>
   </button>
-  <div data-dropdown-menu>
+  <nav data-dropdown-menu aria-label="Výber jazyka">
     <div>
       <div>
-        <button data-dropdown-item>
-          <span data-dropdown-item-flag>🇬🇧</span>
-          English
-        </button>
-        <button data-dropdown-item>
-          <span data-dropdown-item-flag>🇸🇰</span>
-          Slovenčina
-        </button>
+        <ul style="list-style: none; margin: 0; padding: 0;">
+          <li>
+            <a href="/en" hreflang="en" lang="en" data-dropdown-item aria-current="page">
+              <span data-dropdown-item-flag>🇬🇧</span>
+              English
+            </a>
+          </li>
+          <li>
+            <a href="/sk" hreflang="sk" lang="sk" data-dropdown-item>
+              <span data-dropdown-item-flag>🇸🇰</span>
+              Slovenčina
+            </a>
+          </li>
+        </ul>
       </div>
     </div>
-  </div>
+  </nav>
 </div>
 ```
 

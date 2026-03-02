@@ -66,33 +66,43 @@
                         </div>
                     </div>
 
-                    <div data-variant="language" data-dropdown>
-                        <button data-dropdown-button>
+                    <div data-variant="language" data-dropdown data-dropdown-role="navigation">
+                        <button data-dropdown-button aria-label="Language / Jazyk">
                             🇬🇧 EN
                             <span class="dropdown__arrow"></span>
                         </button>
-                        <div data-dropdown-menu="right">
+                        <nav data-dropdown-menu="right" aria-label="Language / Jazyk">
                             <div>
                                 <div>
-                                    <button data-dropdown-item>
-                                        <span class="dropdown__item-flag">🇬🇧</span>
-                                        English
-                                    </button>
-                                    <button data-dropdown-item>
-                                        <span class="dropdown__item-flag">🇸🇰</span>
-                                        Slovak
-                                    </button>
-                                    <button data-dropdown-item>
-                                        <span class="dropdown__item-flag">🇨🇿</span>
-                                        Czech
-                                    </button>
-                                    <button data-dropdown-item>
-                                        <span class="dropdown__item-flag">🇩🇪</span>
-                                        German
-                                    </button>
+                                    <ul style="list-style: none; margin: 0; padding: 0;">
+                                        <li>
+                                            <a href="#en" hreflang="en" lang="en" data-dropdown-item aria-current="page">
+                                                <span class="dropdown__item-flag">🇬🇧</span>
+                                                English
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#sk" hreflang="sk" lang="sk" data-dropdown-item>
+                                                <span class="dropdown__item-flag">🇸🇰</span>
+                                                Slovak
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#cs" hreflang="cs" lang="cs" data-dropdown-item>
+                                                <span class="dropdown__item-flag">🇨🇿</span>
+                                                Czech
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#de" hreflang="de" lang="de" data-dropdown-item>
+                                                <span class="dropdown__item-flag">🇩🇪</span>
+                                                German
+                                            </a>
+                                        </li>
+                                    </ul>
                                 </div>
                             </div>
-                        </div>
+                        </nav>
                     </div>
                 </nav>
             </div>
@@ -303,30 +313,42 @@
 
                 <!-- Language switcher -->
                 <div class="demo-item">
-                    <h3>Language Switcher</h3>
-                    <div data-variant="language" data-dropdown>
-                        <button data-dropdown-button>
+                    <h3>Language Switcher (Navigation Pattern)</h3>
+                    <p class="description" style="font-size: 0.875rem; margin-bottom: 0.75rem;">
+                        Uses <code>data-dropdown-role="navigation"</code> — žiadne <code>role="menu"</code>,
+                        zachováva natívnu <code>&lt;nav&gt;</code> landmark a sémantiku <code>&lt;a&gt;</code> odkazov.
+                    </p>
+                    <div data-variant="language" data-dropdown data-dropdown-role="navigation">
+                        <button data-dropdown-button aria-label="Výber jazyka">
                             🇬🇧 English
                             <span class="dropdown__arrow"></span>
                         </button>
-                        <div data-dropdown-menu>
+                        <nav data-dropdown-menu aria-label="Výber jazyka">
                             <div>
                                 <div>
-                                    <button data-dropdown-item>
-                                        <span class="dropdown__item-flag">🇬🇧</span>
-                                        English
-                                    </button>
-                                    <button data-dropdown-item>
-                                        <span class="dropdown__item-flag">🇸🇰</span>
-                                        Slovak
-                                    </button>
-                                    <button data-dropdown-item>
-                                        <span class="dropdown__item-flag">🇨🇿</span>
-                                        Czech
-                                    </button>
+                                    <ul style="list-style: none; margin: 0; padding: 0;">
+                                        <li>
+                                            <a href="#en" hreflang="en" lang="en" data-dropdown-item aria-current="page">
+                                                <span class="dropdown__item-flag">🇬🇧</span>
+                                                English
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#sk" hreflang="sk" lang="sk" data-dropdown-item>
+                                                <span class="dropdown__item-flag">🇸🇰</span>
+                                                Slovak
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#cs" hreflang="cs" lang="cs" data-dropdown-item>
+                                                <span class="dropdown__item-flag">🇨🇿</span>
+                                                Czech
+                                            </a>
+                                        </li>
+                                    </ul>
                                 </div>
                             </div>
-                        </div>
+                        </nav>
                     </div>
                 </div>
 
@@ -383,34 +405,41 @@
         <section>
             <h2>Usage</h2>
 
-            <div class="info-box" style="background-color: #f0f9ff; border-left: 4px solid #0284c7; padding: 1rem; margin-bottom: 2rem;">
-                <h3 style="margin-top: 0; color: #0c4a6e;">When to Use Dialog vs Menu Pattern</h3>
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 1rem;">
+            <div class="info-box info-box--info">
+                <h3>When to Use Each ARIA Pattern</h3>
+                <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.5rem; margin-top: 1rem;">
                     <div>
-                        <h4 style="margin: 0 0 0.5rem 0; color: #0369a1;">✅ Use Menu Pattern (default)</h4>
+                        <h4 style="margin: 0 0 0.5rem 0;">✅ Use Menu Pattern (default)</h4>
                         <p style="margin: 0 0 0.5rem 0; font-size: 0.875rem;"><code>role="menu"</code> + <code>aria-haspopup="true"</code></p>
                         <ul style="margin: 0; padding-left: 1.5rem; font-size: 0.875rem;">
-                            <li>Navigation menus</li>
                             <li>Action menus (Edit, Delete, etc.)</li>
-                            <li>Language/region selectors</li>
-                            <li>User profile menus</li>
-                            <li>Context menus</li>
+                            <li>User profile menus (button items)</li>
+                            <li>Context menus (button items)</li>
                         </ul>
                     </div>
                     <div>
-                        <h4 style="margin: 0 0 0.5rem 0; color: #0369a1;">✅ Use Dialog Pattern</h4>
+                        <h4 style="margin: 0 0 0.5rem 0;">✅ Use Navigation Pattern</h4>
+                        <p style="margin: 0 0 0.5rem 0; font-size: 0.875rem;"><code>no role override</code> + <code>no aria-haspopup</code></p>
+                        <ul style="margin: 0; padding-left: 1.5rem; font-size: 0.875rem;">
+                            <li>Language/region switchers</li>
+                            <li>Navigation dropdowns with links</li>
+                            <li>Any dropdown containing <code>&lt;a&gt;</code> links</li>
+                            <li>Use <code>&lt;nav&gt;</code> as menu element</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 style="margin: 0 0 0.5rem 0;">✅ Use Dialog Pattern</h4>
                         <p style="margin: 0 0 0.5rem 0; font-size: 0.875rem;"><code>role="dialog"</code> + <code>aria-haspopup="dialog"</code></p>
                         <ul style="margin: 0; padding-left: 1.5rem; font-size: 0.875rem;">
                             <li>Media player playlists/controls</li>
                             <li>Complex interactive widgets</li>
                             <li>Custom form controls</li>
                             <li>Rich content with multiple focusable elements</li>
-                            <li>Non-menu disclosure patterns</li>
                         </ul>
                     </div>
                 </div>
                 <p style="margin: 1rem 0 0 0; font-size: 0.875rem; font-style: italic;">
-                    💡 Dialog pattern cykluje Tab navigáciu vnútri dropdownu (Tab/Shift+Tab medzi položkami), zatiaľ čo menu pattern sa zatvára pri Tab.
+                    💡 Navigation pattern zachováva natívnu sémantiku <code>&lt;nav&gt;</code> a odkazov. Dialog pattern cykluje Tab vnútri dropdownu. Menu pattern sa zatvára pri Tab.
                 </p>
             </div>
 
@@ -452,6 +481,36 @@
   - Menu: role="dialog" (instead of "menu")
   - Items: No role attribute (instead of "menuitem")
   - Keyboard: Tab allowed within dropdown (menu pattern closes on Tab)
+--&gt;</code></pre>
+
+            <h3>Navigation Pattern (for link-based dropdowns):</h3>
+            <pre><code>&lt;!-- Use data-dropdown-role="navigation" for language switchers, nav menus with links --&gt;
+&lt;div data-dropdown data-dropdown-role="navigation"&gt;
+    &lt;button data-dropdown-button aria-label="Výber jazyka"&gt;
+        🇬🇧 English
+        &lt;span class="dropdown__arrow"&gt;&lt;/span&gt;
+    &lt;/button&gt;
+    &lt;nav data-dropdown-menu aria-label="Výber jazyka"&gt;
+        &lt;div&gt;
+            &lt;div&gt;
+                &lt;ul style="list-style: none; margin: 0; padding: 0;"&gt;
+                    &lt;li&gt;
+                        &lt;a href="/en" hreflang="en" lang="en" data-dropdown-item aria-current="page"&gt;English&lt;/a&gt;
+                    &lt;/li&gt;
+                    &lt;li&gt;
+                        &lt;a href="/sk" hreflang="sk" lang="sk" data-dropdown-item&gt;Slovensky&lt;/a&gt;
+                    &lt;/li&gt;
+                &lt;/ul&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/nav&gt;
+&lt;/div&gt;
+
+&lt;!-- This sets:
+  - Button: aria-expanded + aria-controls only (no aria-haspopup)
+  - Menu: no role override (preserves native &lt;nav&gt; landmark)
+  - Items: no role override (preserves native &lt;a&gt; link semantics)
+  - Keyboard: Arrow keys navigate, Tab closes (same as menu pattern)
 --&gt;</code></pre>
 
             <h3>Animations (default):</h3>
@@ -528,7 +587,7 @@ import { Dropdown } from './a11y-kit/a11y-dropdown.js';
 
 // Use like Bootstrap
 const dropdown = new Dropdown(element, {
-  dropdownRole: 'menu', // 'menu' (default), 'dialog', or 'listbox'
+  dropdownRole: 'menu', // 'menu' (default), 'dialog', 'listbox', or 'navigation'
   closeOnSelect: true,
   closeOnOutsideClick: true,
   closeOnEscape: true,
@@ -561,6 +620,14 @@ document.addEventListener('DOMContentLoaded', () => {
                     <li><kbd>Esc</kbd> - Close menu and return focus to button</li>
                     <li><kbd>Tab</kbd> - Close menu and move focus</li>
                 </ul>
+                <h4 style="margin: 1rem 0 0.5rem 0; font-size: 0.875rem;">Navigation Pattern (<code>data-dropdown-role="navigation"</code>):</h4>
+                <ul>
+                    <li><kbd>Enter</kbd> / <kbd>Space</kbd> - Open/close or follow link</li>
+                    <li><kbd>↓</kbd> / <kbd>↑</kbd> - Navigate between links</li>
+                    <li><kbd>Home</kbd> / <kbd>End</kbd> - Jump to first/last link</li>
+                    <li><kbd>Esc</kbd> - Close and return focus to button</li>
+                    <li><kbd>Tab</kbd> - Close and move focus</li>
+                </ul>
                 <h4 style="margin: 1rem 0 0.5rem 0; font-size: 0.875rem;">Dialog Pattern:</h4>
                 <ul>
                     <li><kbd>Enter</kbd> / <kbd>Space</kbd> - Open/close or select item</li>
@@ -575,7 +642,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <section>
             <h2>Features</h2>
             <ul style="margin-left: 1.5rem;">
-                <li>✅ Full ARIA attributes support (menu, dialog, and listbox patterns)</li>
+                <li>✅ Full ARIA attributes support (menu, navigation, dialog, and listbox patterns)</li>
                 <li>✅ Flexible role patterns via <code>data-dropdown-role</code> attribute</li>
                 <li>✅ Keyboard navigation (arrows, Enter, Space, Esc, Home, End)</li>
                 <li>✅ Focus management for screen readers</li>

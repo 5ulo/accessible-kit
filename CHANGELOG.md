@@ -5,6 +5,24 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.9] - 2026-03-02
+
+### Added
+- **Dropdown - Navigation ARIA Pattern**: New `data-dropdown-role="navigation"` value for disclosure dropdowns containing links (language switchers, nav menus)
+  - **Button**: sets only `aria-expanded` + `aria-controls` — no `aria-haspopup` (correct for disclosure pattern per WAI-ARIA APG)
+  - **Menu element**: no `role` override — preserves native `<nav>` landmark semantics
+  - **Items**: no `role` override — preserves native `<a>` link semantics and `hreflang`/`aria-current` attributes
+  - **Keyboard**: Arrow keys navigate, `Home`/`End` jump to first/last, `Tab` closes (same as menu pattern)
+  - **Mouse click**: links navigate naturally and support Ctrl+click / middle-click (open in new tab)
+  - Updated demo language switchers (header nav + standalone) to use the new pattern with `<nav>`, `<ul>/<li>/<a>`, `hreflang`, and `aria-current`
+  - Updated Usage info box in demo to 3-column grid: Menu / Navigation / Dialog patterns
+  - Backwards compatible — all existing `menu`, `dialog`, `listbox` dropdowns unchanged
+
+### Changed
+- **README**: Updated ARIA Patterns section — removed "Language/region selectors" and "Navigation menus" from Menu Pattern (they were semantically incorrect there), added dedicated Navigation Pattern description and code example
+- **README**: Updated Language Switcher variant example to use `data-dropdown-role="navigation"` with `<nav>` and `<a>` elements
+- **README**: Added Navigation Pattern to Keyboard Navigation section
+
 ## [1.0.7] - 2026-01-26
 
 ### Changed
@@ -171,6 +189,8 @@ document.addEventListener('DOMContentLoaded', () => {
 - Zero dependencies
 - Full TypeScript-ready exports
 
+[1.0.9]: https://github.com/5ulo/accessible-kit/compare/v1.0.8...v1.0.9
+[1.0.8]: https://github.com/5ulo/accessible-kit/compare/v1.0.7...v1.0.8
 [1.0.7]: https://github.com/5ulo/accessible-kit/compare/v1.0.6...v1.0.7
 [1.0.6]: https://github.com/5ulo/accessible-kit/compare/v1.0.5...v1.0.6
 [1.0.5]: https://github.com/5ulo/accessible-kit/compare/v1.0.4...v1.0.5

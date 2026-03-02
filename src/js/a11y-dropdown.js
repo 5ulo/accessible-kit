@@ -92,17 +92,26 @@ class AccessibleDropdown {
                 .substr(2, 9)}`;
         }
 
-        // Button ARIA attributes - set aria-haspopup based on dropdown role
-        const ariaHaspopupValue = this.options.dropdownRole === "menu" ? "true" : this.options.dropdownRole;
-        this.button.setAttribute("aria-haspopup", ariaHaspopupValue);
+        const isNavigation = this.options.dropdownRole === "navigation";
+
+        // Button ARIA attributes
+        // Navigation (disclosure) pattern: aria-expanded + aria-controls only, no aria-haspopup
+        if (!isNavigation) {
+            const ariaHaspopupValue = this.options.dropdownRole === "menu" ? "true" : this.options.dropdownRole;
+            this.button.setAttribute("aria-haspopup", ariaHaspopupValue);
+        }
         this.button.setAttribute("aria-expanded", "false");
         this.button.setAttribute("aria-controls", this.menu.id);
 
-        // Menu ARIA attributes - set role based on dropdown role
-        this.menu.setAttribute("role", this.options.dropdownRole);
+        // Menu ARIA attributes
+        // Navigation pattern: skip role override to preserve native element role (e.g. <nav> landmark)
+        if (!isNavigation) {
+            this.menu.setAttribute("role", this.options.dropdownRole);
+        }
         this.menu.setAttribute("aria-labelledby", this.button.id);
 
-        // Menu items ARIA attributes - set item role based on dropdown role
+        // Menu items ARIA attributes
+        // Navigation pattern: skip role override to preserve native element semantics (e.g. <a> links)
         const itemRole = this.options.dropdownRole === "menu" ? "menuitem" :
                          this.options.dropdownRole === "listbox" ? "option" : null;
 
@@ -217,7 +226,7 @@ class AccessibleDropdown {
         }
 
         // Pattern-specific navigation
-        if (this.options.dropdownRole === "menu" || this.options.dropdownRole === "listbox") {
+        if (this.options.dropdownRole === "menu" || this.options.dropdownRole === "listbox" || this.options.dropdownRole === "navigation") {
             switch (e.key) {
                 case "ArrowDown":
                     e.preventDefault();
@@ -252,8 +261,11 @@ class AccessibleDropdown {
     }
 
     handleItemClick(e, index) {
-        e.preventDefault();
-        e.stopPropagation();
+        // Navigation pattern: let links handle click naturally (supports Ctrl+click, middle-click, etc.)
+        if (this.options.dropdownRole !== "navigation") {
+            e.preventDefault();
+            e.stopPropagation();
+        }
         this.selectItem(index);
     }
 
